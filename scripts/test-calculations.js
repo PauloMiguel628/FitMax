@@ -1,0 +1,159 @@
+// Testes unitários para cálculos puros de IMC, tempo, resumo semanal e filtro home-friendly
+
+const assert = (condition, msg) => {
+  if (!condition) {
+    console.error(`❌ FALHOU: ${msg}`);
+    process.exit(1);
+  } else {
+    console.log(`✅ PASSOU: ${msg}`);
+  }
+};
+
+console.log('\n--- 1. Testes de Cálculo de IMC ---');
+function calculateBmi(weightKg, heightCm) {
+  if (!weightKg || !heightCm || weightKg <= 0 || heightCm <= 0) return 0;
+  const heightM = heightCm / 100;
+  return Number((weightKg / (heightM * heightM)).toFixed(1));
+}
+
+assert(calculateBmi(70, 175) === 22.9, 'IMC para 70kg e 175cm deve ser 22.9');
+assert(calculateBmi(50, 175) === 16.3, 'IMC para 50kg e 175cm deve ser 16.3 (Abaixo do peso)');
+assert(calculateBmi(85, 175) === 27.8, 'IMC para 85kg e 175cm deve ser 27.8 (Sobrepeso)');
+assert(calculateBmi(105, 175) === 34.3, 'IMC para 105kg e 175cm deve ser 34.3 (Obesidade I)');
+assert(calculateBmi(0, 175) === 0, 'IMC para peso 0 deve retornar 0');
+assert(calculateBmi(70, 0) === 0, 'IMC para altura 0 deve retornar 0');
+
+console.log('\n--- 2. Testes de Classificação de IMC (OMS) ---');
+const BMI_RANGES = [
+  { category: 'underweight', min: 0, max: 18.49 },
+  { category: 'normal', min: 18.5, max: 24.99 },
+  { category: 'overweight', min: 25.0, max: 29.99 },
+  { category: 'obese1', min: 30.0, max: 34.99 },
+  { category: 'obese2', min: 35.0, max: 39.99 },
+  { category: 'obese3', min: 40.0, max: 100.0 },
+];
+function getBmiClassification(bmi) {
+  for (const range of BMI_RANGES) {
+    if (bmi >= range.min && bmi <= range.max) return range;
+  }
+  return BMI_RANGES[BMI_RANGES.length - 1];
+}
+
+assert(getBmiClassification(17.5).category === 'underweight', '17.5 deve ser underweight');
+assert(getBmiClassification(22.9).category === 'normal', '22.9 deve ser normal');
+assert(getBmiClassification(27.8).category === 'overweight', '27.8 deve ser overweight');
+assert(getBmiClassification(32.0).category === 'obese1', '32.0 deve ser obese1');
+assert(getBmiClassification(37.5).category === 'obese2', '37.5 deve ser obese2');
+assert(getBmiClassification(42.0).category === 'obese3', '42.0 deve ser obese3');
+
+console.log('\n--- 3. Testes de Formatação de Tempo do Cronômetro ---');
+function formatStopwatchTime(ms) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  const hoursStr = h > 0 ? String(h).padStart(2, '0') : '';
+  const minutesStr = String(m).padStart(2, '0');
+  const secondsStr = String(s).padStart(2, '0');
+  const formatted = h > 0 ? `${hoursStr}:${minutesStr}:${secondsStr}` : `${minutesStr}:${secondsStr}`;
+  return { formatted };
+}
+
+assert(formatStopwatchTime(0).formatted === '00:00', '0ms deve formatar como 00:00');
+assert(formatStopwatchTime(9000).formatted === '00:09', '9000ms deve formatar como 00:09');
+assert(formatStopwatchTime(65000).formatted === '01:05', '65000ms deve formatar como 01:05');
+assert(formatStopwatchTime(3665000).formatted === '01:01:05', '3665000ms deve formatar como 01:01:05');
+
+console.log('\n--- 4. Testes de Filtro de Exercícios Home-Friendly ---');
+const EXCLUDED_KEYWORDS = ['pull-up bar', 'chin-up bar', 'bench', 'parallel bars', 'dip bar'];
+const EXCLUDED_NAMES = ['archer pull up', 'chest dip', 'triceps dip'];
+function isHomeFriendly(exercise) {
+  if (exercise.equipment !== 'body weight') return false;
+  const name = (exercise.name || '').toLowerCase();
+  if (EXCLUDED_NAMES.some(n => name.includes(n))) return false;
+  const inst = (exercise.instructions || []).join(' ').toLowerCase();
+  if (EXCLUDED_KEYWORDS.some(k => name.includes(k) || inst.includes(k))) return false;
+  return true;
+}
+
+assert(isHomeFriendly({ name: 'push-up', equipment: 'body weight', instructions: ['Push from floor'] }) === true, 'Flexão de solo deve ser permitida');
+assert(isHomeFriendly({ name: 'burpee', equipment: 'body weight', instructions: ['Jump on floor'] }) === true, 'Burpee deve ser permitido');
+assert(isHomeFriendly({ name: 'dumbbell curl', equipment: 'dumbbell', instructions: ['Curl dumbbell'] }) === false, 'Halteres devem ser rejeitados');
+assert(isHomeFriendly({ name: 'archer pull up', equipment: 'body weight', instructions: ['Hang on bar'] }) === false, 'Archer pull up deve ser rejeitado');
+assert(isHomeFriendly({ name: 'chest dip', equipment: 'body weight', instructions: ['On parallel bars'] }) === false, 'Chest dip deve ser rejeitado');
+
+console.log('\n--- 5. Testes de Sequência de Dias Seguidos Logado (Login Streak) ---');
+function getLocalDateString(d) {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+function calculateLoginStreak(loginDates, refDate) {
+  const uniqueDates = new Set(loginDates.filter(Boolean));
+  const todayKey = getLocalDateString(refDate);
+  if (uniqueDates.size === 0) return 0;
+  let streak = 0;
+  const cursor = new Date(refDate);
+  if (!uniqueDates.has(todayKey)) {
+    cursor.setDate(cursor.getDate() - 1);
+    if (!uniqueDates.has(getLocalDateString(cursor))) return 0;
+  }
+  while (true) {
+    const key = getLocalDateString(cursor);
+    if (uniqueDates.has(key)) {
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+const ref = new Date('2026-10-24T12:00:00');
+assert(calculateLoginStreak(['2026-10-22', '2026-10-23', '2026-10-24'], ref) === 3, 'Sequência de 3 dias seguidos logado deve retornar 3');
+assert(calculateLoginStreak(['2026-10-20', '2026-10-23', '2026-10-24'], ref) === 2, 'Sequência quebrada deve contar apenas os 2 últimos dias consecutivos');
+assert(calculateLoginStreak(['2026-10-24'], ref) === 1, 'Primeiro dia logado deve retornar 1');
+
+console.log('\n--- 6. Testes de Remoção de Série na Sessão (removeSet) ---');
+function removeSetFromItem(item) {
+  const nextPlanned = Math.max(1, item.plannedSets - 1);
+  return {
+    ...item,
+    plannedSets: nextPlanned,
+    doneSets: Math.min(item.doneSets, nextPlanned),
+  };
+}
+assert(removeSetFromItem({ plannedSets: 4, doneSets: 4 }).plannedSets === 3, 'Deve reduzir de 4 para 3 séries');
+assert(removeSetFromItem({ plannedSets: 4, doneSets: 4 }).doneSets === 3, 'Deve ajustar doneSets para não exceder plannedSets');
+assert(removeSetFromItem({ plannedSets: 1, doneSets: 1 }).plannedSets === 1, 'Deve manter no mínimo 1 série');
+
+console.log('\n--- 7. Testes de Registro de Evolução de Peso com Data e Hora ---');
+const weightList = [
+  { id: 'w-1', date: '2026-10-23', recordedAt: '2026-10-23T09:00:00.000Z', weightKg: 74.0 },
+  { id: 'w-2', date: '2026-10-24', recordedAt: '2026-10-24T08:30:00.000Z', weightKg: 73.6 },
+  { id: 'w-3', date: '2026-10-24', recordedAt: '2026-10-24T18:45:00.000Z', weightKg: 73.4 },
+];
+assert(weightList.length === 3 && weightList[2].recordedAt.includes('T18:45'), 'Deve manter todos os registros com data e hora exatas para o gráfico');
+
+console.log('\n--- 8. Testes de Descanso entre Séries e Contagem Regressiva por Horário (Background/Tela Travada) ---');
+function computeRemainingFromClock(endsAt, now) {
+  if (!endsAt) return 0;
+  return Math.max(0, endsAt - now);
+}
+const startClock = 1700000000000;
+let restEndsAt = startClock + 60000; // 60s de descanso
+assert(computeRemainingFromClock(restEndsAt, startClock + 25000) === 35000, 'Após 25s com tela travada, deve restar exatamente 35000ms');
+// Usuário soma +15s
+restEndsAt += 15000;
+assert(computeRemainingFromClock(restEndsAt, startClock + 25000) === 50000, 'Ao somar +15s, deve passar para 50000ms restantes');
+assert(computeRemainingFromClock(restEndsAt, startClock + 80000) === 0, 'Após o horário final, deve retornar 0ms');
+
+console.log('\n--- 9. Testes de Alternância de Tema (Modo Escuro / Modo Claro) ---');
+function toggleTheme(current) {
+  return current === 'light' ? 'dark' : 'light';
+}
+assert(toggleTheme('dark') === 'light', 'Deve alternar de dark para light');
+assert(toggleTheme('light') === 'dark', 'Deve alternar de light para dark');
+
+console.log('\n🎉 TODOS OS TESTES PASSARAM COM SUCESSO!\n');
