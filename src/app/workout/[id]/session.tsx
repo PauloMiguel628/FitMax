@@ -11,7 +11,7 @@ import {
   AppStateStatus,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { useRouter, usePreventRemove } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
@@ -67,6 +67,32 @@ export default function WorkoutSessionScreen() {
   const [restRemainingMs, setRestRemainingMs] = useState(0);
   const [restFinishedNotice, setRestFinishedNotice] = useState(false);
   const [jumpModalVisible, setJumpModalVisible] = useState(false);
+  const [allowExit, setAllowExit] = useState(false);
+
+  const disablePrevention = usePreventRemove(
+    Boolean(currentSession) && !allowExit,
+    ({ repeat }) => {
+      Alert.alert(
+        t.sessionDiscard,
+        t.sessionDiscardConfirm,
+        [
+          { text: t.cancel, style: 'cancel' },
+          {
+            text: t.sessionDiscard,
+            style: 'destructive',
+            onPress: () => {
+              try {
+                Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+              } catch {}
+              setAllowExit(true);
+              discardSession();
+              repeat();
+            },
+          },
+        ]
+      );
+    }
+  );
 
   const syncClocks = useCallback(() => {
     const sess = useSessionStore.getState().currentSession;
@@ -239,6 +265,8 @@ export default function WorkoutSessionScreen() {
     try {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch {}
+    setAllowExit(true);
+    disablePrevention();
     const entry = completeSession();
     if (entry) {
       addHistoryEntry(entry);
@@ -262,6 +290,8 @@ export default function WorkoutSessionScreen() {
             try {
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
             } catch {}
+            setAllowExit(true);
+            disablePrevention();
             discardSession();
             router.replace('/(tabs)/workouts');
           },

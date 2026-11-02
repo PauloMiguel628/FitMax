@@ -46,4 +46,22 @@
 6. **Nível do Usuário e Descrição (Bio) no Perfil:** Adicionado o campo `bio` ao tipo `Profile`, seletor interativo de nível (`Iniciante`, `Intermediário`, `Avançado`) e campo de descrição pessoal no cabeçalho e formulário de edição em `src/app/(tabs)/profile.tsx`.
 7. **Alternância entre Modo Escuro e Modo Claro (`themeMode`):** Persistido em `useProfileStore` (`version: 3` com `migrate`) e consumido globalmente via `useAppTheme`, com botão rápido (Sol/Lua) no cabeçalho da Home (`src/components/ui/Header.tsx`) e seletor dedicado na tela de Perfil (`src/app/(tabs)/profile.tsx`).
 8. **Descanso entre Séries (Cálculo por Horário em 2º Plano/Tela Travada):** Configurável por treino (`defaultRestSeconds`) e por exercício (`restSeconds`) em `src/app/workout/new.tsx`, `src/app/workout/[id]/edit.tsx` e `src/app/workout/[id]/session.tsx`. Ao marcar uma série como feita, grava o timestamp absoluto `restEndsAt = Date.now() + durationMs` em `useSessionStore` (`version: 3`) e sincroniza com `AppState`, exibindo `TimerRing` animado, botões de `+15 s` e `Pular descanso`, e disparando haptics + som curto ao terminar.
-9. **Modo Contagem Regressiva por Exercício (`useCountdown` + `expo-audio`):** Implementado o hook `src/hooks/useCountdown.ts` e o utilitário `src/utils/sound.ts` utilizando `createAudioPlayer` do pacote oficial `expo-audio` (SDK 57) com assets WAV locais offline (`assets/sounds/beep-start.wav` e `beep-finish.wav`) e `expo-haptics`, disponível tanto na tela de cronômetro do exercício (`src/app/exercise-timer/[id].tsx`) quanto durante a sessão de treino (`src/app/workout/[id]/session.tsx`).
+9. **Modo Contagem Regressiva por Exercício (`useCountdown` + `expo-audio`):** Implementado o hook `src/hooks/useCountdown.ts` e o utilitário `src/utils/sound.ts` utilizando `createAudioPlayer` do pacote oficial `expo-audio` (SDK 58) com assets WAV locais offline (`assets/sounds/beep-start.wav` e `beep-finish.wav`) e `expo-haptics`, disponível tanto na tela de cronômetro do exercício (`src/app/exercise-timer/[id].tsx`) quanto durante a sessão de treino (`src/app/workout/[id]/session.tsx`).
+
+## 8. Migração Completa: Expo SDK 57 → Expo SDK 58
+1. **Runtime e Stack Atualizados (SDK 58):**
+   - `expo`: `~57.0.31` → `~58.0.22`
+   - `react` / `react-dom`: `19.2.3` → `19.3.0`
+   - `react-native`: `0.86.3` → `0.88.1`
+   - `expo-router`: `~57.0.29` → `~58.0.29`
+   - `react-native-reanimated`: `4.5.1` → `4.7.1`
+   - `react-native-worklets`: `0.10.1` → `0.13.0` (com `overrides` na raiz do `package.json` garantindo cópia única em toda a árvore)
+   - `react-native-gesture-handler`: `~2.32.0` → `~3.3.0`
+   - `expo-image`: `~57.0.5` → `~58.0.18`
+2. **Decisões Técnicas da Migração:**
+   - **TypeScript Estrito (React Native 0.88):** Zero uso de `any`, `@ts-ignore` ou flag de adiamento (`react-native-legacy-deep-imports`). As props removidas `backgroundColor` e `translucent` do `StatusBar` do React Native foram removidas em `src/app/_layout.tsx` e `src/app/welcome.tsx`.
+   - **Expo Router 58 (`CustomTabBar` e `usePreventRemove`):** A barra de abas customizada (`src/components/ui/CustomTabBar.tsx`) foi atualizada para a nova assinatura do React Navigation v8 / `standard-navigation` no `expo-router@58.0.29` (`emitter.emit` e `navigateToTab(route.key)`). Na sessão de treino (`src/app/workout/[id]/session.tsx`), foi integrado o hook `usePreventRemove` de `expo-router` com `{ repeat }` e `disablePrevention()`.
+   - **Janelas Redimensionáveis (iOS 27 / Android Multi-Janela):** Todas as leituras estáticas `Dimensions.get('window')` em nível de módulo foram migradas para `useWindowDimensions()` dentro dos componentes.
+   - **Android R8 e `compileSdkVersion`:** No SDK 58, o R8 vem habilitado por padrão em builds de release Android (não afeta o Expo Go, apenas futuros builds de loja). Não há pin manual de `compileSdkVersion`.
+   - **Integridade dos Dados Persistidos:** Nenhuma chave, `name`, `version` ou função `migrate` dos 6 stores Zustand (`src/store/*.ts`) foi alterada (`git diff pre-sdk-58 -- src/store/` vazio).
+   - **Dívida Técnica / Itens Adiados:** Nenhuma dívida técnica de código foi introduzida (não foi necessário usar `enableLegacyHeaderAppearance()` nem flag de tipos legados).

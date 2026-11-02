@@ -1,16 +1,16 @@
 # FitMax — Pure Home Bodyweight Fitness
 
-Aplicativo mobile de alta performance construído em React Native + Expo (SDK 57), focado exclusivamente em treinos com peso do corpo (**calistenia e exercícios sem equipamento nem máquinas para fazer em casa**).
+Aplicativo mobile de alta performance construído em React Native + Expo (**SDK 58**), focado exclusivamente em treinos com peso do corpo (**calistenia e exercícios sem equipamento nem máquinas para fazer em casa**).
 
 ---
 
 ## ⚡ Guia Rápido para Iniciantes (Como Rodar o App)
 
 ### 1. Pré-requisitos
-- **Node.js**: Versão 20 ou superior instalada ([nodejs.org](https://nodejs.org/)).
+- **Node.js**: Versão **22.13+** (linha 22 LTS), **24.3+** (linha 24) ou **26+** instalada ([nodejs.org](https://nodejs.org/)). Versões ímpares (23, 25) não são suportadas pelo React Native 0.88 / Expo SDK 58.
 - **Celular Físico**:
-  - **Android**: Instale o aplicativo **Expo Go** pela Google Play Store.
-  - **iOS (iPhone)**: Instale o aplicativo **Expo Go** pela Apple App Store.
+  - **Android**: Instale/atualize o aplicativo **Expo Go (SDK 58)** pela Google Play Store.
+  - **iOS (iPhone)**: Instale/atualize o aplicativo **Expo Go (SDK 58)** pela Apple App Store.
 - Certifique-se de que o computador e o celular estão conectados na **mesma rede Wi-Fi**.
 
 ---
@@ -75,10 +75,10 @@ Caso você queira conectar a API ao vivo do RapidAPI ExerciseDB:
 
 ## 🏗️ Arquitetura e Bibliotecas Utilizadas
 
-- **Expo SDK 57** + React 19 + React Native 0.86 (compatibilidade total Expo Go).
-- **Expo Router**: Roteamento baseado em arquivos com abas customizadas e modais fluidos.
+- **Expo SDK 58** + React 19.3 + React Native 0.88.1 (compatibilidade total Expo Go SDK 58).
+- **Expo Router 58**: Roteamento baseado em arquivos com abas customizadas e modais fluidos.
 - **Zustand + AsyncStorage**: Gerenciamento de estado reativo com persistência offline total (perfil, favoritos, treinos customizados, sessões ativas e histórico).
-- **React Native Reanimated + Gesture Handler**: Animações a 60 fps na thread de UI nativa, pílula deslizante nas abas e feedback de toque.
+- **React Native Reanimated 4.7 + Worklets 0.13 + Gesture Handler 3.3**: Animações a 60 fps na thread de UI nativa, pílula deslizante nas abas e feedback de toque.
 - **Expo Image**: Reprodução otimizada de GIFs/WebPs anatômicos em loop com cache inteligente em memória e disco.
 - **Expo Haptics**: Feedback tátil de precisão ao favoritar, marcar séries e usar o cronômetro.
 - **Expo Keep Awake**: Mantém a tela acesa durante a execução do cronômetro e sessões de treino.
