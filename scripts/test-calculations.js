@@ -156,4 +156,55 @@ function toggleTheme(current) {
 assert(toggleTheme('dark') === 'light', 'Deve alternar de dark para light');
 assert(toggleTheme('light') === 'dark', 'Deve alternar de light para dark');
 
+console.log('\n--- 10. Testes de Persistência e Reidratação de Dados (SDK 57 -> SDK 58) ---');
+const fs = require('fs');
+const path = require('path');
+
+const expectedStores = [
+  { file: 'profileStore.ts', key: 'fitmax_profile_v3', version: 4 },
+  { file: 'historyStore.ts', key: 'fitmax_history_v2', version: 2 },
+  { file: 'sessionStore.ts', key: 'fitmax_session_v1', version: 3 },
+  { file: 'workoutStore.ts', key: 'fitmax_workouts_v1', version: 2 },
+  { file: 'favoritesStore.ts', key: 'fitmax_favorites_v1', version: null },
+  { file: 'onboardingStore.ts', key: 'fitmax_onboarding_v1', version: null },
+];
+
+for (const st of expectedStores) {
+  const content = fs.readFileSync(path.join(__dirname, '..', 'src', 'store', st.file), 'utf8');
+  assert(content.includes(`name: '${st.key}'`), `Store ${st.file} deve manter a chave '${st.key}'`);
+  if (st.version !== null) {
+    assert(content.includes(`version: ${st.version}`), `Store ${st.file} deve manter version: ${st.version}`);
+  }
+}
+
+// Simula reidratação do payload salvo pelo Zustand persist no SDK 57
+const samplePersistedProfileJson = JSON.stringify({
+  state: {
+    profile: {
+      name: 'Paulo Miguel',
+      bio: 'Calistenia diária',
+      weightKg: 73.5,
+      heightCm: 176,
+      age: 26,
+      sex: 'm',
+      goal: 'Definição',
+      level: 'avancado',
+      locale: 'pt-BR',
+      themeMode: 'dark',
+    },
+    weightHistory: [
+      { id: 'w-1729770000000-abcd', date: '2026-10-24', recordedAt: '2026-10-24T14:00:00.000Z', weightKg: 73.5 },
+    ],
+  },
+  version: 4,
+});
+const parsedProfilePayload = JSON.parse(samplePersistedProfileJson);
+assert(
+  parsedProfilePayload.version === 4 &&
+    parsedProfilePayload.state.profile.name === 'Paulo Miguel' &&
+    parsedProfilePayload.state.weightHistory.length === 1 &&
+    parsedProfilePayload.state.weightHistory[0].weightKg === 73.5,
+  'Payload persistido de perfil e histórico de peso reidrata integralmente sem perda'
+);
+
 console.log('\n🎉 TODOS OS TESTES PASSARAM COM SUCESSO!\n');

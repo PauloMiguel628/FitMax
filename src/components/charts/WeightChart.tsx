@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import Svg, {
   Path,
   Circle,
@@ -18,9 +18,8 @@ interface WeightChartProps {
   entries: WeightEntry[];
 }
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
 export function WeightChart({ entries }: WeightChartProps) {
+  const { width: screenWidth } = useWindowDimensions();
   const { colors, typography, radius } = useAppTheme();
   const { t, locale } = useTranslation();
 
@@ -38,7 +37,7 @@ export function WeightChart({ entries }: WeightChartProps) {
   // Exibe até os últimos 7 pontos no gráfico para manter excelente legibilidade
   const sorted = allSorted.slice(-7);
 
-  const chartWidth = SCREEN_WIDTH - 68;
+  const chartWidth = screenWidth - 68;
   const chartHeight = 175;
   const paddingTop = 32;
   const paddingBottom = 24;

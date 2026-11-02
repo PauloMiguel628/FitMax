@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
   StatusBar,
 } from 'react-native';
 import { Image } from 'expo-image';
@@ -22,11 +22,10 @@ import { useOnboardingStore } from '@/store/onboardingStore';
 import { Button } from '@/components/ui/Button';
 import { useTranslation } from '@/i18n';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
-
 export default function WelcomeScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const { colors, typography, spacing } = useAppTheme();
   const { t } = useTranslation();
   const setWelcomeCompleted = useOnboardingStore((state) => state.setWelcomeCompleted);
@@ -73,14 +72,14 @@ export default function WelcomeScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+      <StatusBar barStyle="light-content" />
 
       {/* Foto de treino em tela cheia (Homem com cordas navais / foto atlética forte) */}
       <Image
         source={{
           uri: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=85',
         }}
-        style={styles.backgroundImage}
+        style={[styles.backgroundImage, { width: screenWidth, height: screenHeight }]}
         contentFit="cover"
         priority="high"
       />
@@ -160,8 +159,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   backgroundImage: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
     position: 'absolute',
   },
   gradientOverlay: {

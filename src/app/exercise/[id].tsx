@@ -5,7 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   ActivityIndicator,
 } from 'react-native';
 import { Image } from 'expo-image';
@@ -28,12 +28,12 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { localizeExercise } from '@/utils/exerciseLocalization';
 import { useTranslation } from '@/i18n';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const TOP_CARD_HEIGHT = 320;
 
 export default function ExerciseDetailModal() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width: screenWidth } = useWindowDimensions();
   const { colors, spacing, radius, typography, isDark } = useAppTheme();
   const { t, locale } = useTranslation();
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -153,6 +153,7 @@ export default function ExerciseDetailModal() {
             style={[
               styles.topCard,
               {
+                width: screenWidth,
                 borderBottomLeftRadius: radius.huge,
                 borderBottomRightRadius: radius.huge,
                 backgroundColor: '#FFFFFF',
@@ -348,7 +349,6 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   topCard: {
-    width: SCREEN_WIDTH,
     height: TOP_CARD_HEIGHT,
     position: 'relative',
     alignItems: 'center',

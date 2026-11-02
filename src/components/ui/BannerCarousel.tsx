@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
   FlatList,
   NativeSyntheticEvent,
   NativeScrollEvent,
@@ -13,12 +13,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useTranslation } from '@/i18n';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const CARD_WIDTH = SCREEN_WIDTH * 0.82;
 const CARD_HEIGHT = 160;
 const SPACING = 14;
 
 export function BannerCarousel() {
+  const { width: screenWidth } = useWindowDimensions();
+  const CARD_WIDTH = screenWidth * 0.82;
   const { colors, radius, typography } = useAppTheme();
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);

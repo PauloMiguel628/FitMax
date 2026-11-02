@@ -4,9 +4,10 @@ import {
   Text,
   StyleSheet,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   Platform,
 } from 'react-native';
+import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Animated, {
   useSharedValue,
@@ -18,23 +19,11 @@ import * as Haptics from 'expo-haptics';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useTranslation } from '@/i18n';
 
-export interface CustomTabBarRoute {
-  key: string;
-  name: string;
-  params?: any;
-}
+export type CustomTabBarProps = Parameters<
+  NonNullable<React.ComponentProps<typeof Tabs>['tabBar']>
+>[0];
 
-export interface CustomTabBarProps {
-  state: {
-    index: number;
-    routes: CustomTabBarRoute[];
-  };
-  descriptors: Record<string, any>;
-  navigation: any;
-  insets?: any;
-}
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+export type CustomTabBarRoute = CustomTabBarProps['state']['routes'][number];
 
 const TAB_CONFIG: Record<
   string,
@@ -72,8 +61,9 @@ const TAB_CONFIG: Record<
   },
 };
 
-export function CustomTabBar({ state, descriptors, navigation }: CustomTabBarProps) {
+export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProps) {
   const insets = useSafeAreaInsets();
+  const { width: screenWidth } = useWindowDimensions();
   const { colors, radius, typography } = useAppTheme();
   const { locale } = useTranslation();
 
@@ -82,7 +72,7 @@ export function CustomTabBar({ state, descriptors, navigation }: CustomTabBarPro
   const numTabs = routes.length || 5;
 
   const barHorizontalPadding = 12;
-  const totalBarWidth = SCREEN_WIDTH - barHorizontalPadding * 2;
+  const totalBarWidth = screenWidth - barHorizontalPadding * 2;
   const tabWidth = (totalBarWidth - 8) / numTabs;
 
   const indicatorPosition = useSharedValue(activeIndex * tabWidth);
@@ -149,14 +139,14 @@ export function CustomTabBar({ state, descriptors, navigation }: CustomTabBarPro
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             } catch {}
 
-            const event = navigation.emit({
+            const event = emitter.emit({
               type: 'tabPress',
               target: route.key,
               canPreventDefault: true,
             });
 
             if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
+              navigateToTab(route.key);
             }
           };
 

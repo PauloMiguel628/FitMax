@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   Pressable,
-  Dimensions,
+  useWindowDimensions,
   TextInput,
   ActivityIndicator,
 } from 'react-native';
@@ -23,12 +23,12 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { useTranslation } from '@/i18n';
 import { getLocalizedExerciseName, getLocalizedTarget } from '@/utils/exerciseLocalization';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const HEADER_IMAGE_HEIGHT = 240;
 
 export default function CategoryScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width: screenWidth } = useWindowDimensions();
   const { colors, spacing, radius, typography } = useAppTheme();
   const { t, locale } = useTranslation();
   const { bodyPart } = useLocalSearchParams<{ bodyPart: string }>();
@@ -114,6 +114,7 @@ export default function CategoryScreen() {
               style={[
                 styles.headerImageContainer,
                 {
+                  width: screenWidth,
                   borderBottomLeftRadius: radius.huge,
                   borderBottomRightRadius: radius.huge,
                   backgroundColor: colors.surfaceElevated,
@@ -230,7 +231,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   headerImageContainer: {
-    width: SCREEN_WIDTH,
     height: HEADER_IMAGE_HEIGHT,
     overflow: 'hidden',
     position: 'relative',

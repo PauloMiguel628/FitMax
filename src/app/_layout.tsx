@@ -73,8 +73,6 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <StatusBar
         barStyle={showOpeningSplash || isDark ? 'light-content' : 'dark-content'}
-        backgroundColor="transparent"
-        translucent
       />
       <Stack
         screenOptions={{
