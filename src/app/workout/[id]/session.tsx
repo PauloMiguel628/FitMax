@@ -384,7 +384,8 @@ export default function WorkoutSessionScreen() {
               backgroundColor: colors.surfaceElevated,
               borderRadius: radius.xl,
               borderColor: colors.border,
-              padding: spacing.md,
+              paddingHorizontal: 12,
+              paddingVertical: 14,
             },
           ]}
         >
@@ -410,9 +411,17 @@ export default function WorkoutSessionScreen() {
               ]}
             >
               <Text
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
                 style={[
                   typography.label,
-                  { color: exTimerMode === 'stopwatch' ? '#FFFFFF' : colors.textSecondary, fontSize: 11 },
+                  {
+                    color: exTimerMode === 'stopwatch' ? '#FFFFFF' : colors.textSecondary,
+                    fontSize: 10.5,
+                    letterSpacing: 0.1,
+                    textAlign: 'center',
+                  },
                 ]}
               >
                 {t.timerModeStopwatch}
@@ -434,9 +443,17 @@ export default function WorkoutSessionScreen() {
               ]}
             >
               <Text
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
                 style={[
                   typography.label,
-                  { color: exTimerMode === 'countdown' ? '#FFFFFF' : colors.textSecondary, fontSize: 11 },
+                  {
+                    color: exTimerMode === 'countdown' ? '#FFFFFF' : colors.textSecondary,
+                    fontSize: 10.5,
+                    letterSpacing: 0.1,
+                    textAlign: 'center',
+                  },
                 ]}
               >
                 {t.timerModeCountdown}
@@ -639,49 +656,57 @@ export default function WorkoutSessionScreen() {
 
         {/* Contador de Séries com Marcadores Interativos */}
         <View style={styles.setsSection}>
-          <View style={styles.setsHeaderRow}>
-            <Text style={[typography.title3, { color: colors.text, flex: 1 }]}>
-              {t.sessionSetsDone} ({currentItem.doneSets}/{currentItem.plannedSets})
-            </Text>
-            <View style={styles.setsActionsRow}>
-              <Pressable
-                onPress={handleRemoveSet}
-                style={[
-                  styles.setActionBtn,
-                  {
-                    backgroundColor: colors.surfaceElevated,
-                    borderColor: colors.border,
-                    borderRadius: radius.full,
-                    opacity: currentItem.plannedSets <= 1 ? 0.45 : 1,
-                  },
-                ]}
-                accessibilityRole="button"
-                accessibilityLabel={t.sessionRemoveSet}
-              >
-                <Ionicons name="trash-outline" size={14} color={colors.error} />
-                <Text style={[typography.label, { color: colors.error, fontSize: 11, marginLeft: 4 }]}>
-                  {t.sessionRemoveSet}
-                </Text>
-              </Pressable>
+          <Text
+            numberOfLines={1}
+            style={[
+              typography.title3,
+              {
+                color: colors.text,
+                marginBottom: 8,
+              },
+            ]}
+          >
+            {t.sessionSetsDone} ({currentItem.doneSets}/{currentItem.plannedSets})
+          </Text>
 
-              <Pressable
-                onPress={handleAddSet}
-                style={[
-                  styles.setActionBtn,
-                  {
-                    backgroundColor: colors.primaryMuted,
-                    borderColor: colors.primary,
-                    borderRadius: radius.full,
-                  },
-                ]}
-                accessibilityRole="button"
-                accessibilityLabel={t.sessionAddSet}
-              >
-                <Text style={[typography.label, { color: colors.primary, fontSize: 11 }]}>
-                  {t.sessionAddSet}
-                </Text>
-              </Pressable>
-            </View>
+          <View style={styles.setsActionsRow}>
+            <Pressable
+              onPress={handleRemoveSet}
+              style={[
+                styles.setActionBtn,
+                {
+                  backgroundColor: colors.surfaceElevated,
+                  borderColor: colors.border,
+                  borderRadius: radius.full,
+                  opacity: currentItem.plannedSets <= 1 ? 0.45 : 1,
+                },
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.sessionRemoveSet}
+            >
+              <Ionicons name="trash-outline" size={14} color={colors.error} />
+              <Text style={[typography.label, { color: colors.error, fontSize: 11, marginLeft: 4 }]}>
+                {t.sessionRemoveSet}
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={handleAddSet}
+              style={[
+                styles.setActionBtn,
+                {
+                  backgroundColor: colors.primaryMuted,
+                  borderColor: colors.primary,
+                  borderRadius: radius.full,
+                },
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.sessionAddSet}
+            >
+              <Text style={[typography.label, { color: colors.primary, fontSize: 11 }]}>
+                {t.sessionAddSet}
+              </Text>
+            </Pressable>
           </View>
 
           {/* Linha de marcadores de séries */}
@@ -1001,12 +1026,14 @@ const styles = StyleSheet.create({
     padding: 3,
     borderWidth: 1,
     marginBottom: 8,
+    alignItems: 'center',
   },
   exModeBtn: {
     flex: 1,
+    height: 36,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 6,
+    paddingHorizontal: 6,
   },
   exCountdownPresetsRow: {
     flexDirection: 'row',
@@ -1101,24 +1128,17 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 12,
   },
-  setsHeaderRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 10,
-  },
   setsActionsRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    marginBottom: 12,
   },
   setActionBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 7,
     borderWidth: 1,
   },
   setsMarkersRow: {
