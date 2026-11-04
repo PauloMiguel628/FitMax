@@ -234,16 +234,22 @@ export default function ExerciseTimerScreen() {
           >
             <Ionicons
               name="stopwatch-outline"
-              size={15}
+              size={14}
               color={timerMode === 'stopwatch' ? '#FFFFFF' : colors.textSecondary}
             />
             <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.75}
               style={[
                 typography.label,
                 {
                   color: timerMode === 'stopwatch' ? '#FFFFFF' : colors.textSecondary,
-                  fontSize: 11,
-                  marginLeft: 5,
+                  fontSize: 10,
+                  letterSpacing: 0,
+                  marginLeft: 4,
+                  textAlign: 'center',
+                  flexShrink: 1,
                 },
               ]}
             >
@@ -263,16 +269,22 @@ export default function ExerciseTimerScreen() {
           >
             <Ionicons
               name="hourglass-outline"
-              size={15}
+              size={14}
               color={timerMode === 'countdown' ? '#FFFFFF' : colors.textSecondary}
             />
             <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.75}
               style={[
                 typography.label,
                 {
                   color: timerMode === 'countdown' ? '#FFFFFF' : colors.textSecondary,
-                  fontSize: 11,
-                  marginLeft: 5,
+                  fontSize: 10,
+                  letterSpacing: 0,
+                  marginLeft: 4,
+                  textAlign: 'center',
+                  flexShrink: 1,
                 },
               ]}
             >
@@ -568,17 +580,19 @@ const styles = StyleSheet.create({
   },
   modeSwitchContainer: {
     flexDirection: 'row',
-    padding: 4,
+    padding: 3,
     borderWidth: 1,
     width: '100%',
     marginVertical: 6,
+    alignItems: 'center',
   },
   modeSwitchBtn: {
     flex: 1,
+    height: 38,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 8,
+    paddingHorizontal: 8,
   },
   countdownConfigWrap: {
     width: '100%',
