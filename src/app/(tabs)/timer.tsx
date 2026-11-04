@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   FlatList,
   Pressable,
   ScrollView,
+  Platform,
+  ListRenderItemInfo,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -27,53 +29,137 @@ export default function TimerSelectorScreen() {
   const { colors, spacing, radius, typography } = useAppTheme();
   const { t, locale } = useTranslation();
 
-  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>(() =>
+    ExerciseService.getInitialExercises()
+  );
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [onlyFavorites, setOnlyFavorites] = useState(false);
 
   const favorites = useFavoritesStore((state) => state.favorites);
+  const favoriteIds = useFavoritesStore((state) => state.favoriteIds);
 
   useEffect(() => {
     ExerciseService.getAllExercises().then(setExercises);
   }, []);
 
-  const filteredExercises = useMemo(() => {
-    let list = onlyFavorites ? favorites : exercises;
+  // Garante lista de favoritos íntegra mesmo que favoriteIds e snapshots precisem ser reconciliados
+  const resolvedFavorites = useMemo(() => {
+    const seen = new Set<string>();
+    const list: Exercise[] = [];
 
-    if (selectedCategory !== 'all') {
-      list = list
-        .filter((ex) => matchesExerciseCategory(ex, selectedCategory))
-        .sort((a, b) => {
-          const aPri = (a.bodyPart || '').toLowerCase() === selectedCategory ? 0 : 1;
-          const bPri = (b.bodyPart || '').toLowerCase() === selectedCategory ? 0 : 1;
-          return aPri - bPri;
-        });
+    for (const fav of favorites) {
+      const id = String(fav.id);
+      if (favoriteIds[id] !== false && !seen.has(id)) {
+        seen.add(id);
+        list.push(fav);
+      }
     }
 
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      list = list.filter((ex) => {
-        const ptName = getLocalizedExerciseName(ex.name, locale).toLowerCase();
-        const ptTarget = getLocalizedTarget(ex.target, locale).toLowerCase();
-        return (
-          ex.name.toLowerCase().includes(q) ||
-          ex.target.toLowerCase().includes(q) ||
-          ptName.includes(q) ||
-          ptTarget.includes(q)
-        );
-      });
+    for (const ex of exercises) {
+      const id = String(ex.id);
+      if (favoriteIds[id] && !seen.has(id)) {
+        seen.add(id);
+        list.push(ex);
+      }
     }
 
     return list;
-  }, [exercises, favorites, selectedCategory, onlyFavorites, searchQuery, locale]);
+  }, [favorites, favoriteIds, exercises]);
 
-  const handleSelectExercise = (exercise: Exercise) => {
-    router.push({
-      pathname: '/exercise-timer/[id]',
-      params: { id: exercise.id },
+  // Pré-calcula buckets por categoria para transição instantânea O(1) entre abas
+  const exercisesByCategory = useMemo(() => {
+    const map: Record<string, Exercise[]> = { all: exercises };
+    for (const cat of ACTIVE_CATEGORIES) {
+      map[cat] = exercises
+        .filter((ex) => matchesExerciseCategory(ex, cat))
+        .sort((a, b) => {
+          const aPri = (a.bodyPart || '').toLowerCase() === cat ? 0 : 1;
+          const bPri = (b.bodyPart || '').toLowerCase() === cat ? 0 : 1;
+          return aPri - bPri;
+        });
+    }
+    return map;
+  }, [exercises]);
+
+  // Índice de busca textual pré-computado por ID para evitar recalcular traduções a cada troca de aba
+  const searchIndexById = useMemo(() => {
+    const index = new Map<string, string>();
+    const allItems = [...exercises, ...resolvedFavorites];
+    for (const ex of allItems) {
+      const id = String(ex.id);
+      if (!index.has(id)) {
+        const ptName = getLocalizedExerciseName(ex.name, locale).toLowerCase();
+        const ptTarget = getLocalizedTarget(ex.target, locale).toLowerCase();
+        index.set(
+          id,
+          `${ex.name.toLowerCase()} ${ex.target.toLowerCase()} ${ptName} ${ptTarget}`
+        );
+      }
+    }
+    return index;
+  }, [exercises, resolvedFavorites, locale]);
+
+  const filteredExercises = useMemo(() => {
+    // Quando a aba Favoritos está selecionada, exibe todos os favoritos do usuário
+    // sem filtrar por uma categoria selecionada anteriormente
+    const baseList = onlyFavorites
+      ? resolvedFavorites
+      : exercisesByCategory[selectedCategory] || exercises;
+
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) {
+      return baseList;
+    }
+
+    return baseList.filter((ex) => {
+      const indexed = searchIndexById.get(String(ex.id));
+      if (indexed) {
+        return indexed.includes(q);
+      }
+      const ptName = getLocalizedExerciseName(ex.name, locale).toLowerCase();
+      const ptTarget = getLocalizedTarget(ex.target, locale).toLowerCase();
+      return (
+        ex.name.toLowerCase().includes(q) ||
+        ex.target.toLowerCase().includes(q) ||
+        ptName.includes(q) ||
+        ptTarget.includes(q)
+      );
     });
-  };
+  }, [
+    onlyFavorites,
+    resolvedFavorites,
+    exercisesByCategory,
+    selectedCategory,
+    exercises,
+    searchQuery,
+    searchIndexById,
+    locale,
+  ]);
+
+  const handleSelectExercise = useCallback(
+    (exercise: Exercise) => {
+      router.push({
+        pathname: '/exercise-timer/[id]',
+        params: { id: exercise.id },
+      });
+    },
+    [router]
+  );
+
+  const keyExtractor = useCallback((item: Exercise) => String(item.id), []);
+
+  const renderExerciseItem = useCallback(
+    ({ item }: ListRenderItemInfo<Exercise>) => (
+      <View style={styles.gridColumn}>
+        <ExerciseCard
+          exercise={item}
+          onSelectExercise={handleSelectExercise}
+        />
+      </View>
+    ),
+    [handleSelectExercise]
+  );
 
   return (
     <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 16) }]}>
@@ -116,7 +202,10 @@ export default function TimerSelectorScreen() {
         >
           {/* Botão de Atalho para Favoritos */}
           <Pressable
-            onPress={() => setOnlyFavorites(!onlyFavorites)}
+            onPress={() => {
+              setSelectedCategory('all');
+              setOnlyFavorites(true);
+            }}
             style={[
               styles.chip,
               {
@@ -220,25 +309,30 @@ export default function TimerSelectorScreen() {
       {/* Grid de Exercícios */}
       <FlatList
         data={filteredExercises}
-        keyExtractor={(item) => String(item.id)}
+        keyExtractor={keyExtractor}
         numColumns={2}
         contentContainerStyle={[styles.listContent, { paddingBottom: Math.max(insets.bottom + 90, 110) }]}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item, index }) => (
-          <View style={styles.gridColumn}>
-            <ExerciseCard
-              exercise={item}
-              index={index}
-              onPress={() => handleSelectExercise(item)}
-            />
-          </View>
-        )}
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
+        windowSize={5}
+        updateCellsBatchingPeriod={16}
+        removeClippedSubviews={Platform.OS === 'android'}
+        renderItem={renderExerciseItem}
         ListEmptyComponent={
-          <EmptyState
-            icon="timer-outline"
-            title={t.noExercisesFound}
-            subtitle={t.noExercisesFoundSubtitle}
-          />
+          onlyFavorites && !searchQuery.trim() ? (
+            <EmptyState
+              icon="heart-outline"
+              title={t.favoritesEmpty}
+              subtitle={t.favoritesEmptySubtitle}
+            />
+          ) : (
+            <EmptyState
+              icon="timer-outline"
+              title={t.noExercisesFound}
+              subtitle={t.noExercisesFoundSubtitle}
+            />
+          )
         }
       />
     </View>

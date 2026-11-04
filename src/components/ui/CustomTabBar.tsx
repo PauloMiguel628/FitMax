@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Pressable,
   useWindowDimensions,
   Platform,
+  LayoutChangeEvent,
 } from 'react-native';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -25,39 +26,60 @@ export type CustomTabBarProps = Parameters<
 
 export type CustomTabBarRoute = CustomTabBarProps['state']['routes'][number];
 
+const BAR_HORIZONTAL_PADDING = 15;
+const CONTAINER_PADDING = 4;
+const CONTAINER_BORDER_WIDTH = 1;
+
 const TAB_CONFIG: Record<
   string,
-  { labelPt: string; labelEn: string; icon: keyof typeof Ionicons.glyphMap; iconActive: keyof typeof Ionicons.glyphMap }
+  {
+    labelPt: string;
+    labelEn: string;
+    icon: keyof typeof Ionicons.glyphMap;
+    iconActive: keyof typeof Ionicons.glyphMap;
+    weightPt: number;
+    weightEn: number;
+  }
 > = {
   index: {
     labelPt: 'Início',
     labelEn: 'Home',
     icon: 'home-outline',
     iconActive: 'home',
+    weightPt: 0.9,
+    weightEn: 0.92,
   },
   workouts: {
     labelPt: 'Treinos',
     labelEn: 'Workouts',
     icon: 'barbell-outline',
     iconActive: 'barbell',
+    weightPt: 0.96,
+    weightEn: 1.06,
   },
   timer: {
     labelPt: 'Cronômetro',
     labelEn: 'Timer',
     icon: 'timer-outline',
     iconActive: 'timer',
+    weightPt: 1.18,
+    weightEn: 0.94,
   },
   favorites: {
     labelPt: 'Favoritos',
     labelEn: 'Favorites',
     icon: 'heart-outline',
     iconActive: 'heart',
+    weightPt: 1.08,
+    weightEn: 1.12,
   },
   profile: {
     labelPt: 'Perfil',
     labelEn: 'Profile',
     icon: 'person-outline',
     iconActive: 'person',
+    weightPt: 0.88,
+    weightEn: 0.96,
   },
 };
 
@@ -67,27 +89,72 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
   const { colors, radius, typography } = useAppTheme();
   const { locale } = useTranslation();
 
-  const routes = state.routes.filter((route) => TAB_CONFIG[route.name]);
-  const activeIndex = state.index;
-  const numTabs = routes.length || 5;
+  const [measuredWidth, setMeasuredWidth] = useState(0);
 
-  const barHorizontalPadding = 12;
-  const totalBarWidth = screenWidth - barHorizontalPadding * 2;
-  const tabWidth = (totalBarWidth - 8) / numTabs;
+  const routes = useMemo(
+    () => state.routes.filter((route) => TAB_CONFIG[route.name]),
+    [state.routes]
+  );
+  const activeRouteKey = state.routes[state.index]?.key;
+  const activeIndex = Math.max(
+    0,
+    routes.findIndex((r) => r.key === activeRouteKey)
+  );
 
-  const indicatorPosition = useSharedValue(activeIndex * tabWidth);
+  const fallbackOuterWidth = Math.max(screenWidth - BAR_HORIZONTAL_PADDING * 2, 280);
+  const outerBarWidth = measuredWidth > 0 ? measuredWidth : fallbackOuterWidth;
+  const innerBarWidth = Math.max(
+    outerBarWidth - (CONTAINER_PADDING + CONTAINER_BORDER_WIDTH) * 2,
+    240
+  );
+
+  const tabMetrics = useMemo(() => {
+    const weights = routes.map((route) => {
+      const cfg = TAB_CONFIG[route.name];
+      if (!cfg) return 1;
+      return locale === 'en' ? cfg.weightEn : cfg.weightPt;
+    });
+    const totalWeight = weights.reduce((acc, w) => acc + w, 0) || routes.length || 5;
+
+    const widths = weights.map((weight) => (innerBarWidth * weight) / totalWeight);
+    return widths.map((width, idx) => ({
+      width,
+      offset: widths.slice(0, idx).reduce((sum, w) => sum + w, 0),
+    }));
+  }, [routes, locale, innerBarWidth]);
+
+  const activeMetric = tabMetrics[activeIndex] ?? {
+    width: innerBarWidth / (routes.length || 5),
+    offset: 0,
+  };
+
+  const indicatorPosition = useSharedValue(activeMetric.offset);
+  const indicatorWidth = useSharedValue(activeMetric.width);
 
   useEffect(() => {
-    indicatorPosition.value = withSpring(activeIndex * tabWidth, {
+    indicatorPosition.value = withSpring(activeMetric.offset, {
       damping: 20,
       stiffness: 240,
       mass: 0.8,
     });
-  }, [activeIndex, tabWidth]);
+    indicatorWidth.value = withSpring(activeMetric.width, {
+      damping: 20,
+      stiffness: 240,
+      mass: 0.8,
+    });
+  }, [activeMetric.offset, activeMetric.width, indicatorPosition, indicatorWidth]);
 
   const animatedIndicatorStyle = useAnimatedStyle(() => ({
+    width: indicatorWidth.value,
     transform: [{ translateX: indicatorPosition.value }],
   }));
+
+  const handleContainerLayout = (event: LayoutChangeEvent) => {
+    const width = event.nativeEvent.layout.width;
+    if (width > 0 && Math.abs(width - measuredWidth) > 0.5) {
+      setMeasuredWidth(width);
+    }
+  };
 
   const bottomPadding = Math.max(insets.bottom + 6, Platform.OS === 'ios' ? 16 : 14);
 
@@ -102,6 +169,7 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
       ]}
     >
       <View
+        onLayout={handleContainerLayout}
         style={[
           styles.container,
           {
@@ -116,7 +184,6 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
           style={[
             styles.slidingIndicator,
             {
-              width: tabWidth,
               backgroundColor: colors.primaryMuted,
               borderColor: colors.primary,
               borderRadius: radius.full,
@@ -126,12 +193,14 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
         />
 
         {routes.map((route: CustomTabBarRoute, index: number) => {
-          const isFocused = state.index === index;
+          const isFocused = index === activeIndex;
           const config = TAB_CONFIG[route.name] || {
             labelPt: route.name,
             labelEn: route.name,
-            icon: 'ellipse-outline',
-            iconActive: 'ellipse',
+            icon: 'ellipse-outline' as const,
+            iconActive: 'ellipse' as const,
+            weightPt: 1,
+            weightEn: 1,
           };
 
           const onPress = () => {
@@ -151,12 +220,17 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
           };
 
           const tabTitle = locale === 'en' ? config.labelEn : config.labelPt;
+          const tabWidth = tabMetrics[index]?.width ?? innerBarWidth / (routes.length || 5);
 
           return (
             <Pressable
               key={route.key}
               onPress={onPress}
-              style={[styles.tabButton, { width: tabWidth }]}
+              style={[
+                styles.tabButton,
+                { width: tabWidth },
+                route.name === 'profile' && styles.profileTabOpticalOffset,
+              ]}
               accessibilityRole="button"
               accessibilityState={{ selected: isFocused }}
               accessibilityLabel={tabTitle}
@@ -189,15 +263,15 @@ export function CustomTabBar({ state, emitter, navigateToTab }: CustomTabBarProp
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: 12,
+    paddingHorizontal: BAR_HORIZONTAL_PADDING,
     paddingTop: 6,
   },
   container: {
     flexDirection: 'row',
     height: 62,
     alignItems: 'center',
-    padding: 4,
-    borderWidth: 1,
+    padding: CONTAINER_PADDING,
+    borderWidth: CONTAINER_BORDER_WIDTH,
     position: 'relative',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -207,9 +281,9 @@ const styles = StyleSheet.create({
   },
   slidingIndicator: {
     position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 4,
+    top: CONTAINER_PADDING,
+    bottom: CONTAINER_PADDING,
+    left: CONTAINER_PADDING,
     borderWidth: 1.5,
   },
   tabButton: {
@@ -217,6 +291,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 2,
+  },
+  profileTabOpticalOffset: {
+    paddingRight: 2,
   },
   tabLabel: {
     fontSize: 10,

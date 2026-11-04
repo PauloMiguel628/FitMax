@@ -5,7 +5,9 @@ import {
   StyleSheet,
   Modal,
   Pressable,
+  ScrollView,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useHistoryStore } from '@/store/historyStore';
@@ -20,6 +22,7 @@ interface WeeklyInsightsSheetProps {
 }
 
 export function WeeklyInsightsSheet({ visible, onClose }: WeeklyInsightsSheetProps) {
+  const insets = useSafeAreaInsets();
   const { colors, spacing, radius, typography } = useAppTheme();
   const { t, locale } = useTranslation();
   const history = useHistoryStore((state) => state.history);
@@ -39,6 +42,7 @@ export function WeeklyInsightsSheet({ visible, onClose }: WeeklyInsightsSheetPro
       visible={visible}
       transparent
       animationType="slide"
+      statusBarTranslucent
       onRequestClose={onClose}
     >
       <View style={styles.overlay}>
@@ -49,12 +53,27 @@ export function WeeklyInsightsSheet({ visible, onClose }: WeeklyInsightsSheetPro
             styles.sheet,
             {
               backgroundColor: colors.surface,
+              borderColor: colors.border,
+              borderTopWidth: 1.5,
               borderTopLeftRadius: radius.xxl,
               borderTopRightRadius: radius.xxl,
-              padding: spacing.xl,
+              paddingHorizontal: spacing.xl,
+              paddingTop: spacing.sm,
+              paddingBottom: Math.max(insets.bottom + 12, 28),
+              maxHeight: '90%',
             },
           ]}
         >
+          {/* Indicador sutil de arraste */}
+          <View style={styles.dragIndicatorContainer}>
+            <View
+              style={[
+                styles.dragIndicator,
+                { backgroundColor: colors.border },
+              ]}
+            />
+          </View>
+
           {/* Header */}
           <View style={styles.headerRow}>
             <View style={{ flex: 1, marginRight: 12 }}>
@@ -76,168 +95,192 @@ export function WeeklyInsightsSheet({ visible, onClose }: WeeklyInsightsSheetPro
             </Pressable>
           </View>
 
-          {/* Destaque de Dias Seguidos Logado */}
-          <View
-            style={[
-              styles.streakHighlightBox,
-              {
-                backgroundColor: colors.primaryMuted,
-                borderColor: colors.primary,
-                borderRadius: radius.xl,
-              },
-            ]}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={styles.scrollContent}
           >
-            <Ionicons name="flame" size={22} color={colors.primary} />
-            <Text style={[typography.bodyMedium, { color: colors.text, fontWeight: '800', marginLeft: 8, flex: 1 }]}>
-              {summary.loginStreakDays} {t.weeklyLoginStreakBadge}
-            </Text>
-            <Ionicons name="checkmark-done-circle" size={20} color={colors.success} />
-          </View>
-
-          {/* Cards de Métricas */}
-          <View style={styles.statsGrid}>
+            {/* Destaque de Dias Seguidos Logado */}
             <View
               style={[
-                styles.statCard,
+                styles.streakHighlightBox,
                 {
-                  backgroundColor: colors.surfaceElevated,
+                  backgroundColor: colors.primaryMuted,
+                  borderColor: colors.primary,
                   borderRadius: radius.xl,
-                  borderColor: colors.border,
                 },
               ]}
             >
-              <Ionicons name="barbell" size={22} color={colors.primary} />
-              <Text style={[typography.title1, styles.statValue, { color: colors.text }]}>
-                {summary.workoutsCount}
+              <Ionicons name="flame" size={22} color={colors.primary} />
+              <Text style={[typography.bodyMedium, { color: colors.text, fontWeight: '800', marginLeft: 8, flex: 1 }]}>
+                {summary.loginStreakDays} {t.weeklyLoginStreakBadge}
               </Text>
-              <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
-                {t.weeklyWorkoutsCount}
-              </Text>
+              <Ionicons name="checkmark-done-circle" size={20} color={colors.success} />
             </View>
 
-            <View
-              style={[
-                styles.statCard,
-                {
-                  backgroundColor: colors.surfaceElevated,
-                  borderRadius: radius.xl,
-                  borderColor: colors.border,
-                },
-              ]}
-            >
-              <Ionicons name="time" size={22} color="#3B82F6" />
-              <Text style={[typography.title2, styles.statValue, { color: colors.text, marginTop: 4 }]}>
-                {formatFriendlyDuration(summary.totalDurationMs, locale)}
-              </Text>
-              <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
-                {t.weeklyTotalTime}
-              </Text>
-            </View>
-
-            <View
-              style={[
-                styles.statCard,
-                {
-                  backgroundColor: colors.surfaceElevated,
-                  borderRadius: radius.xl,
-                  borderColor: colors.border,
-                },
-              ]}
-            >
-              <Ionicons name="trophy" size={22} color="#F59E0B" />
-              <Text style={[typography.title1, styles.statValue, { color: colors.text }]}>
-                {summary.loginStreakDays}
-              </Text>
-              <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
-                {t.weeklyStreak}
-              </Text>
-            </View>
-          </View>
-
-          {/* Gráfico de barras dos 7 dias (Treinos + Dias Logados) */}
-          <View style={styles.chartSection}>
-            <Text
-              style={[
-                typography.label,
-                { color: colors.textSecondary, marginBottom: spacing.sm },
-              ]}
-            >
-              {t.weeklyDaysActive}
-            </Text>
-            <View style={styles.daysRow}>
-              {summary.dailyCounts.map((item, idx) => {
-                const hasTrained = item.count > 0;
-                const isLogged = item.loggedIn;
-                return (
-                  <View key={idx} style={styles.dayCol}>
-                    <View
-                      style={[
-                        styles.dayBar,
-                        {
-                          backgroundColor: hasTrained
-                            ? colors.primary
-                            : isLogged
-                            ? colors.success
-                            : colors.surfaceElevated,
-                          borderColor: hasTrained
-                            ? colors.primaryLight
-                            : isLogged
-                            ? colors.success
-                            : colors.border,
-                          height: hasTrained ? 52 : isLogged ? 34 : 16,
-                        },
-                      ]}
-                    />
-                    <Text
-                      style={[
-                        typography.bodySmall,
-                        styles.dayText,
-                        {
-                          color: hasTrained
-                            ? colors.primary
-                            : isLogged
-                            ? colors.success
-                            : colors.textMuted,
-                        },
-                      ]}
-                    >
-                      {item.day}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-
-            {/* Legenda do gráfico */}
-            <View style={styles.legendRow}>
-              <View style={styles.legendItem}>
-                <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
-                <Text style={[typography.bodySmall, { color: colors.textSecondary, fontSize: 11 }]}>
-                  {t.weeklyLegendTrained}
+            {/* Cards de Métricas */}
+            <View style={styles.statsGrid}>
+              <View
+                style={[
+                  styles.statCard,
+                  {
+                    backgroundColor: colors.surfaceElevated,
+                    borderRadius: radius.xl,
+                    borderColor: colors.border,
+                  },
+                ]}
+              >
+                <Ionicons name="barbell" size={22} color={colors.primary} />
+                <Text style={[typography.title1, styles.statValue, { color: colors.text }]}>
+                  {summary.workoutsCount}
+                </Text>
+                <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
+                  {t.weeklyWorkoutsCount}
                 </Text>
               </View>
-              <View style={styles.legendItem}>
-                <View style={[styles.legendDot, { backgroundColor: colors.success }]} />
-                <Text style={[typography.bodySmall, { color: colors.textSecondary, fontSize: 11 }]}>
-                  {t.weeklyLegendLogged}
+
+              <View
+                style={[
+                  styles.statCard,
+                  {
+                    backgroundColor: colors.surfaceElevated,
+                    borderRadius: radius.xl,
+                    borderColor: colors.border,
+                  },
+                ]}
+              >
+                <Ionicons name="time" size={22} color="#3B82F6" />
+                <Text style={[typography.title2, styles.statValue, { color: colors.text, marginTop: 4 }]}>
+                  {formatFriendlyDuration(summary.totalDurationMs, locale)}
+                </Text>
+                <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
+                  {t.weeklyTotalTime}
+                </Text>
+              </View>
+
+              <View
+                style={[
+                  styles.statCard,
+                  {
+                    backgroundColor: colors.surfaceElevated,
+                    borderRadius: radius.xl,
+                    borderColor: colors.border,
+                  },
+                ]}
+              >
+                <Ionicons name="trophy" size={22} color="#F59E0B" />
+                <Text style={[typography.title1, styles.statValue, { color: colors.text }]}>
+                  {summary.loginStreakDays}
+                </Text>
+                <Text style={[typography.bodySmall, styles.statLabel, { color: colors.textSecondary }]}>
+                  {t.weeklyStreak}
                 </Text>
               </View>
             </View>
 
-            <View style={styles.savedNoteRow}>
-              <Ionicons name="cloud-done-outline" size={14} color={colors.textMuted} />
-              <Text style={[typography.bodySmall, { color: colors.textMuted, fontSize: 11, marginLeft: 6 }]}>
-                {t.weeklySavedNote}
+            {/* Gráfico de barras dos 7 dias (Treinos + Dias Logados) */}
+            <View style={styles.chartSection}>
+              <Text
+                style={[
+                  typography.label,
+                  { color: colors.textSecondary, marginBottom: spacing.sm },
+                ]}
+              >
+                {t.weeklyDaysActive}
               </Text>
-            </View>
-          </View>
+              <View style={styles.daysRow}>
+                {summary.dailyCounts.map((item, idx) => {
+                  const hasTrained = item.count > 0;
+                  const isLogged = item.loggedIn;
+                  return (
+                    <View key={idx} style={styles.dayCol}>
+                      <View
+                        style={[
+                          styles.dayBar,
+                          {
+                            backgroundColor: hasTrained
+                              ? colors.primary
+                              : isLogged
+                              ? colors.success
+                              : colors.surfaceElevated,
+                            borderColor: hasTrained
+                              ? colors.primaryLight
+                              : isLogged
+                              ? colors.success
+                              : colors.border,
+                            height: hasTrained ? 52 : isLogged ? 34 : 16,
+                          },
+                        ]}
+                      />
+                      <Text
+                        style={[
+                          typography.bodySmall,
+                          styles.dayText,
+                          {
+                            color: hasTrained
+                              ? colors.primary
+                              : isLogged
+                              ? colors.success
+                              : colors.textMuted,
+                          },
+                        ]}
+                      >
+                        {item.day}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
 
-          <Button
-            title={t.close}
-            variant="secondary"
-            onPress={onClose}
-            style={{ marginTop: spacing.md }}
-          />
+              {/* Legenda do gráfico */}
+              <View style={styles.legendRow}>
+                <View style={styles.legendItem}>
+                  <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
+                  <Text style={[typography.bodySmall, { color: colors.textSecondary, fontSize: 11 }]}>
+                    {t.weeklyLegendTrained}
+                  </Text>
+                </View>
+                <View style={styles.legendItem}>
+                  <View style={[styles.legendDot, { backgroundColor: colors.success }]} />
+                  <Text style={[typography.bodySmall, { color: colors.textSecondary, fontSize: 11 }]}>
+                    {t.weeklyLegendLogged}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.savedNoteRow}>
+                <Ionicons
+                  name="cloud-done-outline"
+                  size={16}
+                  color={colors.textMuted}
+                  style={styles.savedNoteIcon}
+                />
+                <Text
+                  style={[
+                    typography.bodySmall,
+                    styles.savedNoteText,
+                    { color: colors.textMuted },
+                  ]}
+                >
+                  {t.weeklySavedNote}
+                </Text>
+              </View>
+            </View>
+          </ScrollView>
+
+          {/* Botão de Fechar garantidamente visível com safe area */}
+          <View style={[styles.footer, { paddingTop: spacing.sm }]}>
+            <Button
+              title={t.close}
+              variant="secondary"
+              onPress={onClose}
+              style={{
+                width: '100%',
+                borderWidth: 1,
+                borderColor: colors.border,
+              }}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -254,11 +297,28 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFill,
   },
   sheet: {
+    width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -6 },
     shadowOpacity: 0.25,
     shadowRadius: 16,
     elevation: 8,
+  },
+  dragIndicatorContainer: {
+    alignItems: 'center',
+    paddingVertical: 6,
+    marginBottom: 4,
+  },
+  dragIndicator: {
+    width: 38,
+    height: 4,
+    borderRadius: 2,
+  },
+  scrollContent: {
+    paddingBottom: 4,
+  },
+  footer: {
+    width: '100%',
   },
   headerRow: {
     flexDirection: 'row',
@@ -343,7 +403,16 @@ const styles = StyleSheet.create({
   savedNoteRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 8,
+    marginTop: 10,
+    paddingHorizontal: 4,
+  },
+  savedNoteIcon: {
+    marginRight: 8,
+    flexShrink: 0,
+  },
+  savedNoteText: {
+    flex: 1,
+    fontSize: 11,
+    lineHeight: 16,
   },
 });

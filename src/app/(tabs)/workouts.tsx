@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
   Pressable,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
-import { Workout } from '@/types';
+import { Exercise, Workout } from '@/types';
+import { ExerciseService } from '@/services/exerciseService';
 import { useWorkoutStore } from '@/store/workoutStore';
 import { useSessionStore } from '@/store/sessionStore';
 import { useHistoryStore } from '@/store/historyStore';
+import { useProfileStore } from '@/store/profileStore';
+import { showAppDialog } from '@/store/dialogStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { Button } from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { CustomWorkoutModal } from '@/components/workout/CustomWorkoutModal';
+import { CustomWorkoutLevel } from '@/utils/customWorkoutGenerator';
 import { getLocalizedExerciseName, getLocalizedWorkoutName } from '@/utils/exerciseLocalization';
 import { formatFriendlyDuration } from '@/utils/time';
 import { useTranslation } from '@/i18n';
@@ -29,17 +33,61 @@ export default function WorkoutsScreen() {
   const { t, locale } = useTranslation();
 
   const workouts = useWorkoutStore((state) => state.workouts);
+  const addWorkout = useWorkoutStore((state) => state.addWorkout);
   const deleteWorkout = useWorkoutStore((state) => state.deleteWorkout);
   const duplicateWorkout = useWorkoutStore((state) => state.duplicateWorkout);
   const startSession = useSessionStore((state) => state.startSession);
   const history = useHistoryStore((state) => state.history);
+  const profileLevel = useProfileStore((state) => state.profile.level);
   const totalHistoryTimeMs = history.reduce((acc, h) => acc + (h.durationMs || 0), 0);
+
+  const [customModalVisible, setCustomModalVisible] = useState(false);
+  const [availableExercises, setAvailableExercises] = useState<Exercise[]>(() =>
+    ExerciseService.getInitialExercises()
+  );
+  const [createdBannerName, setCreatedBannerName] = useState<string | null>(null);
+  const bannerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    ExerciseService.getAllExercises().then(setAvailableExercises);
+    return () => {
+      if (bannerTimerRef.current) {
+        clearTimeout(bannerTimerRef.current);
+      }
+    };
+  }, []);
+
+  const normalizedInitialLevel: CustomWorkoutLevel =
+    profileLevel === 'avancado' || profileLevel === 'advanced'
+      ? 'avancado'
+      : profileLevel === 'intermediario' || profileLevel === 'intermediate'
+      ? 'intermediario'
+      : 'iniciante';
 
   const handleOpenHistory = () => {
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     } catch {}
     router.push('/history');
+  };
+
+  const handleOpenCustomGenerator = () => {
+    try {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    } catch {}
+    setCustomModalVisible(true);
+  };
+
+  const handleCreateCustomWorkout = (workoutData: Omit<Workout, 'id' | 'createdAt'>) => {
+    addWorkout(workoutData);
+    setCustomModalVisible(false);
+    setCreatedBannerName(getLocalizedWorkoutName(workoutData.name, locale));
+    if (bannerTimerRef.current) {
+      clearTimeout(bannerTimerRef.current);
+    }
+    bannerTimerRef.current = setTimeout(() => {
+      setCreatedBannerName(null);
+    }, 3200);
   };
 
   const handleStartWorkout = (workout: Workout) => {
@@ -54,9 +102,10 @@ export default function WorkoutsScreen() {
   };
 
   const handleDeleteWorkout = (workout: Workout) => {
-    Alert.alert(
+    const localizedName = getLocalizedWorkoutName(workout.name, locale);
+    showAppDialog(
       t.deleteWorkout,
-      `${t.deleteWorkoutConfirm} "${workout.name}"`,
+      `${t.deleteWorkoutConfirm}\n"${localizedName}"`,
       [
         { text: t.cancel, style: 'cancel' },
         {
@@ -123,49 +172,120 @@ export default function WorkoutsScreen() {
         contentContainerStyle={[styles.listContent, { paddingBottom: Math.max(insets.bottom + 90, 110) }]}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <Pressable
-            onPress={handleOpenHistory}
-            style={({ pressed }) => [
-              styles.historyShortcutCard,
-              {
-                backgroundColor: colors.surface,
-                borderColor: colors.primary,
-                borderRadius: radius.xxl,
-                padding: spacing.md,
-                marginBottom: spacing.md,
-                opacity: pressed ? 0.85 : 1,
-              },
-            ]}
-            accessibilityRole="button"
-            accessibilityLabel={t.workoutHistoryShortcutTitle}
-          >
-            <View
-              style={[
-                styles.historyShortcutIconWrap,
-                { backgroundColor: colors.primaryMuted, borderRadius: radius.xl },
+          <View>
+            {createdBannerName && (
+              <View
+                style={[
+                  styles.createdFeedbackToast,
+                  {
+                    backgroundColor: colors.surfaceElevated,
+                    borderColor: colors.success,
+                    borderRadius: radius.xl,
+                    marginBottom: spacing.md,
+                  },
+                ]}
+              >
+                <Ionicons name="checkmark-circle" size={22} color={colors.success} />
+                <View style={{ flex: 1, marginLeft: 10 }}>
+                  <Text style={[typography.bodyMedium, { color: colors.text, fontWeight: '800' }]}>
+                    {t.customWorkoutCreatedToastTitle}
+                  </Text>
+                  <Text
+                    style={[typography.bodySmall, { color: colors.textSecondary, marginTop: 1 }]}
+                    numberOfLines={1}
+                  >
+                    {createdBannerName}
+                  </Text>
+                </View>
+              </View>
+            )}
+
+            <Pressable
+              onPress={handleOpenHistory}
+              style={({ pressed }) => [
+                styles.historyShortcutCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: colors.primary,
+                  borderRadius: radius.xxl,
+                  padding: spacing.md,
+                  marginBottom: spacing.md,
+                  opacity: pressed ? 0.85 : 1,
+                },
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.workoutHistoryShortcutTitle}
             >
-              <Ionicons name="trophy" size={24} color={colors.primary} />
-            </View>
-            <View style={styles.historyShortcutTextWrap}>
-              <Text style={[typography.title3, { color: colors.text, fontSize: 16 }]}>
-                {t.workoutHistoryShortcutTitle}
-              </Text>
-              <Text style={[typography.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
-                {history.length > 0
-                  ? `${history.length} ${t.completedWorkouts.toLowerCase()} • ${formatFriendlyDuration(totalHistoryTimeMs, locale)}`
-                  : t.workoutHistoryShortcutSubtitle}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.historyShortcutArrow,
-                { backgroundColor: colors.surfaceElevated, borderRadius: radius.full },
+              <View
+                style={[
+                  styles.historyShortcutIconWrap,
+                  { backgroundColor: colors.primaryMuted, borderRadius: radius.xl },
+                ]}
+              >
+                <Ionicons name="trophy" size={24} color={colors.primary} />
+              </View>
+              <View style={styles.historyShortcutTextWrap}>
+                <Text style={[typography.title3, { color: colors.text, fontSize: 16 }]}>
+                  {t.workoutHistoryShortcutTitle}
+                </Text>
+                <Text style={[typography.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
+                  {history.length > 0
+                    ? `${history.length} ${t.completedWorkouts.toLowerCase()} • ${formatFriendlyDuration(totalHistoryTimeMs, locale)}`
+                    : t.workoutHistoryShortcutSubtitle}
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.historyShortcutArrow,
+                  { backgroundColor: colors.surfaceElevated, borderRadius: radius.full },
+                ]}
+              >
+                <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+              </View>
+            </Pressable>
+
+            <Pressable
+              onPress={handleOpenCustomGenerator}
+              style={({ pressed }) => [
+                styles.historyShortcutCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: colors.primary,
+                  borderRadius: radius.xxl,
+                  padding: spacing.md,
+                  marginBottom: spacing.md,
+                  opacity: pressed ? 0.85 : 1,
+                },
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.customWorkoutShortcutTitle}
             >
-              <Ionicons name="chevron-forward" size={18} color={colors.primary} />
-            </View>
-          </Pressable>
+              <View
+                style={[
+                  styles.historyShortcutIconWrap,
+                  { backgroundColor: colors.primaryMuted, borderRadius: radius.xl },
+                ]}
+              >
+                <Ionicons name="sparkles" size={24} color={colors.primary} />
+              </View>
+              <View style={styles.historyShortcutTextWrap}>
+                <Text style={[typography.title3, { color: colors.text, fontSize: 16 }]}>
+                  {t.customWorkoutShortcutTitle}
+                </Text>
+                <Text style={[typography.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
+                  {t.customWorkoutShortcutSubtitle}
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.historyShortcutArrow,
+                  { backgroundColor: colors.surfaceElevated, borderRadius: radius.full },
+                ]}
+              >
+                <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+              </View>
+            </Pressable>
+          </View>
         }
         renderItem={({ item }) => {
           const totalSets = item.items.reduce((acc, curr) => acc + (curr.plannedSets || 3), 0);
@@ -270,6 +390,15 @@ export default function WorkoutsScreen() {
           />
         }
       />
+
+      <CustomWorkoutModal
+        visible={customModalVisible}
+        initialLevel={normalizedInitialLevel}
+        existingWorkouts={workouts}
+        availableExercises={availableExercises}
+        onClose={() => setCustomModalVisible(false)}
+        onCreateWorkout={handleCreateCustomWorkout}
+      />
     </View>
   );
 }
@@ -277,6 +406,13 @@ export default function WorkoutsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+  },
+  createdFeedbackToast: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderWidth: 1.5,
   },
   header: {
     flexDirection: 'row',

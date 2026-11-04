@@ -670,11 +670,37 @@ export function getLocalizedWorkoutName(name: string, locale: 'pt-BR' | 'en' = '
     return name
       .replace(/Queima Rápida & Core em Casa/gi, 'Quick Burn & Core at Home')
       .replace(/Força de Membros Inferiores/gi, 'Lower Body Strength')
+      .replace(/Treino Personalizado:/gi, 'Custom Workout:')
+      .replace(/Full-Body \(Corpo Inteiro\)/gi, 'Full-Body (Whole Body)')
+      .replace(/Peitoral/gi, 'Chest')
+      .replace(/Abdômen & Core/gi, 'Abs & Core')
+      .replace(/Abdômen e Core/gi, 'Abs & Core')
+      .replace(/Costas/gi, 'Back')
+      .replace(/Pernas & Glúteos/gi, 'Legs & Glutes')
+      .replace(/Pernas e Glúteos/gi, 'Legs & Glutes')
+      .replace(/Ombros/gi, 'Shoulders')
+      .replace(/Braços/gi, 'Arms')
+      .replace(/Panturrilhas/gi, 'Calves')
+      .replace(/\(Iniciante\)/gi, '(Beginner)')
+      .replace(/\(Intermediário\)/gi, '(Intermediate)')
+      .replace(/\(Avançado\)/gi, '(Advanced)')
       .replace(/\(Cópia\)/gi, '(Copy)');
   }
   return name
     .replace(/Quick Burn & Core at Home/gi, 'Queima Rápida & Core em Casa')
     .replace(/Lower Body Strength/gi, 'Força de Membros Inferiores')
+    .replace(/Custom Workout:/gi, 'Treino Personalizado:')
+    .replace(/Full-Body \(Whole Body\)/gi, 'Full-Body (Corpo Inteiro)')
+    .replace(/Chest/gi, 'Peitoral')
+    .replace(/Abs & Core/gi, 'Abdômen & Core')
+    .replace(/Back/gi, 'Costas')
+    .replace(/Legs & Glutes/gi, 'Pernas & Glúteos')
+    .replace(/Shoulders/gi, 'Ombros')
+    .replace(/Arms/gi, 'Braços')
+    .replace(/Calves/gi, 'Panturrilhas')
+    .replace(/\(Beginner\)/gi, '(Iniciante)')
+    .replace(/\(Intermediate\)/gi, '(Intermediário)')
+    .replace(/\(Advanced\)/gi, '(Avançado)')
     .replace(/\(Copy\)/gi, '(Cópia)');
 }
 

@@ -13,6 +13,19 @@ export class ExerciseService {
   private static memoryCache: Exercise[] | null = null;
 
   /**
+   * Retorna imediatamente os exercícios em memória ou o catálogo embutido
+   * para evitar flashes ou atrasos na primeira renderização.
+   */
+  static getInitialExercises(): Exercise[] {
+    if (this.memoryCache && this.memoryCache.length > 0) {
+      return this.memoryCache;
+    }
+    const filteredBundled = BUNDLED_EXERCISES.filter(isHomeFriendlyExercise);
+    this.memoryCache = filteredBundled;
+    return filteredBundled;
+  }
+
+  /**
    * Obtém todos os exercícios livres, filtrados e validados.
    */
   static async getAllExercises(forceRefresh: boolean = false): Promise<Exercise[]> {

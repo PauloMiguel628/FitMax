@@ -124,6 +124,9 @@ export function Button({
         <>
           {icon}
           <Text
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
             style={[
               typography.label,
               styles.text,

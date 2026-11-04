@@ -69,6 +69,9 @@ export const useWorkoutStore = create<WorkoutState>()(
           id,
           name: data.name.trim(),
           createdAt: new Date().toISOString(),
+          ...(data.defaultRestSeconds !== undefined
+            ? { defaultRestSeconds: data.defaultRestSeconds }
+            : {}),
           items: data.items,
         };
         set((state) => ({ workouts: [newWorkout, ...state.workouts] }));

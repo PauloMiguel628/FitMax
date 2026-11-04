@@ -3,7 +3,7 @@ import { StatusBar, View, Text, StyleSheet } from 'react-native';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
   useFonts,
@@ -20,6 +20,7 @@ import {
 import { useOnboardingStore } from '@/store/onboardingStore';
 import { useHistoryStore } from '@/store/historyStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { ThemedDialog } from '@/components/ui/ThemedDialog';
 
 // Impede o splash screen de esconder antes das fontes carregarem
 SplashScreen.preventAutoHideAsync();
@@ -72,7 +73,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <StatusBar
-        barStyle={showOpeningSplash || isDark ? 'light-content' : 'dark-content'}
+        barStyle={isDark ? 'light-content' : 'dark-content'}
       />
       <Stack
         screenOptions={{
@@ -99,23 +100,52 @@ export default function RootLayout() {
         <Stack.Screen name="history/index" />
       </Stack>
 
+      <ThemedDialog />
+
       {showOpeningSplash && (
         <LinearGradient
-          colors={['#0D0F12', '#1A0B12', '#0D0F12']}
+          colors={
+            isDark
+              ? ['#0D0F12', '#1A0B12', '#0D0F12']
+              : ['#F8FAFC', '#FFE4EA', '#F8FAFC']
+          }
           style={styles.splashContainer}
         >
-          <View style={styles.splashGlowRing}>
-            <View style={styles.splashIconCircle}>
-              <Ionicons name="barbell" size={54} color="#FF2A55" />
-              <View style={styles.splashFlameBadge}>
-                <Ionicons name="flame" size={20} color="#FFFFFF" />
-              </View>
+          <View
+            style={[
+              styles.splashGlowRing,
+              {
+                backgroundColor: isDark
+                  ? 'rgba(255, 42, 85, 0.14)'
+                  : 'rgba(225, 29, 72, 0.12)',
+                borderColor: isDark
+                  ? 'rgba(255, 42, 85, 0.45)'
+                  : 'rgba(225, 29, 72, 0.35)',
+              },
+            ]}
+          >
+            <View
+              style={[
+                styles.splashIconFrame,
+                { borderColor: colors.primary },
+              ]}
+            >
+              <Image
+                source={require('../../assets/images/fitmax-icon.png')}
+                style={styles.splashIconImage}
+                contentFit="cover"
+              />
             </View>
           </View>
-          <Text style={styles.splashTitle}>
-            FIT<Text style={{ color: '#FF2A55' }}>MAX</Text>
+          <Text style={[styles.splashTitle, { color: colors.text }]}>
+            FIT<Text style={{ color: colors.primary }}>MAX</Text>
           </Text>
-          <Text style={styles.splashSubtitle}>
+          <Text
+            style={[
+              styles.splashSubtitle,
+              { color: isDark ? '#94A3B8' : colors.textSecondary },
+            ]}
+          >
             CALISTHENICS & HOME WORKOUT
           </Text>
         </LinearGradient>
@@ -132,51 +162,42 @@ const styles = StyleSheet.create({
     zIndex: 9999,
   },
   splashGlowRing: {
-    width: 144,
-    height: 144,
-    borderRadius: 72,
-    backgroundColor: 'rgba(255, 42, 85, 0.14)',
+    width: 156,
+    height: 156,
+    borderRadius: 42,
     borderWidth: 1.5,
-    borderColor: 'rgba(255, 42, 85, 0.45)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 22,
+    marginBottom: 24,
   },
-  splashIconCircle: {
-    width: 108,
-    height: 108,
-    borderRadius: 54,
-    backgroundColor: '#161920',
+  splashIconFrame: {
+    width: 128,
+    height: 128,
+    borderRadius: 32,
+    backgroundColor: '#0D0F12',
     borderWidth: 2,
-    borderColor: '#FF2A55',
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
+    shadowColor: '#FF2A55',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 10,
   },
-  splashFlameBadge: {
-    position: 'absolute',
-    bottom: -4,
-    right: -4,
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: '#FF2A55',
-    borderWidth: 3,
-    borderColor: '#0D0F12',
-    alignItems: 'center',
-    justifyContent: 'center',
+  splashIconImage: {
+    width: '100%',
+    height: '100%',
   },
   splashTitle: {
     fontFamily: 'Outfit_900Black',
     fontSize: 42,
     letterSpacing: 2,
-    color: '#FFFFFF',
   },
   splashSubtitle: {
     fontFamily: 'PlusJakartaSans_700Bold',
     fontSize: 12,
     letterSpacing: 3,
-    color: '#94A3B8',
     marginTop: 6,
   },
 });

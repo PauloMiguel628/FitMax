@@ -23,16 +23,24 @@ import { useTranslation } from '@/i18n';
 
 interface ExerciseCardProps {
   exercise: Exercise;
-  onPress: () => void;
+  onPress?: () => void;
+  onSelectExercise?: (exercise: Exercise) => void;
   index?: number;
 }
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const loadedGifUrls = new Set<string>();
 
-export function ExerciseCard({ exercise, onPress, index = 0 }: ExerciseCardProps) {
+function ExerciseCardComponent({
+  exercise,
+  onPress,
+  onSelectExercise,
+}: ExerciseCardProps) {
   const { colors, radius, typography } = useAppTheme();
   const { t, locale } = useTranslation();
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(() =>
+    loadedGifUrls.has(exercise.gifUrl)
+  );
   const [hasError, setHasError] = useState(false);
 
   const displayName = getLocalizedExerciseName(exercise.name, locale);
@@ -78,7 +86,11 @@ export function ExerciseCard({ exercise, onPress, index = 0 }: ExerciseCardProps
         try {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         } catch {}
-        onPress();
+        if (onSelectExercise) {
+          onSelectExercise(exercise);
+        } else if (onPress) {
+          onPress();
+        }
       }}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
@@ -118,13 +130,17 @@ export function ExerciseCard({ exercise, onPress, index = 0 }: ExerciseCardProps
         )}
         <Image
           source={{ uri: exercise.gifUrl }}
+          recyclingKey={String(exercise.id)}
           style={[
             styles.gifImage,
             { opacity: imageLoaded ? 1 : 0 },
           ]}
           contentFit="contain"
           cachePolicy="memory-disk"
-          onLoad={() => setImageLoaded(true)}
+          onLoad={() => {
+            loadedGifUrls.add(exercise.gifUrl);
+            setImageLoaded((prev) => (prev ? prev : true));
+          }}
           onError={() => {
             setHasError(true);
             setImageLoaded(true);
@@ -153,6 +169,8 @@ export function ExerciseCard({ exercise, onPress, index = 0 }: ExerciseCardProps
     </AnimatedPressable>
   );
 }
+
+export const ExerciseCard = React.memo(ExerciseCardComponent);
 
 const styles = StyleSheet.create({
   card: {

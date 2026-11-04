@@ -7,10 +7,15 @@
     "icon": "./assets/images/fitmax-icon.png",
     "scheme": "fitmax",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "#0D0F12",
+    "primaryColor": "#FF2A55",
     "ios": {
-      "icon": "./assets/images/fitmax-icon.png"
+      "icon": "./assets/images/fitmax-icon.png",
+      "backgroundColor": "#0D0F12"
     },
     "android": {
+      "icon": "./assets/images/fitmax-icon.png",
+      "backgroundColor": "#0D0F12",
       "adaptiveIcon": {
         "backgroundColor": "#0D0F12",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -30,7 +35,11 @@
         {
           "backgroundColor": "#0D0F12",
           "image": "./assets/images/fitmax-splash.png",
-          "imageWidth": 180
+          "imageWidth": 180,
+          "dark": {
+            "backgroundColor": "#0D0F12",
+            "image": "./assets/images/fitmax-splash.png"
+          }
         }
       ],
       "expo-font",

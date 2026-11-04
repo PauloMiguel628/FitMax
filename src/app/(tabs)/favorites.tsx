@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
+  Platform,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFavoritesStore } from '@/store/favoritesStore';
+import { ExerciseService } from '@/services/exerciseService';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { ExerciseCard } from '@/components/exercise/ExerciseCard';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -20,13 +22,41 @@ export default function FavoritesScreen() {
   const { colors, spacing, typography } = useAppTheme();
   const { t } = useTranslation();
   const favorites = useFavoritesStore((state) => state.favorites);
+  const favoriteIds = useFavoritesStore((state) => state.favoriteIds);
 
-  const handleExercisePress = (exercise: Exercise) => {
-    router.push({
-      pathname: '/exercise/[id]',
-      params: { id: exercise.id },
-    });
-  };
+  const resolvedFavorites = useMemo(() => {
+    const seen = new Set<string>();
+    const list: Exercise[] = [];
+
+    for (const fav of favorites) {
+      const id = String(fav.id);
+      if (favoriteIds[id] !== false && !seen.has(id)) {
+        seen.add(id);
+        list.push(fav);
+      }
+    }
+
+    const catalog = ExerciseService.getInitialExercises();
+    for (const ex of catalog) {
+      const id = String(ex.id);
+      if (favoriteIds[id] && !seen.has(id)) {
+        seen.add(id);
+        list.push(ex);
+      }
+    }
+
+    return list;
+  }, [favorites, favoriteIds]);
+
+  const handleExercisePress = useCallback(
+    (exercise: Exercise) => {
+      router.push({
+        pathname: '/exercise/[id]',
+        params: { id: exercise.id },
+      });
+    },
+    [router]
+  );
 
   return (
     <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 16) }]}>
@@ -35,22 +65,27 @@ export default function FavoritesScreen() {
           {t.favoritesTitle}
         </Text>
         <Text style={[typography.bodyMedium, { color: colors.textSecondary }]}>
-          {favorites.length} {t.exercises} {t.favoritesCountSubtitle}
+          {resolvedFavorites.length} {t.exercises} {t.favoritesCountSubtitle}
         </Text>
       </View>
 
       <FlatList
-        data={favorites}
+        data={resolvedFavorites}
         keyExtractor={(item) => String(item.id)}
         numColumns={2}
         contentContainerStyle={[styles.listContent, { paddingBottom: Math.max(insets.bottom + 90, 110) }]}
         showsVerticalScrollIndicator={false}
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
+        windowSize={5}
+        updateCellsBatchingPeriod={16}
+        removeClippedSubviews={Platform.OS === 'android'}
         renderItem={({ item, index }) => (
           <View style={styles.gridColumn}>
             <ExerciseCard
               exercise={item}
               index={index}
-              onPress={() => handleExercisePress(item)}
+              onSelectExercise={handleExercisePress}
             />
           </View>
         )}

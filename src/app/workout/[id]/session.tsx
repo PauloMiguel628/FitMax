@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
-  Alert,
   Modal,
   AppState,
   AppStateStatus,
@@ -17,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { useSessionStore } from '@/store/sessionStore';
 import { useHistoryStore } from '@/store/historyStore';
+import { showAppDialog } from '@/store/dialogStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useStopwatch } from '@/hooks/useStopwatch';
 import { useCountdown } from '@/hooks/useCountdown';
@@ -72,7 +72,7 @@ export default function WorkoutSessionScreen() {
   const disablePrevention = usePreventRemove(
     Boolean(currentSession) && !allowExit,
     ({ repeat }) => {
-      Alert.alert(
+      showAppDialog(
         t.sessionDiscard,
         t.sessionDiscardConfirm,
         [
@@ -228,7 +228,7 @@ export default function WorkoutSessionScreen() {
 
   const handleRemoveSet = () => {
     if (currentItem.plannedSets <= 1) {
-      Alert.alert(t.error, t.sessionMinSetAlert);
+      showAppDialog(t.error, t.sessionMinSetAlert);
       return;
     }
     try {
@@ -244,7 +244,7 @@ export default function WorkoutSessionScreen() {
     );
 
     if (hasIncomplete) {
-      Alert.alert(
+      showAppDialog(
         t.sessionFinish,
         t.sessionFinishIncompleteConfirm,
         [
@@ -254,7 +254,8 @@ export default function WorkoutSessionScreen() {
             style: 'default',
             onPress: () => finalize(),
           },
-        ]
+        ],
+        { icon: 'flag-outline' }
       );
     } else {
       finalize();
@@ -278,7 +279,7 @@ export default function WorkoutSessionScreen() {
   };
 
   const handleDiscard = () => {
-    Alert.alert(
+    showAppDialog(
       t.sessionDiscard,
       t.sessionDiscardConfirm,
       [
@@ -331,7 +332,10 @@ export default function WorkoutSessionScreen() {
       </View>
 
       <ScrollView
-        contentContainerStyle={[styles.content, { paddingBottom: 40 }]}
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: Math.max(insets.bottom + 28, 48) },
+        ]}
         showsVerticalScrollIndicator={false}
       >
         {/* Indicador de Progresso (ex.: "exercício 2 de 6") */}
@@ -826,6 +830,7 @@ export default function WorkoutSessionScreen() {
         visible={jumpModalVisible}
         transparent
         animationType="slide"
+        statusBarTranslucent
         onRequestClose={() => setJumpModalVisible(false)}
       >
         <View style={styles.modalOverlay}>
@@ -835,16 +840,39 @@ export default function WorkoutSessionScreen() {
               styles.modalSheet,
               {
                 backgroundColor: colors.surface,
+                borderColor: colors.border,
+                borderTopWidth: 1.5,
                 borderTopLeftRadius: radius.xxl,
                 borderTopRightRadius: radius.xxl,
-                padding: spacing.xl,
+                paddingHorizontal: spacing.xl,
+                paddingTop: spacing.lg,
+                paddingBottom: Math.max(insets.bottom + 16, 28),
+                maxHeight: '85%',
               },
             ]}
           >
-            <Text style={[typography.title2, { color: colors.text, marginBottom: 14 }]}>
-              {t.sessionJumpTo}
-            </Text>
-            <ScrollView style={{ maxHeight: 320 }}>
+            <View style={styles.modalHeaderRow}>
+              <Text style={[typography.title2, { color: colors.text }]}>
+                {t.sessionJumpTo}
+              </Text>
+              <Pressable
+                onPress={() => setJumpModalVisible(false)}
+                style={[
+                  styles.modalCloseBtn,
+                  { backgroundColor: colors.surfaceElevated, borderRadius: radius.full },
+                ]}
+                accessibilityRole="button"
+                accessibilityLabel={t.close}
+              >
+                <Ionicons name="close" size={20} color={colors.text} />
+              </Pressable>
+            </View>
+
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ maxHeight: 320 }}
+              contentContainerStyle={{ paddingBottom: 6 }}
+            >
               {currentSession.items.map((item, idx) => {
                 const ex = currentSession.snapshots[item.exerciseId];
                 const isCur = idx === currentIndex;
@@ -884,12 +912,19 @@ export default function WorkoutSessionScreen() {
                 );
               })}
             </ScrollView>
-            <Button
-              title={t.close}
-              variant="secondary"
-              onPress={() => setJumpModalVisible(false)}
-              style={{ marginTop: 12 }}
-            />
+
+            <View style={[styles.modalFooter, { paddingTop: spacing.sm }]}>
+              <Button
+                title={t.close}
+                variant="secondary"
+                onPress={() => setJumpModalVisible(false)}
+                style={{
+                  width: '100%',
+                  borderWidth: 1,
+                  borderColor: colors.border,
+                }}
+              />
+            </View>
           </View>
         </View>
       </Modal>
@@ -1119,11 +1154,27 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFill,
   },
   modalSheet: {
+    width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -6 },
     shadowOpacity: 0.25,
     shadowRadius: 16,
     elevation: 8,
+  },
+  modalHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 14,
+  },
+  modalCloseBtn: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalFooter: {
+    width: '100%',
   },
   jumpItemRow: {
     flexDirection: 'row',

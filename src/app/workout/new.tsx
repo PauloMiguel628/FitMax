@@ -8,7 +8,6 @@ import {
   Pressable,
   Modal,
   FlatList,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -18,6 +17,7 @@ import { Exercise, WorkoutItem } from '@/types';
 import { ExerciseService } from '@/services/exerciseService';
 import { useWorkoutStore } from '@/store/workoutStore';
 import { useFavoritesStore } from '@/store/favoritesStore';
+import { showAppDialog } from '@/store/dialogStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { Button } from '@/components/ui/Button';
 import { ACTIVE_CATEGORIES, CATEGORY_METADATA, matchesExerciseCategory } from '@/config/home-friendly';
@@ -128,11 +128,11 @@ export default function NewWorkoutScreen() {
 
   const handleSave = () => {
     if (!workoutName.trim()) {
-      Alert.alert(t.error, t.validationWorkoutNameRequired);
+      showAppDialog(t.error, t.validationWorkoutNameRequired);
       return;
     }
     if (items.length === 0) {
-      Alert.alert(t.error, t.validationWorkoutExercisesRequired);
+      showAppDialog(t.error, t.validationWorkoutExercisesRequired);
       return;
     }
 
@@ -172,18 +172,27 @@ export default function NewWorkoutScreen() {
 
   return (
     <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 14) }]}>
-      {/* Top Bar */}
+      {/* Top Bar com título centralizado */}
       <View style={[styles.topBar, { paddingHorizontal: spacing.lg }]}>
         <Pressable
           onPress={() => router.back()}
           style={[styles.backBtn, { backgroundColor: colors.surfaceElevated }]}
+          accessibilityRole="button"
+          accessibilityLabel={t.close}
         >
           <Ionicons name="close" size={22} color={colors.text} />
         </Pressable>
-        <Text style={[typography.title2, styles.topBarTitle, { color: colors.text }]}>
+        <Text
+          style={[
+            typography.title2,
+            styles.topBarTitle,
+            { color: colors.text },
+          ]}
+          numberOfLines={1}
+        >
           {t.createWorkout}
         </Text>
-        <Button title={t.saveWorkout} size="sm" onPress={handleSave} />
+        <View style={styles.topBarSpacer} />
       </View>
 
       <ScrollView
@@ -249,17 +258,9 @@ export default function NewWorkoutScreen() {
         {/* Lista de Exercícios Adicionados */}
         <View style={styles.section}>
           <View style={styles.sectionHeaderRow}>
-            <Text style={[typography.title3, { color: colors.text, flex: 1, marginRight: 8 }]} numberOfLines={1}>
+            <Text style={[typography.title3, styles.sectionTitleText, { color: colors.text }]}>
               {t.selectedExercises} ({items.length})
             </Text>
-            <Button
-              title={t.addExercisesBtn}
-              size="sm"
-              variant="outline"
-              onPress={() => setSelectorVisible(true)}
-              icon={<Ionicons name="add" size={16} color={colors.primary} />}
-              style={{ flexShrink: 0 }}
-            />
           </View>
 
           {items.map((item, index) => (
@@ -367,7 +368,7 @@ export default function NewWorkoutScreen() {
             </View>
           ))}
 
-          {items.length === 0 && (
+          {items.length === 0 ? (
             <Pressable
               onPress={() => setSelectorVisible(true)}
               style={[
@@ -378,13 +379,45 @@ export default function NewWorkoutScreen() {
                   backgroundColor: colors.surfaceElevated,
                 },
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.addFirstExercisesPrompt}
             >
               <Ionicons name="add-circle-outline" size={32} color={colors.primary} />
               <Text style={[typography.bodyMedium, { color: colors.textSecondary, marginTop: 8 }]}>
                 {t.addFirstExercisesPrompt}
               </Text>
             </Pressable>
+          ) : (
+            <Pressable
+              onPress={() => setSelectorVisible(true)}
+              style={[
+                styles.addMoreExercisesBox,
+                {
+                  borderColor: colors.border,
+                  borderRadius: radius.xl,
+                  backgroundColor: colors.surfaceElevated,
+                },
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel={t.addMoreExercisesPrompt}
+            >
+              <Ionicons name="add-circle-outline" size={24} color={colors.primary} />
+              <Text style={[typography.bodyMedium, { color: colors.textSecondary, marginTop: 6, fontWeight: '600' }]}>
+                {t.addMoreExercisesPrompt}
+              </Text>
+            </Pressable>
           )}
+
+          {/* Botão Salvar Treino Centralizado e Embaixo dos Exercícios */}
+          <View style={styles.saveActionWrap}>
+            <Button
+              title={t.saveWorkout}
+              size="lg"
+              onPress={handleSave}
+              icon={<Ionicons name="checkmark-circle-outline" size={20} color="#FFFFFF" />}
+              style={styles.saveBtn}
+            />
+          </View>
         </View>
       </ScrollView>
 
@@ -593,7 +626,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   topBarTitle: {
+    flex: 1,
+    textAlign: 'center',
     fontWeight: '800',
+    marginHorizontal: 8,
+  },
+  topBarSpacer: {
+    width: 40,
+    height: 40,
   },
   content: {
     paddingHorizontal: 16,
@@ -619,9 +659,11 @@ const styles = StyleSheet.create({
   },
   sectionHeaderRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 12,
+  },
+  sectionTitleText: {
+    fontWeight: '800',
   },
   itemCard: {
     borderWidth: 1,
@@ -679,6 +721,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
+  },
+  addMoreExercisesBox: {
+    borderWidth: 1.5,
+    borderStyle: 'dashed',
+    height: 78,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 12,
+    marginTop: 6,
+  },
+  saveActionWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 24,
+    marginBottom: 12,
+    width: '100%',
+  },
+  saveBtn: {
+    width: '100%',
+    maxWidth: 360,
   },
   searchBar: {
     flexDirection: 'row',

@@ -37,7 +37,7 @@ export default function CategoryScreen() {
   const categoryMeta = CATEGORY_METADATA[currentCategory] || {
     displayNamePt: currentCategory,
     displayNameEn: currentCategory,
-    coverUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80',
+    coverUrl: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=800&q=80',
     descriptionPt: '',
     descriptionEn: '',
   };

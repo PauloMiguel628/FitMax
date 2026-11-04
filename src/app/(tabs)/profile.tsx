@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,6 @@ import {
   ScrollView,
   TextInput,
   Pressable,
-  Alert,
   Modal,
 } from 'react-native';
 import { Image } from 'expo-image';
@@ -17,6 +16,7 @@ import * as Haptics from 'expo-haptics';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useProfileStore } from '@/store/profileStore';
 import { useHistoryStore } from '@/store/historyStore';
+import { showAppDialog } from '@/store/dialogStore';
 import { calculateBmi } from '@/utils/bmi';
 import { BmiGauge } from '@/components/charts/BmiGauge';
 import { WeightChart } from '@/components/charts/WeightChart';
@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/Button';
 import { formatFriendlyDuration } from '@/utils/time';
 import { formatDateTime } from '@/utils/date';
 import { useTranslation } from '@/i18n';
+import { PhotoCropperModal } from '@/components/profile/PhotoCropperModal';
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
@@ -59,6 +60,31 @@ export default function ProfileScreen() {
   // Modal para Registro Rápido de Peso (Totalmente compatível com Android e iOS)
   const [quickWeightModalVisible, setQuickWeightModalVisible] = useState(false);
   const [quickWeightInput, setQuickWeightInput] = useState(String(profile.weightKg || 74));
+
+  // Pop-up discreto de feedback ao salvar ou cancelar edição de dados do perfil
+  const [feedbackBanner, setFeedbackBanner] = useState<'saved' | 'cancelled' | null>(null);
+  const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Estado para recorte de foto de perfil no app com botão 'CONCLUIR'
+  const [cropperState, setCropperState] = useState<{ uri: string; width?: number; height?: number } | null>(null);
+
+  const showFeedbackPopup = (type: 'saved' | 'cancelled') => {
+    if (feedbackTimerRef.current) {
+      clearTimeout(feedbackTimerRef.current);
+    }
+    setFeedbackBanner(type);
+    feedbackTimerRef.current = setTimeout(() => {
+      setFeedbackBanner(null);
+    }, 2800);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (feedbackTimerRef.current) {
+        clearTimeout(feedbackTimerRef.current);
+      }
+    };
+  }, []);
 
   // IMC atual do perfil
   const realBmi = calculateBmi(profile.weightKg || 74, profile.heightCm || 176);
@@ -101,18 +127,27 @@ export default function ProfileScreen() {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ['images'],
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 0.8,
+        allowsEditing: false, // Abre no editor interno do app para exibir o botão 'CONCLUIR' em vez do nativo 'CORTAR'
+        quality: 1,
       });
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
-        updateProfile({ photoUri: result.assets[0].uri });
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        const asset = result.assets[0];
+        setCropperState({
+          uri: asset.uri,
+          width: asset.width,
+          height: asset.height,
+        });
       }
     } catch (e) {
       console.warn('Erro ao abrir galeria:', e);
     }
+  };
+
+  const handleCropComplete = (croppedUri: string) => {
+    updateProfile({ photoUri: croppedUri });
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    setCropperState(null);
   };
 
   const handleSaveProfile = () => {
@@ -121,19 +156,19 @@ export default function ProfileScreen() {
     const a = parseInt(ageStr, 10);
 
     if (!name.trim()) {
-      Alert.alert(t.error, t.validationNameRequired);
+      showAppDialog(t.error, t.validationNameRequired);
       return;
     }
     if (isNaN(w) || w < 20 || w > 400) {
-      Alert.alert(t.error, t.validationWeightRange);
+      showAppDialog(t.error, t.validationWeightRange);
       return;
     }
     if (isNaN(h) || h < 80 || h > 250) {
-      Alert.alert(t.error, t.validationHeightRange);
+      showAppDialog(t.error, t.validationHeightRange);
       return;
     }
     if (isNaN(a) || a < 10 || a > 120) {
-      Alert.alert(t.error, t.validationAgeRange);
+      showAppDialog(t.error, t.validationAgeRange);
       return;
     }
 
@@ -153,6 +188,25 @@ export default function ProfileScreen() {
     });
 
     setIsEditing(false);
+    showFeedbackPopup('saved');
+  };
+
+  const handleCancelEditProfile = () => {
+    try {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    } catch {}
+
+    setName(profile.name);
+    setBio(profile.bio || '');
+    setWeightStr(String(profile.weightKg || 74));
+    setHeightStr(String(profile.heightCm || 176));
+    setAgeStr(String(profile.age || 26));
+    setSelectedLevel(
+      (profile.level as 'iniciante' | 'intermediario' | 'avancado') || 'intermediario'
+    );
+    setSelectedGoal(profile.goal || 'Ganhar massa e definição');
+    setIsEditing(false);
+    showFeedbackPopup('cancelled');
   };
 
   const handleSelectLevelQuick = (lvl: 'iniciante' | 'intermediario' | 'avancado') => {
@@ -179,12 +233,12 @@ export default function ProfileScreen() {
       } catch {}
       setQuickWeightModalVisible(false);
     } else {
-      Alert.alert(t.error, t.validationWeightRange);
+      showAppDialog(t.error, t.validationWeightRange);
     }
   };
 
   const handleDeleteWeightEntry = (id: string, dateOrIso: string) => {
-    Alert.alert(
+    showAppDialog(
       t.weightHistoryDeleteConfirm,
       `${formatDateTime(dateOrIso, locale)}`,
       [
@@ -202,6 +256,47 @@ export default function ProfileScreen() {
 
   return (
     <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 16) }]}>
+      {/* Pop-up discreto de feedback (Salvar / Cancelar alterações) adaptado ao tema */}
+      {feedbackBanner !== null && (
+        <Pressable
+          onPress={() => setFeedbackBanner(null)}
+          style={[
+            styles.feedbackPopup,
+            {
+              top: Math.max(insets.top + 10, 20),
+              backgroundColor: colors.surfaceElevated,
+              borderColor: feedbackBanner === 'saved' ? colors.success : colors.border,
+              borderRadius: radius.xl,
+            },
+          ]}
+        >
+          <View
+            style={[
+              styles.feedbackIconBadge,
+              {
+                backgroundColor:
+                  feedbackBanner === 'saved' ? 'rgba(16, 185, 129, 0.16)' : colors.primaryMuted,
+              },
+            ]}
+          >
+            <Ionicons
+              name={feedbackBanner === 'saved' ? 'checkmark-circle' : 'close-circle'}
+              size={22}
+              color={feedbackBanner === 'saved' ? colors.success : colors.primary}
+            />
+          </View>
+          <View style={styles.feedbackTextCol}>
+            <Text style={[typography.bodyMedium, { color: colors.text, fontWeight: '700' }]}>
+              {feedbackBanner === 'saved' ? t.profileSavedToastTitle : t.profileCancelledToastTitle}
+            </Text>
+            <Text style={[typography.bodySmall, { color: colors.textSecondary, fontSize: 12 }]}>
+              {feedbackBanner === 'saved' ? t.profileSavedToastSub : t.profileCancelledToastSub}
+            </Text>
+          </View>
+          <Ionicons name="close" size={18} color={colors.textSecondary} />
+        </Pressable>
+      )}
+
       <ScrollView
         contentContainerStyle={[styles.scrollContent, { paddingBottom: Math.max(insets.bottom + 90, 110) }]}
         showsVerticalScrollIndicator={false}
@@ -313,28 +408,26 @@ export default function ProfileScreen() {
             })}
           </View>
 
-          <Button
-            title={isEditing ? t.profileSave : t.profileEdit}
-            variant={isEditing ? 'primary' : 'outline'}
-            size="sm"
-            onPress={
-              isEditing
-                ? handleSaveProfile
-                : () => {
-                    setName(profile.name);
-                    setBio(profile.bio || '');
-                    setWeightStr(String(profile.weightKg || 74));
-                    setHeightStr(String(profile.heightCm || 176));
-                    setAgeStr(String(profile.age || 26));
-                    setSelectedLevel(
-                      (profile.level as 'iniciante' | 'intermediario' | 'avancado') || 'intermediario'
-                    );
-                    setSelectedGoal(profile.goal || 'Ganhar massa e definição');
-                    setIsEditing(true);
-                  }
-            }
-            style={{ marginTop: 14 }}
-          />
+          {!isEditing && (
+            <Button
+              title={t.profileEdit}
+              variant="outline"
+              size="sm"
+              onPress={() => {
+                setName(profile.name);
+                setBio(profile.bio || '');
+                setWeightStr(String(profile.weightKg || 74));
+                setHeightStr(String(profile.heightCm || 176));
+                setAgeStr(String(profile.age || 26));
+                setSelectedLevel(
+                  (profile.level as 'iniciante' | 'intermediario' | 'avancado') || 'intermediario'
+                );
+                setSelectedGoal(profile.goal || 'Ganhar massa e definição');
+                setIsEditing(true);
+              }}
+              style={{ marginTop: 14 }}
+            />
+          )}
         </View>
 
         {/* Formulário de Edição do Perfil */}
@@ -527,12 +620,24 @@ export default function ProfileScreen() {
               />
             </View>
 
-            <Button
-              title={t.profileSave}
-              size="md"
-              onPress={handleSaveProfile}
-              style={{ marginTop: 4 }}
-            />
+            <View style={styles.editActionsRow}>
+              <Button
+                title={t.profileCancelChanges}
+                variant="secondary"
+                size="md"
+                onPress={handleCancelEditProfile}
+                style={{ flex: 1, paddingHorizontal: 10 }}
+                textStyle={{ fontSize: 12 }}
+              />
+              <Button
+                title={t.profileSave}
+                variant="primary"
+                size="md"
+                onPress={handleSaveProfile}
+                style={{ flex: 1, paddingHorizontal: 10 }}
+                textStyle={{ fontSize: 12 }}
+              />
+            </View>
           </View>
         )}
 
@@ -926,30 +1031,61 @@ export default function ProfileScreen() {
         visible={quickWeightModalVisible}
         transparent
         animationType="fade"
+        statusBarTranslucent
         onRequestClose={() => setQuickWeightModalVisible(false)}
       >
-        <View style={styles.modalOverlay}>
+        <View
+          style={[
+            styles.modalOverlay,
+            {
+              backgroundColor: isDark
+                ? 'rgba(5, 7, 10, 0.78)'
+                : 'rgba(15, 23, 42, 0.52)',
+            },
+          ]}
+        >
           <View
             style={[
               styles.modalDialog,
               {
-                backgroundColor: colors.surfaceElevated,
+                backgroundColor: colors.surface,
                 borderColor: colors.border,
                 borderRadius: radius.xxl,
               },
             ]}
           >
-            <Text style={[typography.title3, { color: colors.text, marginBottom: 6 }]}>
+            <View
+              style={[
+                styles.modalTopAccentBar,
+                {
+                  backgroundColor: colors.primary,
+                  borderTopLeftRadius: radius.xxl,
+                  borderTopRightRadius: radius.xxl,
+                },
+              ]}
+            />
+            <View
+              style={[
+                styles.modalIconBadge,
+                {
+                  backgroundColor: colors.primaryMuted,
+                  borderColor: 'rgba(255, 42, 85, 0.3)',
+                },
+              ]}
+            >
+              <Ionicons name="scale-outline" size={26} color={colors.primary} />
+            </View>
+            <Text style={[typography.title2, { color: colors.text, fontWeight: '800', textAlign: 'center', marginBottom: 6 }]}>
               {t.logWeightModalTitle}
             </Text>
-            <Text style={[typography.bodySmall, { color: colors.textSecondary, marginBottom: 10 }]}>
+            <Text style={[typography.bodySmall, { color: colors.textSecondary, textAlign: 'center', marginBottom: 12 }]}>
               {t.logWeightModalSubtitle}
             </Text>
 
             <View
               style={[
                 styles.modalTimestampPreview,
-                { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: radius.md },
+                { backgroundColor: colors.surfaceElevated, borderColor: colors.border, borderRadius: radius.md },
               ]}
             >
               <Ionicons name="time-outline" size={15} color={colors.primary} />
@@ -971,7 +1107,7 @@ export default function ProfileScreen() {
                 {
                   color: colors.primary,
                   borderColor: colors.primary,
-                  backgroundColor: colors.surface,
+                  backgroundColor: colors.surfaceElevated,
                   borderRadius: radius.lg,
                 },
               ]}
@@ -995,6 +1131,16 @@ export default function ProfileScreen() {
           </View>
         </View>
       </Modal>
+
+      {/* Modal de Recorte de Foto com botão 'CONCLUIR' */}
+      <PhotoCropperModal
+        visible={!!cropperState}
+        imageUri={cropperState?.uri || null}
+        initialWidth={cropperState?.width}
+        initialHeight={cropperState?.height}
+        onClose={() => setCropperState(null)}
+        onCropComplete={handleCropComplete}
+      />
     </View>
   );
 }
@@ -1112,6 +1258,39 @@ const styles = StyleSheet.create({
     gap: 12,
     alignItems: 'flex-start',
   },
+  editActionsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 6,
+  },
+  feedbackPopup: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    zIndex: 999,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderWidth: 1.5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+    gap: 12,
+  },
+  feedbackIconBadge: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  feedbackTextCol: {
+    flex: 1,
+  },
   inputCol: {
     flex: 1,
   },
@@ -1225,9 +1404,34 @@ const styles = StyleSheet.create({
   },
   modalDialog: {
     width: '100%',
-    maxWidth: 360,
-    borderWidth: 1,
+    maxWidth: 380,
+    borderWidth: 1.5,
     padding: 24,
+    overflow: 'hidden',
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.35,
+    shadowRadius: 20,
+    elevation: 12,
+  },
+  modalTopAccentBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+  },
+  modalIconBadge: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    borderWidth: 1,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 4,
+    marginBottom: 12,
   },
   modalInput: {
     borderWidth: 2,

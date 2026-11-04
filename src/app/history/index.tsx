@@ -5,13 +5,13 @@ import {
   StyleSheet,
   FlatList,
   Pressable,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { useHistoryStore } from '@/store/historyStore';
+import { showAppDialog } from '@/store/dialogStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { formatDateTime } from '@/utils/date';
 import { formatFriendlyDuration } from '@/utils/time';
@@ -30,7 +30,7 @@ export default function HistoryScreen() {
 
   const handleDelete = (id: string, name: string) => {
     const localizedName = getLocalizedWorkoutName(name, locale);
-    Alert.alert(
+    showAppDialog(
       t.deleteHistoryTitle,
       t.deleteHistoryConfirm.replace('{name}', localizedName),
       [
