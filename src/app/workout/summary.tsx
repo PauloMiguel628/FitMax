@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useHistoryStore } from '@/store/historyStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
-import { formatFriendlyDuration } from '@/utils/time';
+import { formatWorkoutDuration } from '@/utils/time';
 import { Button } from '@/components/ui/Button';
 import { useTranslation } from '@/i18n';
 import { getLocalizedExerciseName } from '@/utils/exerciseLocalization';
@@ -74,10 +74,18 @@ export default function WorkoutSummaryScreen() {
             ]}
           >
             <Ionicons name="time" size={24} color="#3B82F6" />
-            <Text style={[typography.title2, styles.metricVal, { color: colors.text }]}>
-              {formatFriendlyDuration(entry?.durationMs || 0, locale)}
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.7}
+              style={[typography.title3, styles.metricVal, { color: colors.text }]}
+            >
+              {formatWorkoutDuration(entry?.durationMs || 0)}
             </Text>
-            <Text style={[typography.bodySmall, { color: colors.textSecondary }]}>
+            <Text
+              numberOfLines={2}
+              style={[typography.bodySmall, styles.metricLabel, { color: colors.textSecondary }]}
+            >
               {t.summaryTotalDuration}
             </Text>
           </View>
@@ -93,10 +101,18 @@ export default function WorkoutSummaryScreen() {
             ]}
           >
             <Ionicons name="fitness" size={24} color={colors.primary} />
-            <Text style={[typography.title2, styles.metricVal, { color: colors.text }]}>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.7}
+              style={[typography.title3, styles.metricVal, { color: colors.text }]}
+            >
               {totalExercises}
             </Text>
-            <Text style={[typography.bodySmall, { color: colors.textSecondary }]}>
+            <Text
+              numberOfLines={2}
+              style={[typography.bodySmall, styles.metricLabel, { color: colors.textSecondary }]}
+            >
               {t.summaryExercisesDone}
             </Text>
           </View>
@@ -112,10 +128,18 @@ export default function WorkoutSummaryScreen() {
             ]}
           >
             <Ionicons name="checkmark-done" size={24} color="#10B981" />
-            <Text style={[typography.title2, styles.metricVal, { color: colors.text }]}>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.7}
+              style={[typography.title3, styles.metricVal, { color: colors.text }]}
+            >
               {totalSetsDone}
             </Text>
-            <Text style={[typography.bodySmall, { color: colors.textSecondary }]}>
+            <Text
+              numberOfLines={2}
+              style={[typography.bodySmall, styles.metricLabel, { color: colors.textSecondary }]}
+            >
               {t.summarySetsCompleted}
             </Text>
           </View>
@@ -215,19 +239,31 @@ const styles = StyleSheet.create({
   },
   metricsGrid: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 8,
     width: '100%',
   },
   metricCard: {
     flex: 1,
-    padding: 14,
+    paddingVertical: 14,
+    paddingHorizontal: 6,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    minHeight: 122,
   },
   metricVal: {
+    fontSize: 18,
     fontWeight: '900',
     marginVertical: 4,
+    textAlign: 'center',
+    width: '100%',
+  },
+  metricLabel: {
+    textAlign: 'center',
+    fontSize: 11,
+    lineHeight: 15,
+    fontWeight: '600',
+    maxWidth: '100%',
   },
   breakdownCard: {
     width: '100%',

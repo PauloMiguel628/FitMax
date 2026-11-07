@@ -64,6 +64,21 @@ assert(formatStopwatchTime(9000).formatted === '00:09', '9000ms deve formatar co
 assert(formatStopwatchTime(65000).formatted === '01:05', '65000ms deve formatar como 01:05');
 assert(formatStopwatchTime(3665000).formatted === '01:01:05', '3665000ms deve formatar como 01:01:05');
 
+function formatWorkoutDuration(ms) {
+  const totalSeconds = Math.max(0, Math.floor((ms || 0) / 1000));
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  if (h > 0) return `${h}h ${m}m ${s}s`;
+  if (m > 0) return `${m}m ${s}s`;
+  return `${s}s`;
+}
+
+assert(formatWorkoutDuration(130000) === '2m 10s', '130000ms (2m 10s) deve formatar como 2m 10s');
+assert(formatWorkoutDuration(45000) === '45s', '45000ms deve formatar como 45s');
+assert(formatWorkoutDuration(3725000) === '1h 2m 5s', '3725000ms deve formatar como 1h 2m 5s');
+assert(formatWorkoutDuration(0) === '0s', '0ms deve formatar como 0s');
+
 console.log('\n--- 4. Testes de Filtro de Exercícios Home-Friendly ---');
 const EXCLUDED_KEYWORDS = ['pull-up bar', 'chin-up bar', 'bench', 'parallel bars', 'dip bar'];
 const EXCLUDED_NAMES = ['archer pull up', 'chest dip', 'triceps dip'];
