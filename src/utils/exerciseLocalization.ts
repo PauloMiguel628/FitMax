@@ -1,5 +1,10 @@
 import { Exercise } from '@/types';
+import { BUNDLED_EXERCISES } from '@/services/bundledExercises';
 import { EXERCISE_INSTRUCTIONS_PT } from './exerciseInstructionsPt';
+
+const BUNDLED_INSTRUCTIONS_EN_BY_ID: Record<string, string[]> = Object.fromEntries(
+  BUNDLED_EXERCISES.map((ex) => [String(ex.id).padStart(4, '0'), ex.instructions])
+);
 
 /**
  * Dicionário completo de tradução de todos os 226 exercícios do catálogo para Português
@@ -26,7 +31,7 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'bodyweight drop jump squat': 'Agachamento com Salto e Queda Rápida',
   'bodyweight incline side plank': 'Prancha Lateral Inclinada',
   'bodyweight kneeling triceps extension': 'Extensão de Tríceps Ajoelhado',
-  'bodyweight side lying biceps curl': 'Rosca Bíceps Deitado de Lado',
+  'bodyweight side lying biceps curl': 'Rosca Bíceps Deitado de Lado na Coxa',
   'bodyweight squatting row (with towel)': 'Remada em Agachamento Isométrico',
   'bodyweight standing calf raise': 'Elevação de Panturrilha em Pé',
   'bodyweight standing close-grip row': 'Remada em Pé com Pegada Fechada',
@@ -63,11 +68,11 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'dynamic chest stretch (male)': 'Alongamento Dinâmico de Peitoral',
   'elbow lift - reverse push-up': 'Flexão Reversa com Apoio de Cotovelos',
   'elbow-to-knee': 'Abdominal Cotovelo no Joelho',
-  'elevator': 'Flexão Elevador',
+  'elevator': 'Elevação Invertida de Tronco (Elevator)',
   'flag': 'Bandeira Humana (Human Flag)',
   'flexion leg sit up (bent knee)': 'Abdominal com Flexão de Pernas (Joelho Dobrado)',
   'flexion leg sit up (straight arm)': 'Abdominal com Flexão de Pernas e Braços Estendidos',
-  'flutter kicks': 'Chutes Tesoura Alternados (Flutter Kicks)',
+  'flutter kicks': 'Pernada Alternada de Bruços (Flutter Kicks)',
   'forward jump': 'Salto Horizontal para Frente',
   'forward lunge (male)': 'Avanço Frontal (Afundo)',
   'frog crunch': 'Abdominal Sapo (Frog Crunch)',
@@ -80,7 +85,7 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'glute bridge march': 'Ponte de Glúteos com Marcha Alternada',
   'glute-ham raise': 'Elevação de Glúteos e Posteriores',
   'groin crunch': 'Abdominal com Elevação de Pernas Juntas',
-  'half knee bends (male)': 'Meio Agachamento Dinâmico',
+  'half knee bends (male)': 'Meio Agachamento Unilateral Alternado',
   'half sit-up (male)': 'Meio Abdominal no Solo',
   'hamstring stretch': 'Alongamento de Posteriores de Coxa',
   'hands clasped circular toe touch (male)': 'Toque Circular nos Pés com Mãos Entrelaçadas',
@@ -96,7 +101,7 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'iron cross stretch': 'Alongamento Cruz de Ferro no Solo',
   'isometric chest squeeze': 'Contração Isométrica de Peitoral',
   'jack burpee': 'Burpee com Polichinelo',
-  'jack jump (male)': 'Polichinelo Tradicional',
+  'jack jump (male)': 'Salto Canivete com Toque nos Pés',
   'jackknife sit-up': 'Abdominal Canivete (Jackknife)',
   'janda sit-up': 'Abdominal Janda',
   'jump squat': 'Agachamento com Salto',
@@ -123,11 +128,11 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'negative crunch': 'Abdominal Excêntrico (Negativo)',
   'oblique crunch v. 2': 'Abdominal Oblíquo Alternado',
   'oblique crunches floor': 'Abdominal Oblíquo no Solo',
-  'one arm against wall': 'Empurre Isométrico Unilateral na Parede',
+  'one arm against wall': 'Alongamento Unilateral de Dorsal na Parede',
   'one arm towel row': 'Remada Unilateral com Apoio',
   'one leg donkey calf raise': 'Elevação de Panturrilha Unilateral Inclinada',
   'one leg floor calf raise': 'Elevação de Panturrilha Unilateral no Solo',
-  'one leg squat': 'Agachamento Unilateral',
+  'one leg squat': 'Agachamento Unilateral com Apoio Traseiro',
   'outside leg kick push-up': 'Flexão com Chute Lateral',
   'overhead triceps stretch': 'Alongamento de Tríceps Acima da Cabeça',
   'pelvic tilt': 'Inclinação Pélvica no Solo',
@@ -136,10 +141,10 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'posterior step to overhead reach': 'Passo Recuado com Alcance Acima da Cabeça',
   'potty squat': 'Agachamento Profundo Livre',
   'potty squat with support': 'Agachamento Profundo com Apoio',
-  'power point plank': 'Prancha Dinâmica (Mãos e Antebraços)',
+  'power point plank': 'Prancha com Alcance Frontal de Braço',
   'prisoner half sit-up (male)': 'Meio Abdominal Prisioneiro',
-  'push and pull bodyweight': 'Flexão com Empurre e Puxada Corporal',
-  'push to run': 'Flexão Seguida de Corrida em Prancha',
+  'push and pull bodyweight': 'Empurre e Puxada Dinâmica em Pé',
+  'push to run': 'Impulso de Corrida com Joelho Alto',
   'push-up': 'Flexão de Braço Tradicional',
   'push-up (wall)': 'Flexão de Braço na Parede',
   'push-up (wall) v. 2': 'Flexão Inclinada na Parede',
@@ -147,11 +152,11 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'push-up on lower arms': 'Flexão nos Antebraços',
   'push-up plus': 'Flexão Plus (Protração Escapular)',
   'push-up to side plank': 'Flexão com Transição para Prancha Lateral',
-  'quads': 'Agachamento Focado em Quadríceps',
+  'quads': 'Extensão Reversa de Quadríceps Ajoelhado',
   'quarter sit-up': 'Abdominal Curto (1/4)',
   'quick feet v. 2': 'Passos Rápidos no Lugar (Quick Feet)',
   'raise single arm push-up': 'Flexão com Elevação de Braço Unilateral',
-  'rear decline bridge': 'Ponte Declinada Posterior',
+  'rear decline bridge': 'Ponte Invertida de Mãos e Pés',
   'rear deltoid stretch': 'Alongamento de Deltoide Posterior',
   'reverse crunch': 'Abdominal Invertido',
   'reverse plank with leg lift': 'Prancha Invertida com Elevação de Perna',
@@ -169,14 +174,14 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'seated side crunch (wall)': 'Abdominal Lateral Sentado na Parede',
   'seated wide angle pose sequence': 'Alongamento Sentado com Pernas Afastadas',
   'self assisted inverse leg curl': 'Flexão Nórdica Reversa de Posteriores',
-  'self assisted inverse leg curl (on floor)': 'Flexão de Posteriores Deslizante no Solo',
+  'self assisted inverse leg curl (on floor)': 'Flexão Nórdica Assistida no Solo',
   'semi squat jump (male)': 'Salto com Meio Agachamento',
   'short stride run': 'Corrida de Passadas Curtas',
   'shoulder tap': 'Prancha com Toque Alternado nos Ombros',
   'shoulder tap push-up': 'Flexão com Toque nos Ombros',
   'side bridge hip abduction': 'Prancha Lateral com Abdução de Quadril',
   'side bridge v. 2': 'Prancha Lateral Isométrica',
-  'side hip abduction': 'Abdução Lateral de Quadril em Pé',
+  'side hip abduction': 'Abdução Lateral de Quadril no Solo',
   'side lying floor stretch': 'Alongamento Lateral no Solo',
   'side lying hip adduction (male)': 'Adução de Quadril Deitado de Lado',
   'side plank hip adduction': 'Prancha Lateral com Adução de Quadril',
@@ -185,7 +190,7 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'side-to-side toe touch (male)': 'Toque Alternado nos Pés Lado a Lado',
   'single arm push-up': 'Flexão de Braço Unilateral',
   'single leg bridge with outstretched leg': 'Ponte Unilateral com Perna Estendida',
-  'single leg platform slide': 'Deslizamento Unilateral de Perna',
+  'single leg platform slide': 'Deslizamento Unilateral de Calcanhar no Solo',
   'single leg squat (pistol) male': 'Agachamento Unilateral (Pistol Squat)',
   'sissy squat': 'Agachamento Sissy',
   'sit-up v. 2': 'Abdominal Tradicional Completo',
@@ -200,25 +205,25 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'split squats': 'Agachamento Afundo Estático (Split Squat)',
   'squat to overhead reach': 'Agachamento com Alcance Acima da Cabeça',
   'squat to overhead reach with twist': 'Agachamento com Alcance e Giro de Tronco',
-  'stalder press': 'Agachamento com Pressão de Braços',
+  'stalder press': 'Elevação Stalder para Parada de Mãos',
   'standing archer': 'Rotação de Tronco Arqueiro em Pé',
   'standing calf raise (on a staircase)': 'Elevação de Panturrilha no Degrau',
   'standing calves': 'Elevação de Panturrilhas em Pé',
-  'standing calves calf stretch': 'Alongamento de Panturrilha em Pé',
+  'standing calves calf stretch': 'Alongamento de Panturrilha no Degrau',
   'standing lateral stretch': 'Alongamento Lateral de Tronco em Pé',
   'standing pelvic tilt': 'Inclinação Pélvica em Pé',
   'standing single leg curl': 'Flexão de Joelho Unilateral em Pé',
   'star jump (male)': 'Salto Estrela Explosivo',
   'straddle maltese': 'Prancha Maltês com Pernas Afastadas',
   'straddle planche': 'Planche com Pernas Afastadas',
-  'straight leg outer hip abductor': 'Abdução de Quadril com Perna Estendida',
-  'superman push-up': 'Flexão Superman',
+  'straight leg outer hip abductor': 'Abdução de Quadril em Pé com Perna Estendida',
+  'superman push-up': 'Flexão Pliométrica Superman',
   'swimmer kicks v. 2 (male)': 'Pernada de Nadador no Solo (Superman)',
-  'swing 360': 'Giro Dinâmico de Braços e Tronco 360°',
-  'triceps press': 'Extensão de Tríceps Corporal',
+  'swing 360': 'Balanço Dinâmico com Giro (Swing 360°)',
+  'triceps press': 'Extensão de Tríceps Inclinado no Apoio',
   'triceps stretch': 'Alongamento de Tríceps',
   'tuck crunch': 'Abdominal Agrupado (Tuck Crunch)',
-  'twist hip lift': 'Elevação de Quadril com Giro Lateral',
+  'twist hip lift': 'Elevação de Quadril Cruzada com Giro',
   'twisted leg raise': 'Elevação de Pernas com Rotação de Quadril',
   'twisted leg raise (female)': 'Elevação de Joelhos com Rotação Lateral',
   'two toe touch (male)': 'Toque Simultâneo na Ponta dos Pés',
@@ -227,10 +232,10 @@ export const EXERCISE_NAME_TRANSLATIONS: Record<string, string> = {
   'v-sit on floor': 'Abdominal Isométrico em V (V-Sit)',
   'walking high knees lunge': 'Avanço Caminhando com Elevação de Joelho',
   'walking lunge': 'Avanço Caminhando (Passada)',
-  'wheel run': 'Extensão Abdominal no Solo',
+  'wheel run': 'Corrida com Ciclo Circular (Wheel Run)',
   'wide hand push up': 'Flexão de Braços com Pegada Aberta',
-  'wind sprints': 'Tiros de Corrida Rápida (Sprint)',
-  'world greatest stretch': 'Alongamento Global Completo',
+  'wind sprints': 'Abdominal Pedalada Aérea (Wind Sprints)',
+  'world greatest stretch': 'Alongamento Dinâmico em Afundo e Pirâmide',
   'wrist circles': 'Rotação Circular de Punhos',
 
   // Variações extras e apelidos comuns
@@ -586,20 +591,79 @@ export function capitalizeTitle(str: string): string {
     .join(' ');
 }
 
+const EXERCISE_NAME_EN_OVERRIDES: Record<string, string> = {
+  'all fours squad stretch': 'All Fours Quad Stretch',
+  'bodyweight side lying biceps curl': 'Side-Lying Thigh Biceps Curl',
+  'elevator': 'Inverted Ring Elevator Pull',
+  'flutter kicks': 'Prone Glute Flutter Kicks',
+  'half knee bends (male)': 'Single-Leg Half Knee Bends',
+  'hug keens to chest': 'Lying Knees to Chest Stretch',
+  'jack jump (male)': 'Straddle Toe-Touch Jump (Jack Jump)',
+  'one arm against wall': 'Wall One-Arm Lat Stretch',
+  'power point plank': 'Forearm Plank with Forward Reach',
+  'push and pull bodyweight': 'Standing Dynamic Push and Pull',
+  'push to run': 'Explosive Knee-Drive Run',
+  'quads': 'Kneeling Reverse Quad Extension',
+  'rear decline bridge': 'Reverse Tabletop Bridge',
+  'side hip abduction': 'Side-Lying Hip Abduction',
+  'single leg platform slide': 'Supine Single-Leg Heel Slide',
+  'stalder press': 'Stalder Press to Handstand',
+  'straight leg outer hip abductor': 'Standing Straight-Leg Hip Abduction',
+  'swing 360': 'Dynamic Bar Swing 360°',
+  'triceps press': 'Incline Bodyweight Triceps Press',
+  'wheel run': 'High-Knee Circular Wheel Run',
+  'wind sprints': 'Hanging Air Bicycle Sprints',
+};
+
+const LEGACY_PT_NAME_TO_KEY: Record<string, string> = {
+  'rosca bíceps deitado de lado': 'bodyweight side lying biceps curl',
+  'flexão elevador': 'elevator',
+  'chutes tesoura alternados (flutter kicks)': 'flutter kicks',
+  'meio agachamento dinâmico': 'half knee bends (male)',
+  'polichinelo tradicional': 'jack jump (male)',
+  'empurre isométrico unilateral na parede': 'one arm against wall',
+  'agachamento unilateral': 'one leg squat',
+  'prancha dinâmica (mãos e antebraços)': 'power point plank',
+  'flexão com empurre e puxada corporal': 'push and pull bodyweight',
+  'flexão seguida de corrida em prancha': 'push to run',
+  'agachamento focado em quadríceps': 'quads',
+  'ponte declinada posterior': 'rear decline bridge',
+  'flexão de posteriores deslizante no solo': 'self assisted inverse leg curl (on floor)',
+  'abdução lateral de quadril em pé': 'side hip abduction',
+  'deslizamento unilateral de perna': 'single leg platform slide',
+  'agachamento com pressão de braços': 'stalder press',
+  'alongamento de panturrilha em pé': 'standing calves calf stretch',
+  'abdução de quadril com perna estendida': 'straight leg outer hip abductor',
+  'flexão superman': 'superman push-up',
+  'giro dinâmico de braços e tronco 360°': 'swing 360',
+  'extensão de tríceps corporal': 'triceps press',
+  'elevação de quadril com giro lateral': 'twist hip lift',
+  'extensão abdominal no solo': 'wheel run',
+  'tiros de corrida rápida (sprint)': 'wind sprints',
+  'alongamento global completo': 'world greatest stretch',
+};
+
 /**
  * Retorna o nome localizado do exercício (100% em Português quando pt-BR, 100% em Inglês quando en)
  */
 export function getLocalizedExerciseName(name: string, locale: 'pt-BR' | 'en' = 'pt-BR'): string {
   if (!name) return '';
-  const key = name.toLowerCase().trim();
+  const rawKey = name.toLowerCase().trim();
+  const key = LEGACY_PT_NAME_TO_KEY[rawKey] || rawKey;
 
   if (locale === 'en') {
+    if (EXERCISE_NAME_EN_OVERRIDES[key]) {
+      return EXERCISE_NAME_EN_OVERRIDES[key];
+    }
     for (const [eng, pt] of Object.entries(EXERCISE_NAME_TRANSLATIONS)) {
       if (pt.toLowerCase() === key) {
+        if (EXERCISE_NAME_EN_OVERRIDES[eng]) {
+          return EXERCISE_NAME_EN_OVERRIDES[eng];
+        }
         return capitalizeTitle(eng.replace(/\((?:male|female)\)/gi, '').trim());
       }
     }
-    return capitalizeTitle(name.replace(/\((?:male|female)\)/gi, '').trim());
+    return capitalizeTitle(key.replace(/\((?:male|female)\)/gi, '').trim());
   }
 
   // Busca exata no dicionário completo dos 226 exercícios
@@ -713,31 +777,28 @@ export function getLocalizedInstructions(
   exerciseId?: string,
   exerciseName?: string
 ): string[] {
+  const paddedId = exerciseId ? String(exerciseId).padStart(4, '0') : undefined;
+  const rawNameKey = exerciseName ? exerciseName.toLowerCase().trim() : '';
+  const normalizedNameKey = LEGACY_PT_NAME_TO_KEY[rawNameKey] || rawNameKey;
+  const resolvedId =
+    paddedId || (normalizedNameKey ? EXERCISE_NAME_TO_ID[normalizedNameKey] : undefined);
+
   if (locale === 'en') {
+    if (resolvedId && BUNDLED_INSTRUCTIONS_EN_BY_ID[resolvedId]) {
+      return splitIntoSteps(BUNDLED_INSTRUCTIONS_EN_BY_ID[resolvedId]);
+    }
     return splitIntoSteps(instructions);
   }
 
   // 1. Busca direta pelo ID do exercício no dicionário curado dos 226 exercícios
-  if (exerciseId) {
-    const paddedId = String(exerciseId).padStart(4, '0');
-    if (EXERCISE_INSTRUCTIONS_PT[String(exerciseId)]) {
-      return EXERCISE_INSTRUCTIONS_PT[String(exerciseId)];
-    }
-    if (EXERCISE_INSTRUCTIONS_PT[paddedId]) {
-      return EXERCISE_INSTRUCTIONS_PT[paddedId];
-    }
+  if (exerciseId && EXERCISE_INSTRUCTIONS_PT[String(exerciseId)]) {
+    return EXERCISE_INSTRUCTIONS_PT[String(exerciseId)];
+  }
+  if (resolvedId && EXERCISE_INSTRUCTIONS_PT[resolvedId]) {
+    return EXERCISE_INSTRUCTIONS_PT[resolvedId];
   }
 
-  // 2. Busca pelo nome do exercício
-  if (exerciseName) {
-    const nameKey = exerciseName.toLowerCase().trim();
-    const mappedId = EXERCISE_NAME_TO_ID[nameKey];
-    if (mappedId && EXERCISE_INSTRUCTIONS_PT[mappedId]) {
-      return EXERCISE_INSTRUCTIONS_PT[mappedId];
-    }
-  }
-
-  // 3. Fallback: divide em passos e traduz cada frase
+  // 2. Fallback: divide em passos e traduz cada frase
   return splitIntoSteps(instructions).map(translateInstruction);
 }
 

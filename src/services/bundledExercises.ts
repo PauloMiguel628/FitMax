@@ -26,7 +26,10 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "obliques"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your arms extended straight down by your sides. Keeping your back straight and your core engaged, slowly bend your torso to one side, lowering your hand towards your knee. Pause for a moment at the bottom, then slowly return to the starting position. Repeat on the other side. Continue alternating sides for the desired number of repetitions."
+      "Lie on your side on the floor with your legs stacked and support your head with your lower hand.",
+      "Place your top hand behind your head with your elbow pointing up.",
+      "Contract your obliques and side abs to lift your upper torso and bring your top elbow toward your hip.",
+      "Lower slowly with control and repeat before switching sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0002-Hy9D21L.gif"
   },
@@ -55,7 +58,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Start on all fours with your hands directly under your shoulders and your knees directly under your hips. Extend one leg straight back, keeping your knee bent and your foot flexed. Slowly lower your hips towards the ground, feeling a stretch in your quads. Hold this position for 20-30 seconds. Switch legs and repeat the stretch on the other side."
+      "Position yourself on all fours with your hands under your shoulders and knees under your hips.",
+      "Slide one leg straight back and lower your hips slightly toward the floor to stretch the hip flexors and quads.",
+      "Hold the stretch for 20 to 30 seconds while breathing steadily, then switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1512-qBcKorM.gif"
   },
@@ -83,7 +88,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "ankle stabilizers"
     ],
     "instructions": [
-      "Sit on the ground with your legs extended in front of you. Lift one leg off the ground and rotate your ankle in a circular motion. Perform the desired number of circles in one direction, then switch to the other direction. Repeat with the other leg."
+      "Sit or stand comfortably and lift one foot slightly off the ground.",
+      "Slowly rotate your ankle in wide circles in one direction.",
+      "Reverse the direction of the circles, then repeat with the other ankle."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1368-uL9CsKm.gif"
   },
@@ -115,7 +122,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and arms extended to the sides. Keeping your legs straight, bend forward at the waist and reach down towards your toes with your right hand. As you reach down, simultaneously lift your left leg straight up behind you, maintaining balance. Return to the starting position and repeat the movement with your left hand reaching towards your toes and your right leg lifting up behind you. Continue alternating sides for the desired number of repetitions."
+      "Stand with your feet wide apart and extend your arms out to the sides at shoulder height.",
+      "Step one foot backward while hinging forward and reaching the opposite hand down to touch your front foot.",
+      "Return to the wide starting stance and repeat on the opposite side in a continuous rhythm."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3214-RtyAsy1.gif"
   },
@@ -130,7 +139,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower back"
     ],
     "instructions": [
-      "Lie flat on your back with your knees bent and feet flat on the ground. Extend your arms overhead, keeping them straight. Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is upright. Pause for a moment at the top, then slowly lower your upper body back down to the starting position. Repeat for the desired number of repetitions."
+      "Stand tall with your feet shoulder-width apart and extend your arms straight forward at shoulder height.",
+      "Perform small, controlled forward circles with both arms while keeping your shoulders engaged.",
+      "After completing the desired repetitions, reverse the direction and perform backward circles."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3204-NAkmgdx.gif"
   },
@@ -146,7 +157,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Bend your knees and lower your body into a squat position. Jump explosively upwards, extending your legs and arms. While in the air, spread your legs apart and bring your arms out to the sides. Land softly with your feet shoulder-width apart, bending your knees to absorb the impact. Repeat for the desired number of repetitions."
+      "Stand with your feet hip-width apart and your knees slightly bent.",
+      "Jump forward and backward over an imaginary line on the floor with both feet together.",
+      "Land softly on the balls of your feet and maintain a quick, steady rhythm."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3220-f9lVSSI.gif"
   },
@@ -163,7 +176,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Step forward with your right foot, bending your knee and lowering your body into a lunge position. Push off with your right foot and step back to the starting position. Repeat the movement with your left foot, alternating legs with each step. Continue stepping back and forth, maintaining a steady pace. Repeat for the desired duration or number of repetitions."
+      "Stand tall with your core braced and feet hip-width apart.",
+      "Step one foot forward and immediately step back while swinging your arms naturally.",
+      "Maintain a brisk, rhythmic pace for the desired duration."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3672-fNGumX0.gif"
   },
@@ -178,7 +193,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Stand tall with your feet shoulder-width apart. Extend your arms straight out in front of you, parallel to the ground. Cross your arms in front of your body, with your right arm over your left arm. Interlock your fingers and rotate your palms away from your body. Slowly raise your arms up and away from your body, feeling a stretch in your back and chest. Hold the stretch for 15-30 seconds, then release. Repeat on the opposite side."
+      "Sit upright on the edge of a sturdy seat with your feet flat on the floor.",
+      "Reach one arm across your body and hold the opposite knee while placing your other hand behind you.",
+      "Gently rotate your torso to stretch your back, hold for 20 to 30 seconds, and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1405-chfnQnM.gif"
   },
@@ -210,7 +227,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Place the balance board on a flat surface. Step onto the balance board with one foot, ensuring it is centered. Slowly shift your weight onto the foot on the balance board, keeping your core engaged. Maintain your balance and stability as you hold the position for a desired amount of time. Repeat the exercise with the other foot."
+      "Stand on one leg with your knee slightly bent and hinge your torso forward at the hips with a flat back.",
+      "Extend your free leg straight behind you and reach your arms out to the sides like airplane wings.",
+      "Hold your balance while engaging your core and glutes, then return to standing and switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0020-xAySMB0.gif"
   },
@@ -225,7 +244,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your arms by your sides. Bend forward at the waist, keeping your back straight and your knees slightly bent. Reach down towards your toes with your hands, keeping your legs as straight as possible. Pause for a moment at the bottom, then slowly return to the starting position. Repeat for the desired number of repetitions."
+      "Start in a plank position with your forearms or hands on the floor and your body in a straight line.",
+      "Brace your core and lift one arm forward and the opposite leg up behind you simultaneously.",
+      "Hold briefly for stability, return to the plank, and alternate with the opposite arm and leg."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3212-BbfB8Gb.gif"
   },
@@ -302,7 +323,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Kneel down on the ground with your knees hip-width apart. Place your hands on the ground in front of you, shoulder-width apart, fingers pointing forward. Extend your legs straight behind you, balancing on your toes and hands, forming a straight line from head to heels. Bend your elbows and lower your upper body towards the ground, keeping your elbows close to your sides. Pause for a moment at the bottom, then push through your hands to straighten your arms and return to the starting position. Repeat for the desired number of repetitions."
+      "Sit on the floor with your knees bent, feet planted, and hands placed behind your hips.",
+      "Press through your hands and heels to lift your hips into a reverse tabletop bridge.",
+      "March by lifting one knee toward your chest, lower the foot back down, and alternate legs without dropping your hips."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1771-s0HKO2I.gif"
   },
@@ -316,7 +339,10 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "forearms"
     ],
     "instructions": [
-      "Lie on your side with your legs extended and your head supported by your arm. Hold your upper arm against your side and bend your elbow to curl your forearm towards your shoulder. Pause for a moment at the top, then slowly lower your forearm back down to the starting position. Repeat for the desired number of repetitions."
+      "Stand facing a vertical support with your feet close to the base and hold a towel wrapped around it with both hands.",
+      "Lean your body backward until your arms are fully extended while keeping your body straight.",
+      "Pull your chest toward the towel by squeezing your shoulder blades and bending your elbows.",
+      "Lower your body back slowly with control and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1769-gscGLOU.gif"
   },
@@ -331,7 +357,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart, holding a towel in front of you with your palms facing down. Bend your knees and lower your body into a squat position, keeping your back straight and your chest up. As you lower into the squat, simultaneously pull the towel towards your chest, squeezing your shoulder blades together. Pause for a moment at the bottom of the squat, then slowly return to the starting position while extending your arms. Repeat for the desired number of repetitions."
+      "Stand facing a doorway or vertical wall corner and place one forearm vertically against the frame with your elbow bent at 90 degrees.",
+      "Step forward slowly and rotate your torso slightly away until you feel a stretch across your chest and front shoulder.",
+      "Hold for 20 to 30 seconds and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3167-BReCuOn.gif"
   },
@@ -361,7 +389,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "forearms"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and knees slightly bent. Bend forward at the waist, keeping your back straight and your core engaged. Extend your arms straight in front of you, gripping the bar or handles with a close grip. Pull the bar or handles towards your body, squeezing your shoulder blades together. Pause for a moment at the top of the movement, then slowly release and return to the starting position. Repeat for the desired number of repetitions."
+      "Stand tall and reach one arm behind your lower back with the back of your hand resting against your waist.",
+      "Use your opposite hand to gently guide the bent elbow forward, stretching the back of your shoulder.",
+      "Hold for 20 to 30 seconds and switch arms."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3158-tig3PXb.gif"
   },
@@ -376,7 +406,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "forearms"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart, knees slightly bent, and hold a towel with one hand. Bend forward at the hips, keeping your back straight and your core engaged. Pull the towel towards your chest, squeezing your shoulder blades together. Pause for a moment at the top, then slowly lower the towel back to the starting position. Repeat for the desired number of repetitions, then switch to the other arm."
+      "Stand tall and bend your elbows at 90 degrees in front of your torso.",
+      "Rotate your forearms outward away from your midline while keeping your elbows tucked close to your sides.",
+      "Pause briefly at the end range and return slowly to the starting position."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3161-O4oIqQD.gif"
   },
@@ -391,7 +423,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and knees slightly bent. Grasp a bar or handles with an overhand grip, palms facing down. Keep your back straight and core engaged. Pull the bar or handles towards your body, squeezing your shoulder blades together. Pause for a moment at the top of the movement. Slowly release and extend your arms back to the starting position. Repeat for the desired number of repetitions."
+      "Stand with your feet shoulder-width apart and hold both hands at chest height with your elbows bent.",
+      "Keep your hips facing forward and smoothly rotate your upper torso to one side, then to the other.",
+      "Continue alternating sides in a controlled motion to mobilize your upper spine."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3166-wd4ds3s.gif"
   },
@@ -406,7 +440,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and hold a towel in front of you with both hands. Bend your knees slightly and hinge forward at the hips, keeping your back straight. Pull the towel towards your chest, squeezing your shoulder blades together. Pause for a moment at the top, then slowly release the tension and return to the starting position. Repeat for the desired number of repetitions."
+      "Stand with your feet shoulder-width apart, bend your knees slightly, and hinge your torso forward from the hips.",
+      "Let both arms hang relaxed straight down toward the floor.",
+      "Gently swing your arms in small pendular circles using momentum to relax the shoulder joints."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3165-uTv34oq.gif"
   },
@@ -472,7 +508,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower back"
     ],
     "instructions": [
-      "Lie flat on your back with your knees bent and feet flat on the ground. Place your hands by your sides, palms facing down. Engaging your abs, lift your legs off the ground, bringing your knees towards your chest. At the top of the movement, squeeze your abs and pause for a moment. Slowly lower your legs back down to the starting position. Repeat for the desired number of repetitions."
+      "Start in a forearm plank position with your elbows under your shoulders and your body aligned.",
+      "Contract your abs and pike your hips high toward the ceiling into an inverted V shape.",
+      "Pause briefly at the top, lower your hips back into a straight forearm plank without sagging, and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0870-qcNN2FN.gif"
   },
@@ -544,7 +582,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Sit on the edge of a chair with your back straight and feet flat on the ground. Extend one leg straight out in front of you, keeping your heel on the ground. Lean forward slightly, feeling a stretch in your quadriceps. Hold this position for 20-30 seconds. Switch legs and repeat the stretch."
+      "Stand tall and place the heel of one foot on a raised surface in front of you with your leg straight.",
+      "Keep your spine long and hinge forward at the hips until you feel a stretch along your calf and hamstring.",
+      "Hold for 20 to 30 seconds and switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1548-xGgAGPm.gif"
   },
@@ -558,7 +598,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "deltoids"
     ],
     "instructions": [
-      "Stand tall with your feet shoulder-width apart. Extend your arms straight out in front of you at shoulder height. Cross your arms in front of your body, with your right arm on top of your left arm. Interlace your fingers and press your palms together. Gently squeeze your shoulder blades together and push your hands forward, feeling a stretch in your chest and front of your shoulders. Hold the stretch for 20-30 seconds, then release. Repeat for the desired number of repetitions."
+      "Stand facing a low step and place the ball of one foot on the edge while keeping the other foot on the floor.",
+      "Lean forward slightly to stretch the calf of the raised leg.",
+      "Hold for 20 to 30 seconds and switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1271-Uto7l43.gif"
   },
@@ -588,7 +630,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your hands on your hips. Bend your knees slightly and lift your heels off the ground, balancing on the balls of your feet. Keeping your knees bent, rotate your knees in a circular motion, first clockwise and then counterclockwise. Perform the movement for the desired number of repetitions."
+      "Stand with your feet shoulder-width apart and cross your arms in front of your chest.",
+      "Quickly swing your arms open and back to stretch your chest, then cross them in front again.",
+      "Repeat rhythmically to warm up and mobilize your chest and shoulders."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0257-X7jbxra.gif"
   },
@@ -811,7 +855,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Start in a high plank position with your hands slightly wider than shoulder-width apart. Lower your chest towards the ground, keeping your elbows close to your body. Once your chest is just above the ground, quickly drop your knees to the ground. Push yourself back up to the starting position by extending your arms. Repeat for the desired number of repetitions."
+      "Start in a high plank with your hands resting on two low side platforms or spaced wide apart.",
+      "Drop your hands onto the floor between the supports and immediately lower your chest into a deep push-up.",
+      "Push explosively off the floor to land your hands back on the supports and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1275-Q497lAE.gif"
   },
@@ -870,7 +916,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "trapezius"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your knees slightly bent. Place your hands on your hips or cross them in front of your chest. Keeping your back straight, slowly bend forward at the waist, lowering your upper body towards the ground. Pause for a moment at the bottom, then slowly raise your upper body back up to the starting position. Repeat for the desired number of repetitions."
+      "Hold firmly onto an overhead bar and invert your body into a straight vertical upside-down hang.",
+      "Engage your shoulders, traps, arms, and core to pull and elevate your inverted body upward.",
+      "Lower with control while maintaining vertical alignment and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3292-zYmNaoY.gif"
   },
@@ -929,7 +977,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower abs"
     ],
     "instructions": [
-      "Lie flat on your back with your legs extended and your hands by your sides. Engage your core and lift your legs off the ground about 6 inches. Keeping your legs straight, alternate lifting one leg slightly higher than the other. Continue this fluttering motion for the desired number of repetitions."
+      "Lie face down on a flat support with your hips at the edge and your legs extended straight behind you.",
+      "Hold the sides of the support for stability and lift both legs to hip level.",
+      "Kick your legs up and down in a rapid, alternating scissor motion while squeezing your glutes and hamstrings."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0459-UVo2Qs2.gif"
   },
@@ -975,7 +1025,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hip flexors"
     ],
     "instructions": [
-      "Lie flat on your back with your knees bent and feet flat on the ground. Place your hands behind your head with your elbows pointing outwards. Engaging your abs, lift your upper body off the ground, curling forward until your torso is at a 45-degree angle. Pause for a moment at the top, then slowly lower your upper body back down to the starting position. Repeat for the desired number of repetitions."
+      "Lie on your back with your hands behind your head and lift your legs off the floor.",
+      "Press your heels together with your knees turned outward in a frog position.",
+      "Crunch your upper torso upward while drawing your knees and elbows toward each other, then lower with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2429-FFRP97T.gif"
   },
@@ -1021,7 +1073,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Start by standing with your feet shoulder-width apart and your arms extended straight out to the sides. Slowly lean forward, keeping your arms straight, until your upper body is parallel to the ground. Engage your core and hold this position for a few seconds. Return to the starting position by pushing through your feet and standing back up. Repeat for the desired number of repetitions."
+      "Place your palms flat on the floor with your arms spread very wide out to the sides.",
+      "Lean your weight forward and engage your chest, shoulders, and core to lift your body parallel to the ground.",
+      "Hold the horizontal isometric position with straight arms and legs, then lower with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3315-YRaCa5Y.gif"
   },
@@ -1130,7 +1184,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Bend your knees and lower your body down as if you were sitting back into a chair. Keep your chest up and your weight in your heels. Pause for a moment at the bottom, then push through your heels to return to the starting position. Repeat for the desired number of repetitions."
+      "Stand balancing on one leg with your other foot held slightly off the floor in front of you and hands on your hips.",
+      "Bend your standing knee halfway down while keeping your torso upright.",
+      "Push through your standing heel to return to the top and repeat before switching legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3221-ia6kIIl.gif"
   },
@@ -1158,7 +1214,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Step forward with your right foot and shift your weight onto your right leg. Keeping your back straight, slowly bend forward at the hips, reaching towards your right foot with both hands. Hold the stretch for 20-30 seconds, then return to the starting position. Repeat on the other side."
+      "Lie flat on your back on the floor and lift one leg up while holding behind the thigh with both hands.",
+      "Gently straighten your raised knee toward the ceiling until you feel a stretch in the back of your thigh.",
+      "Hold for 20 to 30 seconds and repeat with the other leg."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1511-99rWm7w.gif"
   },
@@ -1268,7 +1326,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Start by standing with your feet shoulder-width apart. Bend your knees and lower your body down into a squat position. As you squat down, bring your knees up towards your chest and hug them with your arms. Hold this position for a moment, then slowly return to the starting position. Repeat for the desired number of repetitions."
+      "Lie on your back on the floor and bend both knees in toward your chest.",
+      "Hold your shins or thighs with both hands and gently pull your knees against your chest, lifting your tailbone slightly.",
+      "Hold briefly to stretch your lower back and glutes, then release slowly."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1418-znP9SIh.gif"
   },
@@ -1377,7 +1437,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet together and your arms by your sides. Jump up, spreading your feet apart and raising your arms above your head. As you land, quickly jump back to the starting position. Repeat for the desired number of repetitions."
+      "Stand with your feet together, bend your knees, and jump high vertically into the air.",
+      "At the peak of the jump, lift both straight legs wide apart into a straddle V and reach your hands to touch your toes mid-air.",
+      "Land softly on the balls of your feet, bending your knees into a squat to absorb the impact, and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3224-1g5bPpA.gif"
   },
@@ -1467,7 +1529,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "triceps"
     ],
     "instructions": [
-      "Kneel on the ground with your knees hip-width apart and your toes pointing back. Extend your arms overhead and interlace your fingers. Keeping your back straight, slowly lean to the right side, feeling a stretch in your left lat muscle. Hold the stretch for 20-30 seconds, then return to the starting position. Repeat the stretch on the left side, leaning to the left and feeling a stretch in your right lat muscle. Continue alternating sides for the desired number of repetitions."
+      "Start on all fours on the floor with your knees under your hips.",
+      "Keep one hand supporting you and slide the other arm straight forward along the floor while sitting your hips back and lowering your chest.",
+      "Hold for 20 to 30 seconds to stretch the lat, then switch sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1346-f38OEuO.gif"
   },
@@ -1482,7 +1546,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "triceps"
     ],
     "instructions": [
-      "Start in a kneeling position with your hands on the ground, shoulder-width apart. Extend your legs behind you, resting on your toes, and lift your body into a plank position. Keeping your core engaged and your hips stable, lift one hand off the ground and tap the opposite shoulder. Return the hand to the ground and repeat with the other hand. Continue alternating sides for the desired number of repetitions."
+      "Start in a modified plank position with your knees on the floor, hands under your shoulders, and torso straight.",
+      "Brace your core to keep your hips still, lift one hand to tap the opposite shoulder, and place it back down.",
+      "Continue alternating shoulder taps with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3239-h1ezqSu.gif"
   },
@@ -1710,7 +1776,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Start in a push-up position with your hands directly under your shoulders and your body in a straight line. Lower your body down towards the ground by bending your elbows, keeping them close to your sides. Once your elbows are at a 90-degree angle, lower your forearms to the ground, keeping your elbows directly under your shoulders. Pause for a moment, then push through your palms to lift your forearms back up to the starting position. Repeat for the desired number of repetitions."
+      "Start in a kneeling push-up position with your knees on the floor and hands under your shoulders.",
+      "Lower your upper body with control until your forearms rest on the floor.",
+      "Press firmly through your palms to extend your elbows back to the top and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1421-arvaszz.gif"
   },
@@ -1783,7 +1851,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "triceps"
     ],
     "instructions": [
-      "Stand facing a wall with your feet shoulder-width apart. Extend one arm straight out in front of you and place your palm against the wall. Engage your core and lean your body forward, keeping your arm straight and your back flat. Slowly push against the wall with your palm, activating your lat muscles. Hold the position for a few seconds, then release and repeat with the other arm."
+      "Stand next to a wall and place one forearm and elbow against the wall slightly above shoulder height.",
+      "Gently lean your chest forward and downward until you feel a stretch through your lat and shoulder.",
+      "Hold for 20 to 30 seconds and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1355-ZZTGMKh.gif"
   },
@@ -1798,7 +1868,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "forearms"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart, knees slightly bent, and hold a towel with one hand. Bend forward at the waist, keeping your back straight and your core engaged. Extend your arm fully, allowing the towel to hang in front of you. Pull the towel towards your chest, squeezing your shoulder blades together. Pause for a moment at the top, then slowly lower the towel back to the starting position. Repeat for the desired number of repetitions, then switch arms."
+      "Hold a towel looped around a vertical post with one hand and stand with your feet close to the base.",
+      "Bend your knees and lean your body back until your working arm is extended.",
+      "Pull your torso toward the post by driving your elbow back and squeezing your lat, then lower slowly and switch arms."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1773-bKWbrTA.gif"
   },
@@ -1844,7 +1916,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Extend one leg forward, keeping it off the ground. Bend your standing leg and lower your body down as if sitting back into a chair. Keep your chest up and your back straight. Push through your heel to return to the starting position. Repeat with the other leg."
+      "Stand on one leg with your rear foot resting on a low elevated surface behind you (or held off the floor behind you).",
+      "Keep your chest up and bend your front knee to lower into a single-leg squat.",
+      "Drive through your front heel to stand back up, complete your reps, and switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1476-C31LMnP.gif"
   },
@@ -1983,7 +2057,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Start in a high plank position with your hands directly under your shoulders and your body in a straight line from head to toe. Engage your core and squeeze your glutes to maintain a stable position. Lower your body down onto your forearms, one arm at a time, maintaining a straight line from head to toe. Hold this position for the desired amount of time, keeping your core and glutes engaged. To return to the starting position, push through your forearms and lift your body back up into a high plank position. Repeat for the desired number of repetitions."
+      "Start in a forearm plank with your elbows under your shoulders and your feet wide for stability.",
+      "Keep your hips level and extend one arm straight forward parallel to the floor.",
+      "Return your forearm to the ground and alternate extending the other arm forward."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3665-hCjGsRQ.gif"
   },
@@ -2012,7 +2088,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "deltoids"
     ],
     "instructions": [
-      "Start in a push-up position with your hands slightly wider than shoulder-width apart and your body in a straight line. Lower your chest towards the ground by bending your elbows, keeping your body straight. Push through your palms to extend your arms and return to the starting position. From the push-up position, pull your chest towards the ground by bending your elbows, keeping your body straight. Push through your palms to extend your arms and return to the starting position. Repeat for the desired number of repetitions."
+      "Stand tall with your feet shoulder-width apart and your knees slightly bent.",
+      "Press both arms straight forward at chest height while rounding your upper back slightly and squeezing your chest.",
+      "Pull your elbows straight back while opening your chest and squeezing your shoulder blades together, repeating under constant tension."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1689-wXvUZC8.gif"
   },
@@ -2028,7 +2106,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Start in a push-up position with your hands shoulder-width apart and your body in a straight line. Lower your chest towards the ground by bending your elbows, keeping your body straight. Push through your hands to extend your arms and return to the starting position. Quickly bring one knee towards your chest, then quickly switch and bring the other knee towards your chest. Continue alternating knees as fast as you can while maintaining good form. Continue for the desired duration or number of repetitions."
+      "Stand in a staggered athletic stance with one foot forward and the other back.",
+      "Push explosively through your front foot while driving your back knee high into the air in a single-leg running bound.",
+      "Coordinate your arm swing, land softly on your standing foot, step back, and repeat before switching sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3638-PrQbjvB.gif"
   },
@@ -2152,7 +2232,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart. Lower your body by bending your knees and pushing your hips back as if sitting on a chair. Keep your chest up and your back straight. Lower yourself until your thighs are parallel to the ground. Push through your heels to return to the starting position. Repeat for the desired number of repetitions."
+      "Kneel on the floor with your knees hip-width apart and your torso aligned straight with your thighs.",
+      "Brace your core and glutes, then lean your entire body straight backward from the knees under quad control.",
+      "Contract your quadriceps strongly to pull your torso back up to the vertical kneeling position and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3533-6YUfHPL.gif"
   },
@@ -2212,7 +2294,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower back"
     ],
     "instructions": [
-      "Lie on your back with your feet flat on the ground and your knees bent. Place your arms by your sides with your palms facing down. Engage your glutes and hamstrings, and lift your hips off the ground until your body forms a straight line from your knees to your shoulders. Hold this position for a few seconds, then slowly lower your hips back down to the starting position. Repeat for the desired number of repetitions."
+      "Sit on the floor with your knees bent, feet flat, and hands placed on the ground behind your hips.",
+      "Press through your palms and heels to lift your hips until your torso and thighs form a reverse tabletop.",
+      "Squeeze your glutes and hamstrings at the top, then lower your hips with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0668-UpAlold.gif"
   },
@@ -2319,7 +2403,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Stand with your feet hip-width apart. Take a step forward with your right foot, keeping your left foot planted. Bend your right knee and lower your body down, keeping your left leg straight. Place your hands on your right thigh for support. Hold the stretch for 20-30 seconds, then switch sides and repeat."
+      "Stand tall and place one foot a short step forward with the front knee straight and heel on the ground.",
+      "Hinge forward from your hips and reach your hands down toward your front foot to stretch your hamstrings.",
+      "Hold for 20 to 30 seconds and repeat with the other leg."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1585-0mB6wHO.gif"
   },
@@ -2348,7 +2434,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "deltoids"
     ],
     "instructions": [
-      "Start by standing with your feet shoulder-width apart and your arms extended in front of you. Bend your knees slightly and hinge forward at the hips, keeping your back straight. Lower your body by bending your elbows and retracting your shoulder blades, as if you are trying to squeeze a pencil between them. Pause for a moment at the bottom, then push through your hands to extend your elbows and return to the starting position. Repeat for the desired number of repetitions."
+      "Sit on the edge of a sturdy surface with your hands placed beside your hips and your elbows locked straight.",
+      "Lift your hips slightly off the seat and let your shoulders shrug upward toward your ears.",
+      "Press down through your palms to depress your shoulder blades and lift your torso without bending your elbows, then repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3012-7xeukSt.gif"
   },
@@ -2408,7 +2496,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hamstrings"
     ],
     "instructions": [
-      "Sit on the edge of a chair with your feet flat on the ground. Place your hands on your thighs or on the sides of the chair for support. Slowly lean forward from your hips, keeping your back straight. Feel the stretch in your lower back and hold for 20-30 seconds. Slowly return to the starting position and repeat for the desired number of repetitions."
+      "Sit upright on a sturdy seat with your feet flat on the floor.",
+      "Reach one arm straight up overhead and lengthen through your spine and lower back.",
+      "Hold briefly while breathing deeply, lower your arm, and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0690-QFmz6ch.gif"
   },
@@ -2422,7 +2512,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hamstrings"
     ],
     "instructions": [
-      "Sit on the ground with your legs extended in front of you. Bend your right knee and place your right foot on the outside of your left knee. Place your left elbow on the outside of your right knee and gently twist your torso to the right. Hold the stretch for 20-30 seconds, then switch sides and repeat."
+      "Sit upright, bend one leg, and cross that ankle over your opposite thigh in a figure-4 position.",
+      "Keep your back flat and gently lean your torso forward over your crossed shin until you feel a stretch in your glute and piriformis.",
+      "Hold for 20 to 30 seconds and switch sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2567-QY39eBr.gif"
   },
@@ -2466,7 +2558,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Lie face down on a leg curl machine with your legs extended and your ankles hooked under the padded lever. Place your hands on the side handles of the machine for support. Keeping your upper body stationary, exhale and curl your legs upward as far as possible. Hold the contracted position for a brief pause as you squeeze your hamstrings. Slowly lower your legs back to the starting position while inhaling. Repeat for the desired number of repetitions."
+      "Kneel with your ankles anchored and keep a straight line from your knees to your shoulders.",
+      "Lower your torso forward slowly toward the floor while resisting gravity with your hamstrings.",
+      "Catch yourself lightly with your hands at the bottom and contract your hamstrings and glutes to pull your body back up."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1766-ZSY3MsL.gif"
   },
@@ -2481,7 +2575,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Lie flat on your back with your legs extended and your arms by your sides. Bend your knees and place your feet flat on the ground, hip-width apart. Lift your hips off the ground, engaging your glutes and hamstrings. Slowly curl your legs towards your glutes, keeping your hips lifted. Pause for a moment at the top, then slowly extend your legs back to the starting position. Lower your hips back down to the ground. Repeat for the desired number of repetitions."
+      "Kneel on the floor with your ankles secured and your hips extended in line with your torso.",
+      "Lean forward slowly from the knees, controlling the descent with your hamstrings.",
+      "Use your hands on the floor at the bottom for light assistance and curl your torso back up using your hamstrings."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0696-E4PwJqI.gif"
   },
@@ -2513,7 +2609,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Find an open space or a treadmill to perform the exercise. Stand tall with your feet hip-width apart. Start jogging in place, lifting your knees high and pumping your arms. After a few seconds, start taking short strides forward, maintaining a quick pace. Continue running with short strides for the desired duration or distance."
+      "Stand tall with your feet hip-width apart and your core engaged.",
+      "Run forward using quick, short strides while pumping your arms in sync with your legs.",
+      "Land lightly on the balls of your feet and maintain a fast cadence for the desired duration."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3656-CcWEoWV.gif"
   },
@@ -2588,7 +2686,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your hands on your hips. Shift your weight to one leg and lift the opposite leg out to the side, keeping it straight. Pause for a moment at the top, then slowly lower your leg back down to the starting position. Repeat on the other side. Continue alternating sides for the desired number of repetitions."
+      "Lie on your side propped on your lower hand or forearm with both legs extended.",
+      "Keep your core tight and lift your top leg straight up toward the ceiling as high as comfortable.",
+      "Pause briefly at the top, lower the leg with control, and switch sides after completing your reps."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0710-7WaDzyL.gif"
   },
@@ -2618,7 +2718,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hamstrings"
     ],
     "instructions": [
-      "Lie on your side with your legs straight and stacked on top of each other. Place your bottom arm under your head for support. Engage your adductors and lift your top leg as high as possible without rotating your hips or leaning backward. Pause for a moment at the top, then slowly lower your leg back down to the starting position. Repeat for the desired number of repetitions, then switch sides."
+      "Lie on your side propped on your forearm, bend your top leg to plant that foot in front of you, and keep your bottom leg straight.",
+      "Contract your inner thigh to lift your straight bottom leg up off the floor.",
+      "Pause at the top, lower slowly with control, and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3667-c8f5cSY.gif"
   },
@@ -2633,7 +2735,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Start by lying on your side with your legs extended and stacked on top of each other. Prop yourself up on your forearm, keeping your elbow directly below your shoulder. Engage your core and lift your hips off the ground, creating a straight line from your head to your feet. While maintaining the side plank position, lift your top leg towards the ceiling, keeping it straight. Slowly lower your leg back down to the starting position. Repeat for the desired number of repetitions, then switch sides."
+      "Position yourself in a side forearm plank with the foot of your top leg resting on a low raised surface.",
+      "Engage your inner thigh and core to lift your hips and bottom leg into alignment.",
+      "Lower and lift your hips with control, then repeat on the opposite side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1775-VO2qeJg.gif"
   },
@@ -2664,7 +2768,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hands"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your arms extended in front of you. Extend your right arm out to the side, parallel to the ground, with your palm facing down. With your left hand, grab your right hand and gently pull it towards your body, feeling a stretch in your right forearm. Hold the stretch for 15-30 seconds, then release. Repeat on the other side."
+      "Stand tall and position one arm bent across the front of your chest.",
+      "Grasp your wrist with the opposite hand and gently pull laterally to stretch the wrist, forearm, and shoulder.",
+      "Hold for 15 to 30 seconds and repeat with the other arm."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0721-UtmIqcI.gif"
   },
@@ -2725,7 +2831,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Start by standing with one foot on a platform or slide board. Bend your knee slightly and slide the foot on the platform backward, extending your leg. Keep your core engaged and maintain a straight posture throughout the movement. Slowly return to the starting position by sliding your foot back to the initial position. Repeat the movement for the desired number of repetitions, then switch legs."
+      "Lie on your back with one heel on the floor and the other leg raised in the air, lifting your hips into a single-leg bridge.",
+      "Keep your hips elevated as you slide your supporting heel forward to extend the knee.",
+      "Slide the heel back in by contracting your hamstring strongly, then switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0730-LNE3wfo.gif"
   },
@@ -2879,7 +2987,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Sit on the ground with your legs extended in front of you. Place your hands on the ground behind you, fingers pointing towards your body. Engage your core and slowly lean back, keeping your back straight. Continue leaning back until you feel a stretch in your spine. Hold the stretch for a few seconds, then slowly return to the starting position. Repeat for the desired number of repetitions."
+      "Sit tall on the floor with your legs extended in front of you and your arms reaching forward at shoulder height.",
+      "Round your spine gently forward, reaching your hands toward your feet to stretch along your entire back.",
+      "Hold briefly and stack your spine back up to the upright starting position."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1363-JbC2iaV.gif"
   },
@@ -2894,7 +3004,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower back"
     ],
     "instructions": [
-      "Sit on the ground with your legs extended in front of you. Bend your knees and place your feet flat on the ground, hip-width apart. Place your hands behind your head with your elbows pointing outwards. Engage your abs and slowly twist your torso to the right, bringing your right elbow towards your left knee. Pause for a moment at the end of the twist, then slowly return to the starting position. Repeat the twist to the left side, bringing your left elbow towards your right knee. Continue alternating sides for the desired number of repetitions."
+      "Sit tall on the floor with your legs extended together in front of you and your arms lifted at shoulder level.",
+      "Keep your hips grounded and smoothly rotate your torso and shoulders to one side.",
+      "Return to the center and rotate to the opposite side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2329-2jl9K55.gif"
   },
@@ -2957,7 +3069,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "core"
     ],
     "instructions": [
-      "Start by standing with your feet shoulder-width apart and your arms extended overhead. Bend your knees slightly and engage your core. Lower your body down into a squat position while keeping your arms extended overhead. As you squat down, press your arms down towards the ground, engaging your triceps. Pause for a moment at the bottom of the squat, then push through your heels to stand back up while simultaneously raising your arms back overhead. Repeat for the desired number of repetitions."
+      "Place your palms flat on the floor and support your body in a straddle L-sit with your legs wide apart off the ground.",
+      "Lean your shoulders forward and press hard through the floor to lift your hips and sweep your straddled legs up into a handstand.",
+      "Lower back down along the same path with control without touching your feet to the floor."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3291-zd4P4B2.gif"
   },
@@ -3018,7 +3132,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Stand facing a wall or sturdy object, about an arm's length away. Place your hands on the wall or object at shoulder height. Step back with one foot, keeping your heel flat on the ground. Bend your front knee slightly and lean forward, keeping your back leg straight. You should feel a stretch in your calf muscle. Hold the stretch for 20-30 seconds. Repeat on the other leg."
+      "Stand facing a low step and place one foot on it with your knee straight.",
+      "Hinge forward at the hips and gently pull your toes upward with your hand to stretch your calf.",
+      "Hold for 20 to 30 seconds and switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1398-qOKcgVP.gif"
   },
@@ -3033,7 +3149,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "obliques"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your knees slightly bent. Extend your arms straight out to the sides, parallel to the ground. Slowly lean your upper body to one side, feeling a stretch in your side and lats. Hold the stretch for 15-30 seconds. Return to the starting position and repeat on the other side. Repeat for the desired number of repetitions."
+      "Stand with your feet shoulder-width apart, raise one arm overhead, and bend that elbow behind your head.",
+      "Grasp the bent elbow with your opposite hand and gently lean your torso to the side to stretch your lat and triceps.",
+      "Hold for 15 to 30 seconds, return to center, and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0794-1jXLYEw.gif"
   },
@@ -3108,7 +3226,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Start in a push-up position with your hands shoulder-width apart and your feet spread wide apart. Engage your core and slowly shift your weight forward, bringing your shoulders over your hands. Bend your elbows and lower your body towards the ground, keeping your elbows close to your sides. Pause for a moment at the bottom, then push through your hands to straighten your arms and lift your body back up to the starting position. Repeat for the desired number of repetitions."
+      "Place your hands on the floor shoulder-width apart with your arms locked straight.",
+      "Brace your core and lean your shoulders forward until your feet lift off the ground with your legs spread wide in a straddle.",
+      "Hold your body horizontal and parallel to the floor, then lower with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3298-BL3GHeY.gif"
   },
@@ -3123,7 +3243,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hamstrings"
     ],
     "instructions": [
-      "Lie on your side with your legs straight and stacked on top of each other. Place your bottom arm under your head for support. Engage your core and lift your top leg as high as possible without rotating your hips or leaning backward. Pause for a moment at the top, then slowly lower your leg back down to the starting position. Repeat for the desired number of repetitions, then switch sides."
+      "Stand tall with your hands on your hips and your core engaged.",
+      "Shift your weight onto one foot and lift the other leg straight out to the side, contracting your outer hip and glute.",
+      "Pause briefly at the top without leaning your torso, lower slowly, and switch sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1427-mQ1tBXn.gif"
   },
@@ -3138,7 +3260,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Start in a high plank position with your hands slightly wider than shoulder-width apart and your feet together. Engage your core and lower your body towards the ground, keeping your elbows close to your sides. As you lower your body, simultaneously lift your right arm and left leg off the ground, extending them straight out. Pause for a moment at the top, then lower your arm and leg back down while pushing yourself back up to the starting position. Repeat the movement, this time lifting your left arm and right leg. Continue alternating sides for the desired number of repetitions."
+      "Start in a high plank position with your body aligned.",
+      "Lower your chest into a push-up and push explosively off the floor so both hands and feet leave the ground at the same time.",
+      "Extend your arms forward overhead in mid-air like Superman, then land softly back into the push-up."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0803-4GqRrAk.gif"
   },
@@ -3169,7 +3293,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "core"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and knees slightly bent. Hold your arms straight out in front of you, parallel to the ground. Engage your core and swing your arms in a circular motion, rotating your torso as you do so. Continue the circular motion, swinging your arms and rotating your torso for the desired number of repetitions. Remember to breathe throughout the exercise."
+      "Hold an overhead bar with straight arms and your body hanging.",
+      "Engage your lats and core to swing your body forward and upward with controlled momentum.",
+      "Maintain shoulder stability throughout the dynamic movement."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3318-tnaj0mT.gif"
   },
@@ -3183,7 +3309,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "shoulders"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and your knees slightly bent. Extend your arms straight out in front of you, parallel to the ground. Bend your elbows and lower your body towards the ground, keeping your upper arms close to your sides. Pause for a moment at the bottom, then push yourself back up to the starting position. Repeat for the desired number of repetitions."
+      "Stand leaning forward with your hands resting shoulder-width apart on a sturdy elevated surface.",
+      "Keep your elbows tucked in as you bend your arms, lowering your forearms and head toward the surface.",
+      "Press through your palms to extend your elbows and contract your triceps back to the starting position."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0816-fSrPP6B.gif"
   },
@@ -3226,7 +3354,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "hamstrings"
     ],
     "instructions": [
-      "Lie on your back with your knees bent and feet flat on the ground. Place your hands by your sides for support. Engage your glutes and lift your hips off the ground, forming a straight line from your knees to your shoulders. While keeping your hips lifted, twist your lower body to the right side, bringing your knees towards the ground. Return to the starting position and repeat the twist to the left side. Continue alternating twists for the desired number of repetitions."
+      "Lie on your back with one knee bent and foot flat on the floor, and cross your opposite ankle over that knee.",
+      "Drive through your supporting heel to lift your hips into a single-leg bridge with a slight pelvic twist at the top.",
+      "Lower your hips slowly and repeat before switching sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1466-AX1kB0o.gif"
   },
@@ -3363,7 +3493,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Start in a plank position with your hands on the wheel and your body straight. Engage your core and start rolling the wheel forward by extending your arms. Continue rolling until your body is fully extended and your arms are overhead. Reverse the movement by pulling the wheel back towards your body, using your core and arms. Repeat for the desired number of repetitions."
+      "Stand tall with your torso upright and your core braced.",
+      "Run while driving your knees up in front of you and cycling your legs in a wide, smooth circular wheel motion.",
+      "Strike the ground actively beneath your hips on the balls of your feet while coordinating your arm swing."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3637-km2Ljzj.gif"
   },
@@ -3394,7 +3526,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Find an open space or a track to perform the exercise. Start by standing with your feet shoulder-width apart. Begin running as fast as you can, pumping your arms and driving your knees up. Continue sprinting for a specific distance or time period. Rest and repeat for the desired number of repetitions."
+      "Stabilize your upper body in a supported hang with your shoulders firm and abs braced.",
+      "Lift your legs and rapidly alternate driving your knees up toward your chest in a mid-air running sprint motion.",
+      "Maintain a fast, steady rhythm while breathing continuously."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0858-Qoujh3Q.gif"
   },
@@ -3410,7 +3544,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Start in a lunge position with your right foot forward and your left foot back. Place your hands on the ground on either side of your right foot. Lower your left knee to the ground and extend your right leg, keeping your right foot flat on the ground. Rotate your torso to the right, reaching your right arm up towards the ceiling. Hold this position for a few seconds, then return to the starting position. Switch sides and repeat the stretch with your left foot forward."
+      "Step forward into a deep lunge and place both hands on the floor on either side of your front foot.",
+      "Keep your hands on the floor and straighten your front knee to lift your hips and stretch your hamstring.",
+      "Bend your front knee back into the lunge and repeat before switching legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1604-DFGXwZr.gif"
   },
