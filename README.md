@@ -2,7 +2,10 @@
 
 <div align="center">
 
-![FitMax Banner](assets/images/logo-glow.png)
+<img src="assets/images/fitmax-icon.png" alt="FitMax Logo" width="160" />
+
+<br />
+<br />
 
 **Aplicativo mobile de alta performance para treinos calistênicos e exercícios funcionais em casa — 100% sem máquinas e sem equipamento.**
 
@@ -122,9 +125,8 @@ O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em ca
 FitMax/
 ├── assets/
 │   ├── images/
-│   │   ├── fitmax-icon.png             # Ícone oficial do app (512x512)
+│   │   ├── fitmax-icon.png             # Ícone e logotipo oficial do app (1024x1024)
 │   │   ├── fitmax-splash.png           # Splash screen de carregamento
-│   │   ├── logo-glow.png               # Logotipo esportivo com efeito glow
 │   │   └── android-icon-*.png          # Ícones adaptativos para Android
 │   └── sounds/
 │       ├── beep-start.wav              # Sinal sonoro de início de contagem
