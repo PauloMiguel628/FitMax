@@ -164,6 +164,17 @@ restEndsAt += 15000;
 assert(computeRemainingFromClock(restEndsAt, startClock + 25000) === 50000, 'Ao somar +15s, deve passar para 50000ms restantes');
 assert(computeRemainingFromClock(restEndsAt, startClock + 80000) === 0, 'Após o horário final, deve retornar 0ms');
 
+// Teste de auto-dismiss do pop-up de descanso finalizado
+const REST_FINISHED_BANNER_TIMEOUT_MS = 5000;
+function isNoticeActive(shownAt, now) {
+  if (!shownAt) return false;
+  return now - shownAt < REST_FINISHED_BANNER_TIMEOUT_MS;
+}
+const finishTime = 1700000080000;
+assert(isNoticeActive(finishTime, finishTime + 2000) === true, 'Banner de descanso deve permanecer visível após 2 segundos');
+assert(isNoticeActive(finishTime, finishTime + 5000) === false, 'Banner de descanso deve desaparecer após 5 segundos');
+assert(isNoticeActive(finishTime, finishTime + 6000) === false, 'Banner de descanso não deve mais estar visível após 6 segundos');
+
 console.log('\n--- 9. Testes de Alternância de Tema (Modo Escuro / Modo Claro) ---');
 function toggleTheme(current) {
   return current === 'light' ? 'dark' : 'light';

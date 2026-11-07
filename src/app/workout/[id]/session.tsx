@@ -129,6 +129,15 @@ export default function WorkoutSessionScreen() {
     return () => sub.remove();
   }, [syncClocks]);
 
+  // Oculta automaticamente o pop-up de descanso finalizado após 5 segundos
+  useEffect(() => {
+    if (!restFinishedNotice) return;
+    const timer = setTimeout(() => {
+      setRestFinishedNotice(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [restFinishedNotice]);
+
   if (!currentSession) {
     return (
       <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 16) }]}>
@@ -167,6 +176,7 @@ export default function WorkoutSessionScreen() {
       } catch {}
       resetExTimer();
       exCountdown.reset();
+      setRestFinishedNotice(false);
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -178,6 +188,7 @@ export default function WorkoutSessionScreen() {
       } catch {}
       resetExTimer();
       exCountdown.reset();
+      setRestFinishedNotice(false);
       setCurrentIndex(currentIndex - 1);
     }
   };
@@ -210,6 +221,7 @@ export default function WorkoutSessionScreen() {
     } catch {}
     clearRestTimer();
     setRestRemainingMs(0);
+    setRestFinishedNotice(false);
   };
 
   const handleAddRest15s = () => {
@@ -648,7 +660,12 @@ export default function WorkoutSessionScreen() {
             <Text style={[typography.bodySmall, { color: colors.text, fontWeight: '700', marginLeft: 8, flex: 1 }]}>
               {t.restFinishedBadge}
             </Text>
-            <Pressable onPress={() => setRestFinishedNotice(false)}>
+            <Pressable
+              onPress={() => setRestFinishedNotice(false)}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={t.close}
+            >
               <Ionicons name="close" size={18} color={colors.textSecondary} />
             </Pressable>
           </View>
@@ -906,6 +923,7 @@ export default function WorkoutSessionScreen() {
                     key={idx}
                     onPress={() => {
                       resetExTimer();
+                      setRestFinishedNotice(false);
                       setCurrentIndex(idx);
                       setJumpModalVisible(false);
                     }}
