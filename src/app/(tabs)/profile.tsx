@@ -209,14 +209,6 @@ export default function ProfileScreen() {
     showFeedbackPopup('cancelled');
   };
 
-  const handleSelectLevelQuick = (lvl: 'iniciante' | 'intermediario' | 'avancado') => {
-    try {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    } catch {}
-    setSelectedLevel(lvl);
-    updateProfile({ level: lvl });
-  };
-
   const handleQuickAddWeight = () => {
     setQuickWeightInput(String(profile.weightKg || 74));
     setQuickWeightModalVisible(true);
@@ -361,52 +353,6 @@ export default function ProfileScreen() {
               </Text>
             </View>
           )}
-
-          {/* Seletor Rápido de Nível do Usuário (Iniciante, Intermediário, Avançado) */}
-          <View style={styles.levelQuickRow}>
-            {(
-              [
-                { key: 'iniciante', label: t.profileLevelBeginner },
-                { key: 'intermediario', label: t.profileLevelIntermediate },
-                { key: 'avancado', label: t.profileLevelAdvanced },
-              ] as const
-            ).map((lvlObj) => {
-              const isSelected = (profile.level || 'intermediario') === lvlObj.key;
-              return (
-                <Pressable
-                  key={lvlObj.key}
-                  onPress={() => handleSelectLevelQuick(lvlObj.key)}
-                  style={[
-                    styles.levelPillBtn,
-                    {
-                      flex: lvlObj.key === 'intermediario' ? 1.28 : 1,
-                      backgroundColor: isSelected ? colors.primary : colors.surfaceElevated,
-                      borderColor: isSelected ? colors.primary : colors.border,
-                      borderRadius: radius.full,
-                    },
-                  ]}
-                  accessibilityRole="button"
-                >
-                  <Text
-                    numberOfLines={1}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.85}
-                    style={[
-                      typography.label,
-                      {
-                        color: isSelected ? '#FFFFFF' : colors.textSecondary,
-                        fontSize: 11,
-                        letterSpacing: 0.2,
-                        textAlign: 'center',
-                      },
-                    ]}
-                  >
-                    {lvlObj.label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
 
           {!isEditing && (
             <Button
@@ -1194,21 +1140,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderWidth: 1,
     maxWidth: '92%',
-  },
-  levelQuickRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    marginTop: 12,
-    width: '100%',
-  },
-  levelPillBtn: {
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   card: {
     borderWidth: 1,
