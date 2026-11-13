@@ -58,6 +58,24 @@ export const EXCLUDED_EXERCISE_NAMES: string[] = [
   'ring dip',
   'inverted row',
   'bar muscle-up',
+  'elevator',
+  'skin the cat',
+  '45° side bend',
+  'flag',
+  'balance board',
+  'bodyweight standing row (with towel)',
+  'glute-ham raise',
+  'captains chair straight leg raise',
+  'bodyweight standing one arm row (with towel)',
+  'bodyweight standing row',
+  'bodyweight standing close-grip row',
+  'bodyweight squatting row (with towel)',
+  'twisted leg raise (female)',
+  'twisted leg raise',
+  'one arm towel row',
+  'swing 360',
+  'wind sprints',
+  'gironda sternum chin',
 ];
 
 /**
@@ -71,11 +89,14 @@ export function isHomeFriendlyExercise(exercise: Exercise): boolean {
     return false;
   }
 
-  const nameLower = (exercise.name || '').toLowerCase();
+  const nameLower = (exercise.name || '').toLowerCase().trim();
 
   // 2. Checa exclusão direta por nome
   for (const excluded of EXCLUDED_EXERCISE_NAMES) {
-    if (nameLower.includes(excluded)) {
+    if (excluded === 'triceps dip' && nameLower === 'triceps dips floor') {
+      continue;
+    }
+    if (nameLower === excluded || nameLower.includes(excluded)) {
       return false;
     }
   }
@@ -122,6 +143,33 @@ export function matchesExerciseCategory(exercise: Exercise, category: string): b
       exercise.secondaryMuscles.some((m) => {
         const ml = m.toLowerCase();
         return ml.includes('shoulder') || ml.includes('delt');
+      })
+    ) {
+      return true;
+    }
+  }
+
+  if (cat === 'back') {
+    const target = (exercise.target || '').toLowerCase();
+    if (
+      target.includes('back') ||
+      target.includes('lat') ||
+      target.includes('trap') ||
+      target.includes('rhomboid') ||
+      target.includes('spine')
+    ) {
+      return true;
+    }
+    if (
+      Array.isArray(exercise.secondaryMuscles) &&
+      exercise.secondaryMuscles.some((m) => {
+        const ml = m.toLowerCase();
+        return (
+          ml.includes('upper back') ||
+          ml.includes('lat') ||
+          ml.includes('rhomboid') ||
+          ml.includes('trap')
+        );
       })
     ) {
       return true;

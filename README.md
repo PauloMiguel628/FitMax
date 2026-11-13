@@ -32,7 +32,7 @@
 O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em casa. Todo o catálogo, filtros, rotinas e mecânicas de treino foram rigorosamente construídos para que **qualquer pessoa possa treinar em qualquer lugar utilizando unicamente o peso do próprio corpo, o chão ou uma parede de apoio**.
 
 - 🚀 **100% Compatível com Expo Go (SDK 58)** tanto no Android quanto no iOS.
-- 📴 **Offline-First Completo**: Catálogo embutido de **226 exercícios**, GIFs anatômicos em loop com cache, armazenamento local persistente via AsyncStorage e zero dependência obrigatória de APIs externas pagas.
+- 📴 **Offline-First Completo**: Catálogo embutido de **219 exercícios** 100% livres e ergonômicos para casa, GIFs anatômicos em loop com cache, armazenamento local persistente via AsyncStorage e zero dependência obrigatória de APIs externas pagas.
 - 🎨 **Interface Moderna & Esportiva**: Design escuro/claro dinâmico, tipografia esportiva (*Outfit* e *Plus Jakarta Sans*), pílula animada com feedback háptico na navegação e componentes fluidos a 60 fps construídos com React Native Reanimated.
 
 ---
@@ -52,7 +52,7 @@ O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em ca
 
 ### 2. 📖 Catálogo & Detalhes de Exercícios
 - **Animações Anatômicas em Loop**: Reprodução de alta performance de GIFs/WebPs com renderização acelerada por hardware via `expo-image`.
-- **Filtro Estrito Home-Friendly**: Exclusão automática de exercícios que demandem barras fixas, paralelas, argolas, halteres ou bancos.
+- **Filtro Estrito Home-Friendly & Curadoria Ergonômica**: Exclusão automática de exercícios que demandem barras fixas, paralelas, argolas, halteres ou bancos, e remoção de variações pouco ergonômicas ou de risco para treino em casa (18 exercícios não ergonômicos removidos e 11 novos exercícios calistênicos práticos de solo adicionados da ExerciseDB, totalizando 219 exercícios).
 - **Passo a Passo Bilíngue**: Tradução e localização integral de títulos, instruções de execução, músculos alvo e sinergistas em **Português (pt-BR)** e **Inglês (en)**.
 - **Acesso Rápido ao Timer e Favoritos**: Adicione qualquer exercício aos favoritos para acesso instantâneo ou dispare o cronômetro diretamente a partir do detalhe do movimento.
 
@@ -196,7 +196,7 @@ FitMax/
 │   │   ├── pt-BR.ts                    # Dicionário completo de strings em Português
 │   │   └── en.ts                       # Dicionário completo de strings em Inglês
 │   ├── services/
-│   │   ├── bundledExercises.ts         # Catálogo completo e curado de 226 exercícios embutidos
+│   │   ├── bundledExercises.ts         # Catálogo completo e curado de 219 exercícios embutidos
 │   │   └── exerciseService.ts          # Serviço de busca, filtragem e cache dos exercícios
 │   ├── store/
 │   │   ├── dialogStore.ts              # Store global para diálogos modais temáticos
@@ -253,7 +253,7 @@ FitMax/
 
 ### Serviços, Lógica e Stores (`src/services/`, `src/utils/`, `src/store/`)
 - **`src/services/exerciseService.ts`**: Camada de serviço de exercícios. Oferece carregamento instantâneo síncrono via `getInitialExercises()` para prevenir telas em branco, cache em memória, leitura assíncrona do AsyncStorage e fallback opcional para a API RapidAPI ExerciseDB.
-- **`src/services/bundledExercises.ts`**: Base de dados embutida contendo 226 exercícios funcionais com GIFs anatômicos hospedados globalmente.
+- **`src/services/bundledExercises.ts`**: Base de dados embutida contendo 219 exercícios funcionais com GIFs anatômicos hospedados globalmente.
 - **`src/config/home-friendly.ts`**: Motor de validação que elimina termos de equipamentos proibidos (bancos, barras fixas, halteres, paralelas, cabos, etc.) e garante que o app só recomende calistenia sem máquina.
 - **`src/utils/customWorkoutGenerator.ts`**: Algoritmo curado que monta rotinas balanceadas com séries, repetições e tempos de descanso calibrados por nível e musculatura.
 - **`src/utils/exerciseLocalization.ts`**: Tradutor completo de exercícios, músculos e instruções passo a passo para Português e Inglês.
@@ -317,7 +317,7 @@ npx expo start
 
 ### 4. Conexão com API Externa (Opcional)
 
-O FitMax funciona de forma **100% autônoma e offline** com os mais de 220 exercícios embutidos. Se desejar conectar a API remota do ExerciseDB:
+O FitMax funciona de forma **100% autônoma e offline** com os 219 exercícios calistênicos embutidos. Se desejar conectar a API remota do ExerciseDB:
 
 1. Obtenha uma chave gratuita no portal [RapidAPI - ExerciseDB](https://rapidapi.com/justin-WFFormat/api/exercisedb).
 2. Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:

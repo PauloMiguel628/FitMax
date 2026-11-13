@@ -3,7 +3,7 @@ import { Exercise } from '@/types';
 import { BUNDLED_EXERCISES } from './bundledExercises';
 import { isHomeFriendlyExercise, matchesExerciseCategory } from '@/config/home-friendly';
 
-const CACHE_KEY_ALL = 'fitmax_cache_all_exercises_v4';
+const CACHE_KEY_ALL = 'fitmax_cache_all_exercises_v5';
 
 // Optional RapidAPI endpoint if user configures .env
 const RAPIDAPI_HOST = 'exercisedb.p.rapidapi.com';

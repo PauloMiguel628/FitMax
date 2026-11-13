@@ -81,11 +81,36 @@ assert(formatWorkoutDuration(0) === '0s', '0ms deve formatar como 0s');
 
 console.log('\n--- 4. Testes de Filtro de Exercícios Home-Friendly ---');
 const EXCLUDED_KEYWORDS = ['pull-up bar', 'chin-up bar', 'bench', 'parallel bars', 'dip bar'];
-const EXCLUDED_NAMES = ['archer pull up', 'chest dip', 'triceps dip'];
+const EXCLUDED_NAMES = [
+  'archer pull up',
+  'chest dip',
+  'triceps dip',
+  'elevator',
+  'skin the cat',
+  '45° side bend',
+  'flag',
+  'balance board',
+  'bodyweight standing row (with towel)',
+  'glute-ham raise',
+  'captains chair straight leg raise',
+  'bodyweight standing one arm row (with towel)',
+  'bodyweight standing row',
+  'bodyweight standing close-grip row',
+  'bodyweight squatting row (with towel)',
+  'twisted leg raise (female)',
+  'twisted leg raise',
+  'one arm towel row',
+  'swing 360',
+  'wind sprints',
+  'gironda sternum chin',
+];
 function isHomeFriendly(exercise) {
   if (exercise.equipment !== 'body weight') return false;
-  const name = (exercise.name || '').toLowerCase();
-  if (EXCLUDED_NAMES.some(n => name.includes(n))) return false;
+  const name = (exercise.name || '').toLowerCase().trim();
+  for (const n of EXCLUDED_NAMES) {
+    if (n === 'triceps dip' && name === 'triceps dips floor') continue;
+    if (name === n || name.includes(n)) return false;
+  }
   const inst = (exercise.instructions || []).join(' ').toLowerCase();
   if (EXCLUDED_KEYWORDS.some(k => name.includes(k) || inst.includes(k))) return false;
   return true;
@@ -93,9 +118,13 @@ function isHomeFriendly(exercise) {
 
 assert(isHomeFriendly({ name: 'push-up', equipment: 'body weight', instructions: ['Push from floor'] }) === true, 'Flexão de solo deve ser permitida');
 assert(isHomeFriendly({ name: 'burpee', equipment: 'body weight', instructions: ['Jump on floor'] }) === true, 'Burpee deve ser permitido');
+assert(isHomeFriendly({ name: 'triceps dips floor', equipment: 'body weight', instructions: ['Sit on the floor'] }) === true, 'Mergulho de tríceps sentado no solo deve ser permitido');
 assert(isHomeFriendly({ name: 'dumbbell curl', equipment: 'dumbbell', instructions: ['Curl dumbbell'] }) === false, 'Halteres devem ser rejeitados');
 assert(isHomeFriendly({ name: 'archer pull up', equipment: 'body weight', instructions: ['Hang on bar'] }) === false, 'Archer pull up deve ser rejeitado');
 assert(isHomeFriendly({ name: 'chest dip', equipment: 'body weight', instructions: ['On parallel bars'] }) === false, 'Chest dip deve ser rejeitado');
+assert(isHomeFriendly({ name: 'elevator', equipment: 'body weight', instructions: ['Pull up'] }) === false, 'Elevator deve ser rejeitado');
+assert(isHomeFriendly({ name: 'skin the cat', equipment: 'body weight', instructions: ['Rotate body'] }) === false, 'Skin the cat deve ser rejeitado');
+assert(isHomeFriendly({ name: 'flag', equipment: 'body weight', instructions: ['Human flag'] }) === false, 'Human flag deve ser rejeitado');
 
 console.log('\n--- 5. Testes de Sequência de Dias Seguidos Logado (Login Streak) ---');
 function getLocalDateString(d) {

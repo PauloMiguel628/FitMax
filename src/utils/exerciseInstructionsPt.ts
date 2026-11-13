@@ -1,5 +1,5 @@
 /**
- * Instruções passo a passo em Português para todos os 226 exercícios do catálogo.
+ * Instruções passo a passo em Português para todos os 219 exercícios do catálogo.
  * Chaveadas pelo ID do exercício na base (bundledExercises.ts).
  */
 export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
@@ -9,12 +9,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Contraindo o abdômen, eleve lentamente o tronco do chão curvando-se à frente até formar um ângulo de 45 graus.',
     'Pause no topo por um instante e desça o tronco de forma controlada até a posição inicial.',
     'Repita pelo número desejado de repetições.',
-  ],
-  '0002': [
-    'Posicione-se lateralmente em um apoio inclinado a 45 graus (ou de pé com o quadril estabilizado) e coloque as mãos atrás da cabeça.',
-    'Mantendo o tronco alinhado e o abdômen contraído, incline lentamente o tronco para o lado em direção ao solo.',
-    'Pause na parte inferior sentindo o alongamento lateral e suba contraindo fortemente os oblíquos.',
-    'Conclua as repetições de um lado e depois repita do lado oposto.',
   ],
   '0003': [
     'Deite-se de costas no solo com as mãos posicionadas atrás da cabeça.',
@@ -74,22 +68,15 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Mantenha a agilidade e o apoio leve na ponta dos pés pelo tempo ou repetições desejadas.',
   ],
   '1405': [
-    'Fique de pé de frente para um apoio firme na altura do quadril ou cintura e apoie ambas as mãos nele com os braços estendidos.',
-    'Dê um passo para trás mantendo os pés na largura dos ombros e as pernas estendidas.',
-    'Incline o tronco à frente pelo quadril, abaixando o peito entre os braços até sentir alongar as costas (dorsais) e o peitoral.',
-    'Sustente o alongamento por 20 a 30 segundos respirando profundamente e retorne devagar.',
+    'Fique de pé com a coluna ereta e apoie ou entrelace as mãos atrás da região lombar com os cotovelos flexionados.',
+    'Puxe suavemente os cotovelos e os ombros para trás abrindo bem o tórax até sentir alongar o peitoral e a parte frontal dos ombros.',
+    'Sustente o alongamento por 20 a 30 segundos respirando profundamente e relaxe.',
   ],
   '1473': [
     'Fique de pé com os pés afastados na largura dos ombros.',
     'Flexione levemente os joelhos e impulsione o corpo saltando para trás com ambos os pés.',
     'Aterrisse suavemente na ponta dos pés, flexionando os joelhos para amortecer o impacto.',
     'Repita pelo número desejado de repetições.',
-  ],
-  '0020': [
-    'Apoie-se sobre uma prancha de equilíbrio ou base no solo mantendo os pés afastados.',
-    'Mantenha os joelhos levemente semiflexionados e o abdômen e o core firmemente ativados.',
-    'Controle as oscilações laterais usando a musculatura das pernas, tornozelos e glúteos.',
-    'Sustente o equilíbrio e a estabilidade pelo tempo determinado.',
   ],
   '3212': [
     'Fique de pé com os pés unidos e os braços estendidos acima da cabeça.',
@@ -108,6 +95,16 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Estenda os braços abertos nas laterais, perpendiculares ao tronco.',
     'Mantendo os joelhos unidos, desça-os lentamente para um lado até se aproximarem do solo.',
     'Pause por um instante, contraia o abdômen para retornar ao centro e repita para o outro lado.',
+  ],
+  '1770': [
+    'Sente-se com a coluna ereta, apoie o cotovelo do braço de trabalho na parte interna da coxa e segure por baixo da perna ou tornozelo oposto.',
+    'Flexione o cotovelo puxando o peso da própria perna para cima em direção ao ombro, concentrando a força no bíceps.',
+    'Contraia o bíceps no topo do movimento, desça a perna lentamente com controle e depois troque de braço.',
+  ],
+  '0137': [
+    'Comece em posição de prancha apoiando os antebraços no chão, com os cotovelos alinhados aos ombros e o corpo reto.',
+    'Pressione firmemente as palmas das mãos contra o solo para estender ambos os cotovelos simultaneamente, elevando o tronco.',
+    'Desça os antebraços de volta ao chão com controle mantendo o abdômen contraído e repita.',
   ],
   '3543': [
     'Fique de pé com os pés na largura dos ombros e desça em um agachamento.',
@@ -133,41 +130,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Pause por um instante no topo da contração máxima do bíceps.',
     'Desça o tronco lentamente estendendo o cotovelo e, ao concluir as repetições, troque de lado.',
   ],
-  '3167': [
-    'Segure firmemente em uma toalha presa a um suporte vertical ou batente à frente, com os pés na largura dos ombros.',
-    'Desça o quadril mantendo uma posição de agachamento isométrico e incline o corpo para trás com os braços estendidos.',
-    'Puxe o peito em direção às mãos flexionando os cotovelos e unindo fortemente as escápulas.',
-    'Estenda os braços devagar mantendo o agachamento e repita pelo número desejado de repetições.',
-  ],
   '1373': [
     'Fique de pé com os pés na largura dos ombros e as pontas dos pés voltadas para a frente.',
     'Apoie as mãos em uma parede apenas para equilíbrio, se necessário.',
     'Eleve lentamente os calcanhares do chão, subindo na ponta dos pés e contraindo as panturrilhas.',
     'Pause no topo e desça os calcanhares de forma controlada até a posição inicial.',
-  ],
-  '3158': [
-    'Fique de pé de frente para um suporte vertical ou batente firme, segurando-o com pegada fechada.',
-    'Apoie os pés à frente e incline o corpo reto para trás até estender completamente os braços.',
-    'Puxe o peitoral em direção às mãos mantendo os cotovelos próximos ao tronco e contraindo as escápulas.',
-    'Retorne lentamente estendendo os braços com controle e repita.',
-  ],
-  '3161': [
-    'Segure uma toalha ou suporte vertical firme com apenas uma mão e posicione os pés na largura dos ombros.',
-    'Incline o corpo alinhado para trás mantendo o core contraído e o braço de trabalho estendido.',
-    'Puxe o tronco à frente flexionando o cotovelo e retraindo a escápula.',
-    'Desça o corpo de forma controlada até estender o braço e, após concluir as repetições, troque de lado.',
-  ],
-  '3166': [
-    'Segure com ambas as mãos em um suporte vertical firme à frente e posicione os pés alinhados.',
-    'Incline o corpo reto para trás mantendo os braços estendidos e o abdômen ativado.',
-    'Flexione os cotovelos puxando o peito em direção ao suporte e apertando as escápulas no topo.',
-    'Estenda os braços lentamente voltando à inclinação inicial e repita.',
-  ],
-  '3165': [
-    'Segure as extremidades de uma toalha fixa em um suporte vertical à frente com ambas as mãos.',
-    'Incline o corpo alinhado para trás até estender os braços, mantendo a coluna reta e o core firme.',
-    'Puxe o peitoral em direção à toalha contraindo as costas e unindo as escápulas.',
-    'Retorne devagar estendendo os braços sob controle e repita.',
   ],
   '0138': [
     'Deite-se de costas com as pernas estendidas e os braços ao lado do corpo.',
@@ -211,12 +178,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Flexione o joelho esquerdo e incline o corpo à frente alongando a panturrilha direita.',
     'Mantenha por 20 a 30 segundos e repita com a outra perna.',
   ],
-  '2963': [
-    'Mantenha o tronco estável, a coluna ereta e o abdômen contraído.',
-    'Eleve as pernas estendidas à sua frente até ficarem paralelas ao solo.',
-    'Pause por um instante no topo mantendo o controle abdominal.',
-    'Desça as pernas lentamente de volta à posição inicial e repita.',
-  ],
   '1548': [
     'Sente-se com a coluna ereta e os pés apoiados no chão.',
     'Segure por trás de uma das coxas com ambas as mãos, tirando o pé do solo.',
@@ -240,6 +201,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Flexione levemente os joelhos mantendo a coluna alinhada.',
     'Realize movimentos circulares suaves com ambos os joelhos juntos, primeiro no sentido horário e depois anti-horário.',
     'Continue pelo número desejado de repetições.',
+  ],
+  '1273': [
+    'Comece em posição de prancha alta no solo com as mãos um pouco mais afastadas que a largura dos ombros e o core firme.',
+    'Flexione os cotovelos descendo o peitoral em direção ao chão.',
+    'Empurre o solo de forma explosiva projetando o tronco para o alto, bata uma palma no ar e aterrisse suavemente amortecendo com os braços.',
   ],
   '0258': [
     'Comece em posição de prancha alta com as mãos abaixo dos ombros e o corpo alinhado.',
@@ -349,18 +315,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Retorne de forma controlada à posição inicial.',
     'Repita o movimento levando o cotovelo esquerdo ao joelho direito, alternando os lados.',
   ],
-  '3292': [
-    'Segure firme em um apoio elevado e posicione o corpo em suspensão invertida (de cabeça para baixo) com o tronco alinhado.',
-    'Contraia intensamente os ombros, o trapézio, os braços e o core para elevar e sustentar o corpo verticalmente.',
-    'Desça e suba de forma controlada mantendo as pernas estendidas em linha reta.',
-    'Repita pelo número desejado de repetições e desça com segurança.',
-  ],
-  '3303': [
-    'Contraia intensamente o core, oblíquos e membros superiores para sustentar o corpo lateralmente.',
-    'Mantenha as pernas estendidas e o corpo alinhado.',
-    'Sustente a isometria pelo tempo possível com respiração firme.',
-    'Desça de forma controlada e repita do outro lado.',
-  ],
   '0456': [
     'Deite-se de costas com os joelhos flexionados e as mãos atrás da cabeça.',
     'Contraindo o abdômen, eleve simultaneamente o tronco e os joelhos em direção ao peito.',
@@ -427,22 +381,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Empurre com força pelas mãos estendendo os braços de volta à posição inicial.',
     'Mantenha o abdômen e glúteos travados durante todo o movimento.',
   ],
-  '0466': [
-    'Contraia fortemente os dorsais e bíceps puxando o esterno para o alto.',
-    'Mantenha o peito aberto e as escápulas retraídas no topo do movimento.',
-    'Pause por um instante e retorne de forma controlada à posição inicial.',
-  ],
   '3561': [
     'Deite-se de costas com os joelhos flexionados e eleve o quadril em posição de ponte.',
     'Mantendo o quadril alto e firme, tire um pé do chão trazendo o joelho em direção ao peito.',
     'Apoie o pé de volta no solo e repita elevando a outra perna em movimento de marcha.',
     'Continue alternando as pernas sem deixar o quadril cair.',
-  ],
-  '3193': [
-    'Mantenha os tornozelos firmes e o tronco alinhado.',
-    'Contraia os posteriores de coxa e glúteos para elevar e sustentar o tronco.',
-    'Pause no topo mantendo uma linha reta dos joelhos aos ombros.',
-    'Retorne de maneira lenta e controlada à posição inicial.',
   ],
   '0469': [
     'Deite-se de costas com os joelhos flexionados e as mãos atrás da cabeça.',
@@ -522,6 +465,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Caminhe de volta com as mãos até os pés mantendo as pernas o mais estendidas possível e levante-se.',
     'Repita pelo número desejado de repetições.',
   ],
+  '0493': [
+    'Apoie as mãos um pouco mais afastadas que a largura dos ombros sobre um degrau ou plataforma baixa no chão, mantendo o corpo alinhado em prancha.',
+    'Flexione os cotovelos descendo o peitoral em direção ao apoio com o abdômen contraído.',
+    'Empurre pelas palmas das mãos até estender os braços de volta à posição inicial.',
+  ],
   '3785': [
     'Apoie as mãos na borda de uma superfície firme e elevada, um pouco mais largas que os ombros.',
     'Estenda as pernas para trás mantendo o corpo em linha reta da cabeça aos calcanhares.',
@@ -539,6 +487,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Pressione uma palma contra a outra com força máxima, contraindo intensamente o peitoral.',
     'Sustente a contração isométrica por alguns segundos mantendo a respiração contínua.',
     'Relaxe brevemente e repita pelo número desejado de repetições.',
+  ],
+  '0500': [
+    'Posicione-se em flexão no solo com as mãos bem afastadas e desça o peito até ficar próximo ao chão.',
+    'Mantendo o tronco baixo, desloque o peso corporal lateralmente em direção à mão esquerda e depois deslize suavemente até a mão direita.',
+    'Continue alternando o deslocamento de um lado para o outro mantendo tensão contínua no peitoral e nos ombros.',
   ],
   '0501': [
     'Comece de pé, agache e apoie as mãos no chão à sua frente.',
@@ -575,6 +528,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Flexione os joelhos e jogue o quadril para trás em posição de agachamento.',
     'Salte verticalmente com máxima potência estendendo todo o corpo.',
     'Aterrisse com suavidade já encaixando o próximo agachamento.',
+  ],
+  '0555': [
+    'Apoie as costas totalmente contra uma parede e desça em cadeira isométrica até as coxas ficarem paralelas ao solo.',
+    'Mantendo o quadril apoiado na parede, estenda uma das pernas à frente em um chute controlado.',
+    'Retorne o pé ao chão e alterne o chute frontal com a outra perna pelo número desejado de repetições.',
   ],
   '3640': [
     'Deite-se de costas com os joelhos flexionados e os pés apoiados no chão.',
@@ -683,6 +641,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Em seguida, impulsione pelas palmas das mãos estendendo os cotovelos de volta ao topo.',
     'Repita pelo número desejado de repetições mantendo o abdômen contraído.',
   ],
+  '0628': [
+    'Abaixe em posição de meio agachamento com os pés afastados, joelhos flexionados e peito aberto.',
+    'Mantendo o quadril baixo o tempo todo, dê passos largos e controlados para a frente e depois para trás no solo.',
+    'Sustente a contração contínua nos glúteos e nas coxas sem estender totalmente os joelhos entre os passos.',
+  ],
   '0630': [
     'Comece em prancha alta com as mãos diretamente abaixo dos ombros e o corpo alinhado.',
     'Contraia o abdômen e puxe o joelho direito rapidamente em direção ao peito.',
@@ -710,12 +673,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Fique de pé próximo a uma parede e eleve um braço apoiando o antebraço e o cotovelo na parede acima da altura do ombro.',
     'Incline suavemente o peito à frente e para baixo sentindo alongar a dorsal e a região ao redor do ombro.',
     'Sustente por 20 a 30 segundos respirando fundo e depois repita com o outro braço.',
-  ],
-  '1773': [
-    'Segure firme uma toalha presa a um suporte vertical à frente usando uma mão e posicione os pés próximos à base.',
-    'Flexione os joelhos e incline o corpo para trás mantendo o braço estendido e o tronco alinhado.',
-    'Puxe o corpo em direção ao apoio flexionando o cotovelo e contraindo fortemente a dorsal e o bíceps.',
-    'Estenda o braço devagar de volta e, após concluir as repetições, troque de lado.',
   ],
   '1386': [
     'Apoie as mãos em uma parede ou suporte com o tronco inclinado à frente e tire um pé do chão.',
@@ -764,6 +721,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Flexione os cotovelos mergulhando o peito rente ao chão e estenda os braços subindo o tronco na postura da Cobra.',
     'Inverta o movimento retornando o quadril para o alto no V invertido.',
     'Repita de forma fluida pelo número desejado de repetições.',
+  ],
+  '1306': [
+    'Comece em posição de prancha alta no solo com as mãos um pouco mais afastadas que a largura dos ombros.',
+    'Desça o peitoral em direção ao chão com controle e empurre o solo de forma explosiva até tirar as mãos do chão.',
+    'Aterrisse suavemente com as palmas das mãos, amortecendo o impacto já iniciando a próxima repetição.',
   ],
   '1687': [
     'Fique de pé com os pés na largura do quadril.',
@@ -879,6 +841,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Contraia o abdômen inferior enrolando o quadril para fora do chão e trazendo os joelhos em direção ao peito.',
     'Pause no topo e desça o quadril de forma lenta e controlada até a posição inicial.',
   ],
+  '0672': [
+    'Posicione-se em quatro apoios no solo com os joelhos apoiados e as palmas das mãos levemente à frente dos ombros.',
+    'Flexione os cotovelos para trás mantendo os braços rentes ao corpo até tocar os antebraços no chão.',
+    'Pressione as palmas das mãos contra o solo para estender os cotovelos e contrair os tríceps no topo.',
+  ],
   '3663': [
     'Sente-se no solo com as pernas estendidas à frente e as mãos apoiadas no chão atrás do quadril.',
     'Empurre o chão elevando o quadril até formar uma prancha invertida.',
@@ -924,6 +891,11 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Fique de pé e salte alternando uma perna à frente e a outra atrás no ar, como uma tesoura.',
     'Ao aterrissar suavemente, salte de imediato invertendo a posição das pernas.',
     'Continue alternando de forma rápida e ritmada pelo número desejado de repetições.',
+  ],
+  '1390': [
+    'Sente-se no chão com a coluna alinhada e ambas as pernas estendidas à sua frente.',
+    'Incline o tronco à frente pelo quadril e segure a ponta dos pés com as mãos.',
+    'Puxe suavemente a ponta dos pés na direção das canelas sentindo alongar as panturrilhas e posteriores por 20 a 30 segundos.',
   ],
   '1424': [
     'Sente-se no chão, flexione o joelho direito e cruze o tornozelo direito sobre a coxa esquerda.',
@@ -1083,11 +1055,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Salte lateralmente de um pé para o outro cruzando a perna livre para trás, imitando o movimento de esqui.',
     'Mantenha um ritmo contínuo pelo tempo ou repetições desejadas.',
   ],
-  '3304': [
-    'Contraia fortemente o abdômen elevando os joelhos e pernas em um giro corporal controlado.',
-    'Retorne lentamente pela mesma trajetória mantendo a ativação do core e dos ombros.',
-    'Repita pelo número desejado de repetições.',
-  ],
   '1362': [
     'Deite-se de bruços no chão e apoie os antebraços no solo com os cotovelos alinhados abaixo dos ombros.',
     'Eleve o peito e a cabeça suavemente mantendo o quadril e as pernas no chão (postura da Esfinge).',
@@ -1198,10 +1165,10 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Bata as pernas e os braços alternadamente para cima e para baixo como se estivesse nadando.',
     'Mantenha o movimento contínuo pelo tempo ou repetições desejadas.',
   ],
-  '3318': [
-    'Segure em um apoio alto acima da cabeça com os braços estendidos e o corpo suspenso.',
-    'Contraia intensamente o core e as dorsais para balançar o corpo para a frente e para o alto com impulso controlado.',
-    'Estabilize o movimento com firmeza nos ombros e no abdômen durante toda a execução.',
+  '0815': [
+    'Sente-se no solo com os joelhos flexionados, pés apoiados e as mãos no chão atrás do quadril com os dedos voltados para a frente.',
+    'Eleve levemente o quadril do chão e flexione os cotovelos para trás descendo o tronco de forma curta e controlada.',
+    'Empurre o chão com as palmas das mãos estendendo os braços e contraindo fortemente os tríceps.',
   ],
   '0816': [
     'Fique de pé inclinado à frente e apoie as palmas das mãos em uma superfície firme na largura dos ombros.',
@@ -1222,16 +1189,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Deite-se de costas com um joelho flexionado e o pé apoiado no chão, cruzando o tornozelo oposto sobre esse joelho.',
     'Empurre pelo calcanhar de apoio elevando o quadril em ponte unilateral e girando suavemente a pelve no topo.',
     'Desça o quadril devagar e conclua as repetições antes de trocar o lado.',
-  ],
-  '2802': [
-    'Deite-se de costas com as pernas estendidas e as mãos sob os glúteos.',
-    'Contraia o abdômen e eleve ambas as pernas estendidas girando levemente o quadril no topo em direção ao ombro oposto.',
-    'Desça as pernas devagar e na próxima repetição gire para o outro lado.',
-  ],
-  '2801': [
-    'Deite-se de costas com as pernas estendidas e os braços ao lado do corpo.',
-    'Flexione os joelhos elevando as pernas e gire o quadril levando os joelhos em direção ao ombro oposto.',
-    'Desça devagar à posição inicial e repita girando para o outro lado.',
   ],
   '3231': [
     'Fique de pé com os pés na largura dos ombros e os braços abertos nas laterais.',
@@ -1274,11 +1231,6 @@ export const EXERCISE_INSTRUCTIONS_PT: Record<string, string[]> = {
     'Mantenha o corpo em linha reta e desça o peito flexionando os cotovelos.',
     'Empurre pelas palmas das mãos contraindo o peitoral até estender os braços novamente.',
     'Repita pelo número desejado de repetições.',
-  ],
-  '0858': [
-    'Estabilize o tronco em suspensão mantendo as costas apoiadas, os ombros firmes e o abdômen contraído.',
-    'Eleve as pernas no ar e alterne rapidamente a subida dos joelhos em direção ao peito, pedalando como em um tiro de corrida.',
-    'Mantenha a respiração contínua e o ritmo intenso pelo tempo ou repetições desejadas.',
   ],
   '1604': [
     'Dê um passo amplo à frente entrando em posição de afundo profundo e apoie ambas as mãos no chão ao lado do pé da frente.',

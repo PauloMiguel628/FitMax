@@ -1,5 +1,9 @@
 import { Exercise } from '@/types';
 
+/**
+ * Catálogo curado de 219 exercícios 100% peso corporal (sem barra fixa, paralelas ou bancos).
+ * Gerado automaticamente a partir da base oficial ExerciseDB com GIFs animados verificados.
+ */
 export const BUNDLED_EXERCISES: Exercise[] = [
   {
     "id": "0001",
@@ -15,23 +19,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Lie flat on your back with your knees bent and feet flat on the ground. Place your hands behind your head with your elbows pointing outwards. Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle. Pause for a moment at the top, then slowly lower your upper body back down to the starting position. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0001-2gPfomN.gif"
-  },
-  {
-    "id": "0002",
-    "name": "45° side bend",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "obliques"
-    ],
-    "instructions": [
-      "Lie on your side on the floor with your legs stacked and support your head with your lower hand.",
-      "Place your top hand behind your head with your elbow pointing up.",
-      "Contract your obliques and side abs to lift your upper torso and bring your top elbow toward your hip.",
-      "Lower slowly with control and repeat before switching sides."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0002-Hy9D21L.gif"
   },
   {
     "id": "0003",
@@ -58,9 +45,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "glutes"
     ],
     "instructions": [
-      "Position yourself on all fours with your hands under your shoulders and knees under your hips.",
-      "Slide one leg straight back and lower your hips slightly toward the floor to stretch the hip flexors and quads.",
-      "Hold the stretch for 20 to 30 seconds while breathing steadily, then switch legs."
+      "Start on all fours with your hands and knees on the floor.",
+      "Bend one knee and hold your ankle or foot behind you with the same-side hand.",
+      "Gently pull your heel toward your glutes to stretch your quadriceps while keeping your core stable, then switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1512-qBcKorM.gif"
   },
@@ -122,9 +109,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet wide apart and extend your arms out to the sides at shoulder height.",
-      "Step one foot backward while hinging forward and reaching the opposite hand down to touch your front foot.",
-      "Return to the wide starting stance and repeat on the opposite side in a continuous rhythm."
+      "Stand tall with your feet wide apart and your arms extended out to the sides.",
+      "Circle your torso down, reaching your hands across your feet in a wide fluid arc.",
+      "Complete the circle back to the top and repeat, alternating directions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3214-RtyAsy1.gif"
   },
@@ -139,9 +126,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "lower back"
     ],
     "instructions": [
-      "Stand tall with your feet shoulder-width apart and extend your arms straight forward at shoulder height.",
-      "Perform small, controlled forward circles with both arms while keeping your shoulders engaged.",
-      "After completing the desired repetitions, reverse the direction and perform backward circles."
+      "Lie flat on your back with your knees bent and your arms extended straight overhead.",
+      "Engage your abs and sit all the way up in a fluid motion while reaching your hands forward.",
+      "Slowly lower your torso and arms back to the floor with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3204-NAkmgdx.gif"
   },
@@ -157,9 +144,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand with your feet hip-width apart and your knees slightly bent.",
-      "Jump forward and backward over an imaginary line on the floor with both feet together.",
-      "Land softly on the balls of your feet and maintain a quick, steady rhythm."
+      "Stand tall with your feet together and your hands placed on your hips.",
+      "Jump both feet out wide to the sides while landing softly on the balls of your feet.",
+      "Immediately jump your feet back together to the center and continue at a brisk pace."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3220-f9lVSSI.gif"
   },
@@ -176,9 +163,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand tall with your core braced and feet hip-width apart.",
-      "Step one foot forward and immediately step back while swinging your arms naturally.",
-      "Maintain a brisk, rhythmic pace for the desired duration."
+      "Stand tall with your feet hip-width apart and your knees slightly bent.",
+      "Step forward and backward in a quick, rhythmic cadence while swinging your arms naturally.",
+      "Maintain a brisk pace and light footwork throughout the set."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3672-fNGumX0.gif"
   },
@@ -193,9 +180,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Sit upright on the edge of a sturdy seat with your feet flat on the floor.",
-      "Reach one arm across your body and hold the opposite knee while placing your other hand behind you.",
-      "Gently rotate your torso to stretch your back, hold for 20 to 30 seconds, and repeat on the other side."
+      "Stand tall and clasp or place your hands behind your lower back with your elbows bent.",
+      "Draw your elbows and shoulders back to open your chest and stretch your pectorals and front shoulders.",
+      "Hold the stretch while breathing deeply, then relax."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1405-chfnQnM.gif"
   },
@@ -216,24 +203,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1473-SaDOwk7.gif"
   },
   {
-    "id": "0020",
-    "name": "balance board",
-    "bodyPart": "upper legs",
-    "equipment": "body weight",
-    "target": "quads",
-    "secondaryMuscles": [
-      "calves",
-      "hamstrings",
-      "glutes"
-    ],
-    "instructions": [
-      "Stand on one leg with your knee slightly bent and hinge your torso forward at the hips with a flat back.",
-      "Extend your free leg straight behind you and reach your arms out to the sides like airplane wings.",
-      "Hold your balance while engaging your core and glutes, then return to standing and switch legs."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0020-xAySMB0.gif"
-  },
-  {
     "id": "3212",
     "name": "basic toe touch (male)",
     "bodyPart": "upper legs",
@@ -244,9 +213,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Start in a plank position with your forearms or hands on the floor and your body in a straight line.",
-      "Brace your core and lift one arm forward and the opposite leg up behind you simultaneously.",
-      "Hold briefly for stability, return to the plank, and alternate with the opposite arm and leg."
+      "Stand tall with your feet together and your arms raised overhead.",
+      "Hinge forward at your hips with your legs straight, reaching both hands down toward your toes.",
+      "Pause briefly at the bottom of the stretch, then return upright to the starting position."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3212-BbfB8Gb.gif"
   },
@@ -280,6 +249,40 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Lie flat on your back with your knees bent and feet flat on the ground. Extend your arms out to the sides, perpendicular to your body. Keeping your knees together, slowly lower them to one side, aiming to touch the ground with your knees. Pause for a moment, then engage your core and slowly lift your knees back to the starting position. Repeat the movement to the other side. Continue alternating sides for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3639-6sYyrRX.gif"
+  },
+  {
+    "id": "1770",
+    "name": "biceps leg concentration curl",
+    "bodyPart": "upper arms",
+    "equipment": "body weight",
+    "target": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Sit upright with your knees bent, brace your working elbow against your inner thigh, and hold underneath your lower leg or ankle.",
+      "Curl your leg upward toward your shoulder using your biceps while using the weight of your leg as resistance.",
+      "Squeeze your biceps at the top, lower your leg slowly under control, and repeat on the other arm."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1770-sJFIDIp.gif"
+  },
+  {
+    "id": "0137",
+    "name": "body-up",
+    "bodyPart": "upper arms",
+    "equipment": "body weight",
+    "target": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders",
+      "core"
+    ],
+    "instructions": [
+      "Start in a forearm plank position on the floor with your elbows under your shoulders and your body in a straight line.",
+      "Press firmly through both palms to lift your elbows off the ground simultaneously until your arms are fully extended.",
+      "Lower your forearms back to the floor with control while keeping your core tight and repeat."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0137-U6G2gk9.gif"
   },
   {
     "id": "3543",
@@ -323,9 +326,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "chest"
     ],
     "instructions": [
-      "Sit on the floor with your knees bent, feet planted, and hands placed behind your hips.",
-      "Press through your hands and heels to lift your hips into a reverse tabletop bridge.",
-      "March by lifting one knee toward your chest, lower the foot back down, and alternate legs without dropping your hips."
+      "Kneel on the floor and place your forearms flat on the ground in front of you.",
+      "Press firmly through your palms to lift your elbows off the floor until your arms are fully extended.",
+      "Lower your forearms back to the ground with control and repeat."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1771-s0HKO2I.gif"
   },
@@ -339,29 +342,11 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "forearms"
     ],
     "instructions": [
-      "Stand facing a vertical support with your feet close to the base and hold a towel wrapped around it with both hands.",
-      "Lean your body backward until your arms are fully extended while keeping your body straight.",
-      "Pull your chest toward the towel by squeezing your shoulder blades and bending your elbows.",
-      "Lower your body back slowly with control and repeat."
+      "Lie on your side on the floor and loop your bottom hand underneath your top thigh.",
+      "Pull your thigh upward toward your torso using your biceps while keeping your elbow braced against your side.",
+      "Lower your leg slowly under control and repeat for both arms."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1769-gscGLOU.gif"
-  },
-  {
-    "id": "3167",
-    "name": "bodyweight squatting row (with towel)",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "shoulders"
-    ],
-    "instructions": [
-      "Stand facing a doorway or vertical wall corner and place one forearm vertically against the frame with your elbow bent at 90 degrees.",
-      "Step forward slowly and rotate your torso slightly away until you feel a stretch across your chest and front shoulder.",
-      "Hold for 20 to 30 seconds and repeat on the other side."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3167-BReCuOn.gif"
   },
   {
     "id": "1373",
@@ -377,74 +362,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Stand with your feet shoulder-width apart, toes pointing forward. Place your hands on a wall or stable surface for balance. Slowly raise your heels off the ground, lifting your body weight onto the balls of your feet. Pause for a moment at the top, then slowly lower your heels back down to the starting position. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1373-bJYHBIN.gif"
-  },
-  {
-    "id": "3158",
-    "name": "bodyweight standing close-grip row",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "forearms"
-    ],
-    "instructions": [
-      "Stand tall and reach one arm behind your lower back with the back of your hand resting against your waist.",
-      "Use your opposite hand to gently guide the bent elbow forward, stretching the back of your shoulder.",
-      "Hold for 20 to 30 seconds and switch arms."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3158-tig3PXb.gif"
-  },
-  {
-    "id": "3161",
-    "name": "bodyweight standing one arm row (with towel)",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "forearms"
-    ],
-    "instructions": [
-      "Stand tall and bend your elbows at 90 degrees in front of your torso.",
-      "Rotate your forearms outward away from your midline while keeping your elbows tucked close to your sides.",
-      "Pause briefly at the end range and return slowly to the starting position."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3161-O4oIqQD.gif"
-  },
-  {
-    "id": "3166",
-    "name": "bodyweight standing row",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "shoulders"
-    ],
-    "instructions": [
-      "Stand with your feet shoulder-width apart and hold both hands at chest height with your elbows bent.",
-      "Keep your hips facing forward and smoothly rotate your upper torso to one side, then to the other.",
-      "Continue alternating sides in a controlled motion to mobilize your upper spine."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3166-wd4ds3s.gif"
-  },
-  {
-    "id": "3165",
-    "name": "bodyweight standing row (with towel)",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "shoulders"
-    ],
-    "instructions": [
-      "Stand with your feet shoulder-width apart, bend your knees slightly, and hinge your torso forward from the hips.",
-      "Let both arms hang relaxed straight down toward the floor.",
-      "Gently swing your arms in small pendular circles using momentum to relax the shoulder joints."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3165-uTv34oq.gif"
   },
   {
     "id": "0138",
@@ -558,20 +475,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1377-m0tCHqc.gif"
   },
   {
-    "id": "2963",
-    "name": "captains chair straight leg raise",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "hip flexors"
-    ],
-    "instructions": [
-      "Sit on the captain's chair with your back against the backrest and your forearms resting on the arm pads. Keep your upper body stable and your back straight. Engage your abs and lift your legs up in front of you, keeping them straight. Continue lifting until your legs are parallel to the ground or as high as you can comfortably go. Pause for a moment at the top, then slowly lower your legs back down to the starting position. Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2963-weoDEpH.gif"
-  },
-  {
     "id": "1548",
     "name": "chair leg extended stretch",
     "bodyPart": "upper legs",
@@ -582,9 +485,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "calves"
     ],
     "instructions": [
-      "Stand tall and place the heel of one foot on a raised surface in front of you with your leg straight.",
-      "Keep your spine long and hinge forward at the hips until you feel a stretch along your calf and hamstring.",
-      "Hold for 20 to 30 seconds and switch legs."
+      "Sit upright on the floor or a stable seat with one leg extended straight forward and your heel resting on the ground.",
+      "Hinge forward from your hips while keeping your spine straight until you feel a stretch along the back of your extended leg.",
+      "Hold the stretch for a few seconds, then switch legs."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1548-xGgAGPm.gif"
   },
@@ -598,9 +501,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "deltoids"
     ],
     "instructions": [
-      "Stand facing a low step and place the ball of one foot on the edge while keeping the other foot on the floor.",
-      "Lean forward slightly to stretch the calf of the raised leg.",
-      "Hold for 20 to 30 seconds and switch legs."
+      "Stand tall with your feet shoulder-width apart and extend both arms out and slightly behind your torso.",
+      "Gently draw your arms back while opening your chest until you feel a stretch across your pectorals and front shoulders.",
+      "Hold the stretch while breathing deeply, then relax."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1271-Uto7l43.gif"
   },
@@ -630,11 +533,28 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "quadriceps"
     ],
     "instructions": [
-      "Stand with your feet shoulder-width apart and cross your arms in front of your chest.",
-      "Quickly swing your arms open and back to stretch your chest, then cross them in front again.",
-      "Repeat rhythmically to warm up and mobilize your chest and shoulders."
+      "Stand with your feet together, bend your knees slightly, and place your hands on top of your knees.",
+      "Rotate both knees together in smooth circular motions to warm up the joints and ankles.",
+      "Perform the circles in one direction and then reverse to the opposite direction."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0257-X7jbxra.gif"
+  },
+  {
+    "id": "1273",
+    "name": "clap push up",
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Start in a high plank position with your hands slightly wider than shoulder-width apart and your core braced.",
+      "Lower your chest toward the floor by bending your elbows.",
+      "Press through your palms explosively to launch your upper body into the air, clap your hands together, and land softly with bent elbows."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1273-wigSg76.gif"
   },
   {
     "id": "0258",
@@ -883,11 +803,14 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "equipment": "body weight",
     "target": "delts",
     "secondaryMuscles": [
-      "triceps",
+      "upper back",
+      "rhomboids",
       "shoulders"
     ],
     "instructions": [
-      "Start by lying face down on the ground with your legs extended and your hands placed directly under your shoulders. Engage your core and press through your palms to lift your upper body off the ground, keeping your elbows close to your sides. Pause at the top for a moment, squeezing your upper back muscles. Slowly lower your body back down to the starting position. Repeat for the desired number of repetitions."
+      "Lie on your back with your knees bent, feet flat on the floor, and elbows bent at your sides.",
+      "Press your elbows firmly into the ground to lift your upper back and chest off the floor while squeezing your shoulder blades together.",
+      "Pause briefly at the top, then lower your back down with control."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1772-wbUYILZ.gif"
   },
@@ -904,38 +827,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Start by lying flat on your back with your knees bent and feet flat on the ground. Place your hands behind your head with your elbows pointing outwards. Engage your abs and lift your upper body off the ground, bringing your right elbow towards your left knee. At the same time, bring your left knee towards your right elbow, creating a twisting motion. Pause for a moment at the top, then slowly lower your upper body and extend your legs back to the starting position. Repeat the movement, this time bringing your left elbow towards your right knee and your right knee towards your left elbow. Continue alternating sides for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0443-jvp6DiD.gif"
-  },
-  {
-    "id": "3292",
-    "name": "elevator",
-    "bodyPart": "shoulders",
-    "equipment": "body weight",
-    "target": "delts",
-    "secondaryMuscles": [
-      "shoulders",
-      "trapezius"
-    ],
-    "instructions": [
-      "Hold firmly onto an overhead bar and invert your body into a straight vertical upside-down hang.",
-      "Engage your shoulders, traps, arms, and core to pull and elevate your inverted body upward.",
-      "Lower with control while maintaining vertical alignment and repeat."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3292-zYmNaoY.gif"
-  },
-  {
-    "id": "3303",
-    "name": "flag",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "obliques",
-      "shoulders"
-    ],
-    "instructions": [
-      "Start by gripping a vertical pole with both hands, palms facing each other, and arms fully extended. Engage your core and lift your legs off the ground, keeping them straight. Using your core and upper body strength, raise your legs until they are parallel to the ground. Hold this position for as long as you can, maintaining a straight body line. Slowly lower your legs back down to the starting position. Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3303-pQ0Mx1Z.gif"
   },
   {
     "id": "0456",
@@ -1112,22 +1003,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3327-gw9PqGk.gif"
   },
   {
-    "id": "0466",
-    "name": "gironda sternum chin",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "lats",
-    "secondaryMuscles": [
-      "biceps",
-      "rhomboids",
-      "rear deltoids"
-    ],
-    "instructions": [
-      "Stand facing a high bar with your feet shoulder-width apart. Reach up and grab the bar with an overhand grip, slightly wider than shoulder-width apart. Hang from the bar with your arms fully extended and your body straight. Engage your lats and biceps to pull your chest up towards the bar, leading with your sternum. Pause for a moment at the top, then slowly lower yourself back down to the starting position. Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0466-IL0JUxR.gif"
-  },
-  {
     "id": "3561",
     "name": "glute bridge march",
     "bodyPart": "upper legs",
@@ -1141,21 +1016,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Lie flat on your back with your knees bent and feet flat on the ground. Engage your glutes and lift your hips off the ground, forming a straight line from your knees to your shoulders. While keeping your hips lifted, lift one foot off the ground and bring your knee towards your chest. Lower your foot back to the ground and repeat the movement with the other leg. Continue alternating legs in a marching motion while maintaining the bridge position. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3561-GibBPPg.gif"
-  },
-  {
-    "id": "3193",
-    "name": "glute-ham raise",
-    "bodyPart": "upper legs",
-    "equipment": "body weight",
-    "target": "hamstrings",
-    "secondaryMuscles": [
-      "glutes",
-      "lower back"
-    ],
-    "instructions": [
-      "Adjust the glute-ham raise machine to fit your body. Position yourself face down on the machine with your ankles secured. Place your hands on your chest or cross them over your chest. Engage your hamstrings and glutes to lift your upper body up towards the ceiling. Continue lifting until your body is in a straight line from your head to your heels. Pause for a moment at the top, then slowly lower your body back down to the starting position. Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3193-Vvwjz6N.gif"
   },
   {
     "id": "0469",
@@ -1363,6 +1223,23 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3698-TV87DNB.gif"
   },
   {
+    "id": "0493",
+    "name": "incline push-up",
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Place your hands slightly wider than shoulder-width apart on a low step or elevated floor platform with your body in a straight plank line.",
+      "Bend your elbows to lower your chest toward the step while keeping your core engaged.",
+      "Press through your palms to extend your arms back to the starting position."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0493-B1EVP9F.gif"
+  },
+  {
     "id": "3785",
     "name": "incline push-up (on box)",
     "bodyPart": "chest",
@@ -1406,6 +1283,24 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Stand with your feet shoulder-width apart and your knees slightly bent. Extend your arms straight out in front of you, parallel to the ground, with your palms facing each other. Squeeze your chest muscles together as hard as you can, while keeping your arms straight. Hold this position for a few seconds, focusing on contracting your chest muscles. Release the squeeze and relax your chest muscles. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1297-HbSG1Pw.gif"
+  },
+  {
+    "id": "0500",
+    "name": "isometric wipers",
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps",
+      "core"
+    ],
+    "instructions": [
+      "Assume a wide-grip push-up position on the floor and lower your chest so it hovers just above the ground.",
+      "Keeping your chest low, shift your torso laterally toward your left hand and then smoothly across toward your right hand.",
+      "Continue gliding from side to side under constant pectoral and shoulder tension."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0500-11wrviz.gif"
   },
   {
     "id": "0501",
@@ -1503,6 +1398,23 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Stand with your feet shoulder-width apart. Lower your body into a squat position by bending your knees and pushing your hips back. Jump explosively, extending your hips and knees fully. Land softly on the balls of your feet and immediately lower your body back into a squat position. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0513-TDYiji6.gif"
+  },
+  {
+    "id": "0555",
+    "name": "kick out sit",
+    "bodyPart": "upper legs",
+    "equipment": "body weight",
+    "target": "hamstrings",
+    "secondaryMuscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "instructions": [
+      "Lean your back flat against a wall and slide down into a seated squat with your thighs parallel to the floor.",
+      "Kick one leg straight out in front of you while holding the wall sit with your supporting leg.",
+      "Return your foot to the floor and alternate kicks with the opposite leg."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0555-v7p5bYl.gif"
   },
   {
     "id": "3640",
@@ -1783,6 +1695,23 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1421-arvaszz.gif"
   },
   {
+    "id": "0628",
+    "name": "monster walk",
+    "bodyPart": "upper legs",
+    "equipment": "body weight",
+    "target": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "quadriceps"
+    ],
+    "instructions": [
+      "Lower into a wide half-squat stance with your knees bent, chest upright, and hips pushed back.",
+      "Stay low in the squat posture as you take controlled wide steps forward and backward across the floor.",
+      "Maintain constant tension in your glutes and thighs without standing upright between steps."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0628-O95afRA.gif"
+  },
+  {
     "id": "0630",
     "name": "mountain climber",
     "bodyPart": "cardio",
@@ -1856,23 +1785,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Hold for 20 to 30 seconds and repeat on the other side."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1355-ZZTGMKh.gif"
-  },
-  {
-    "id": "1773",
-    "name": "one arm towel row",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "biceps",
-      "forearms"
-    ],
-    "instructions": [
-      "Hold a towel looped around a vertical post with one hand and stand with your feet close to the base.",
-      "Bend your knees and lean your body back until your working arm is extended.",
-      "Pull your torso toward the post by driving your elbow back and squeezing your lat, then lower slowly and switch arms."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1773-bKWbrTA.gif"
   },
   {
     "id": "1386",
@@ -1998,6 +1910,24 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3662-XPUDTt7.gif"
   },
   {
+    "id": "1306",
+    "name": "plyo push up",
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders",
+      "core"
+    ],
+    "instructions": [
+      "Start in a high plank position with your hands slightly wider than shoulder-width apart and your body aligned.",
+      "Lower your chest toward the floor with control, then push explosively through your palms so your hands leave the ground.",
+      "Land softly on your palms, immediately cushioning the descent into the next repetition."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1306-Snj1wSv.gif"
+  },
+  {
     "id": "1687",
     "name": "posterior step to overhead reach",
     "bodyPart": "waist",
@@ -2084,7 +2014,8 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "equipment": "body weight",
     "target": "pectorals",
     "secondaryMuscles": [
-      "triceps",
+      "upper back",
+      "rhomboids",
       "deltoids"
     ],
     "instructions": [
@@ -2330,6 +2261,23 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0872-nCU1Ekp.gif"
   },
   {
+    "id": "0672",
+    "name": "reverse dip",
+    "bodyPart": "upper arms",
+    "equipment": "body weight",
+    "target": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Start on your hands and knees on the floor with your palms placed slightly ahead of your shoulders.",
+      "Bend your elbows straight back until your forearms touch the floor while keeping your arms tucked close to your sides.",
+      "Press through your palms to extend your elbows and return to the starting position."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0672-NZ5Qqkz.gif"
+  },
+  {
     "id": "3663",
     "name": "reverse plank with leg lift",
     "bodyPart": "waist",
@@ -2447,7 +2395,8 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "equipment": "body weight",
     "target": "serratus anterior",
     "secondaryMuscles": [
-      "triceps",
+      "upper back",
+      "rhomboids",
       "shoulders"
     ],
     "instructions": [
@@ -2470,6 +2419,22 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Stand with your feet shoulder-width apart. Jump off the ground and simultaneously cross your right leg in front of your left leg. As you land, quickly switch legs, crossing your left leg in front of your right leg. Continue alternating legs and jumping as quickly as possible. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3219-Eh2v5Iu.gif"
+  },
+  {
+    "id": "1390",
+    "name": "seated calf stretch (male)",
+    "bodyPart": "lower legs",
+    "equipment": "body weight",
+    "target": "calves",
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "instructions": [
+      "Sit on the floor with both legs extended straight in front of you.",
+      "Hinge forward from your hips and reach both hands to hold the balls of your feet or toes.",
+      "Gently pull your toes back toward your shins to stretch your calves and hamstrings, holding for 20 to 30 seconds."
+    ],
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1390-17bqEXD.gif"
   },
   {
     "id": "1424",
@@ -2638,6 +2603,7 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "target": "pectorals",
     "secondaryMuscles": [
       "triceps",
+      "shoulders",
       "core"
     ],
     "instructions": [
@@ -2929,21 +2895,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Stand with your feet shoulder-width apart. Bend your knees slightly and keep your back straight. Jump to the right, landing on your right foot while swinging your left leg behind your right leg. Immediately jump to the left, landing on your left foot while swinging your right leg behind your left leg. Continue alternating jumps from side to side, mimicking a skiing motion. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3671-5MRH8H2.gif"
-  },
-  {
-    "id": "3304",
-    "name": "skin the cat",
-    "bodyPart": "back",
-    "equipment": "body weight",
-    "target": "upper back",
-    "secondaryMuscles": [
-      "shoulders",
-      "core"
-    ],
-    "instructions": [
-      "Start by hanging from a bar with your arms fully extended and your body relaxed. Engage your core and lift your legs up, bringing your knees towards your chest. Continue to lift your legs up and over your head, allowing your body to pass through the arms. Once your legs are fully extended over your head, begin to lower them back down towards the starting position. As you lower your legs, allow your body to pass back through the arms until you are hanging with your arms fully extended again. Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3304-MSfvriJ.gif"
   },
   {
     "id": "1362",
@@ -3273,9 +3224,9 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "equipment": "body weight",
     "target": "glutes",
     "secondaryMuscles": [
-      "hamstrings",
-      "quadriceps",
-      "calves"
+      "lower back",
+      "upper back",
+      "hamstrings"
     ],
     "instructions": [
       "Lie face down on a mat with your arms extended overhead. Engage your core and lift your chest and legs off the ground simultaneously. Kick your legs up and down in a fluttering motion, as if you were swimming. Continue kicking for the desired number of repetitions. Lower your chest and legs back down to the starting position."
@@ -3283,21 +3234,21 @@ export const BUNDLED_EXERCISES: Exercise[] = [
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3433-SP3hUez.gif"
   },
   {
-    "id": "3318",
-    "name": "swing 360",
-    "bodyPart": "cardio",
+    "id": "0815",
+    "name": "triceps dips floor",
+    "bodyPart": "upper arms",
     "equipment": "body weight",
-    "target": "cardiovascular system",
+    "target": "triceps",
     "secondaryMuscles": [
-      "shoulders",
-      "core"
+      "chest",
+      "shoulders"
     ],
     "instructions": [
-      "Hold an overhead bar with straight arms and your body hanging.",
-      "Engage your lats and core to swing your body forward and upward with controlled momentum.",
-      "Maintain shoulder stability throughout the dynamic movement."
+      "Sit on the floor with your knees bent, feet flat, and hands placed behind your hips with fingers pointing toward your feet.",
+      "Lift your hips slightly off the ground and bend your elbows backward to lower your torso.",
+      "Press firmly through your palms to straighten your arms and contract your triceps at the top."
     ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/3318-tnaj0mT.gif"
+    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0815-7aVz15j.gif"
   },
   {
     "id": "0816",
@@ -3359,36 +3310,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Lower your hips slowly and repeat before switching sides."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1466-AX1kB0o.gif"
-  },
-  {
-    "id": "2802",
-    "name": "twisted leg raise",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "obliques",
-      "hip flexors"
-    ],
-    "instructions": [
-      "Lie flat on your back with your legs extended and your arms by your sides. Place your hands under your glutes for support. Engage your abs and lift both legs off the ground, keeping them straight. As you lift your legs, twist your hips to one side, bringing your legs towards your opposite shoulder. Pause for a moment at the top, then slowly lower your legs back down to the starting position. Repeat the movement, this time twisting your hips to the other side. Continue alternating sides for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2802-C0eCeEt.gif"
-  },
-  {
-    "id": "2801",
-    "name": "twisted leg raise (female)",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "obliques",
-      "hip flexors"
-    ],
-    "instructions": [
-      "Lie flat on your back with your legs extended and your arms by your sides. Bend your knees and lift your legs off the ground, bringing them towards your chest. As you lift your legs, twist your hips to one side, bringing your knees towards your opposite shoulder. Pause for a moment at the top, then slowly lower your legs back down to the starting position. Repeat the movement, this time twisting your hips to the other side. Continue alternating sides for the desired number of repetitions."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/2801-yT9tk17.gif"
   },
   {
     "id": "3231",
@@ -3513,24 +3434,6 @@ export const BUNDLED_EXERCISES: Exercise[] = [
       "Start in a high plank position with your hands wider than shoulder-width apart. Keep your body in a straight line from head to toe. Lower your chest towards the ground by bending your elbows, keeping them close to your sides. Push through your palms to extend your arms and return to the starting position. Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/1311-JmMVpR3.gif"
-  },
-  {
-    "id": "0858",
-    "name": "wind sprints",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "target": "abs",
-    "secondaryMuscles": [
-      "quadriceps",
-      "hamstrings",
-      "calves"
-    ],
-    "instructions": [
-      "Stabilize your upper body in a supported hang with your shoulders firm and abs braced.",
-      "Lift your legs and rapidly alternate driving your knees up toward your chest in a mid-air running sprint motion.",
-      "Maintain a fast, steady rhythm while breathing continuously."
-    ],
-    "gifUrl": "https://cdn.jsdelivr.net/gh/hasaneyldrm/exercises-dataset@main/videos/0858-Qoujh3Q.gif"
   },
   {
     "id": "1604",
