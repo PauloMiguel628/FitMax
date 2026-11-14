@@ -66,6 +66,7 @@ export default function WorkoutSessionScreen() {
   const [sessionElapsedMs, setSessionElapsedMs] = useState(0);
   const [restRemainingMs, setRestRemainingMs] = useState(0);
   const [restFinishedNotice, setRestFinishedNotice] = useState(false);
+  const [instructionsVisible, setInstructionsVisible] = useState(false);
   const [jumpModalVisible, setJumpModalVisible] = useState(false);
   const [allowExit, setAllowExit] = useState(false);
 
@@ -315,15 +316,18 @@ export default function WorkoutSessionScreen() {
 
   return (
     <View style={[styles.safeArea, { backgroundColor: colors.background, paddingTop: Math.max(insets.top, 14) }]}>
-      {/* Top Bar: Duração Total da Sessão + Botão de Descartar */}
+      {/* Top Bar: Duração Total da Sessão + Botão de Descartar + Instruções + Lista */}
       <View style={[styles.topBar, { paddingHorizontal: spacing.lg }]}>
-        <Pressable
-          onPress={handleDiscard}
-          style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
-          accessibilityLabel={t.sessionDiscard}
-        >
-          <Ionicons name="close" size={20} color={colors.textSecondary} />
-        </Pressable>
+        <View style={styles.topLeftActions}>
+          <Pressable
+            onPress={handleDiscard}
+            style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
+            accessibilityRole="button"
+            accessibilityLabel={t.sessionDiscard}
+          >
+            <Ionicons name="close" size={20} color={colors.textSecondary} />
+          </Pressable>
+        </View>
 
         <View style={styles.topTimeWrap}>
           <Text style={[typography.bodySmall, { color: colors.textSecondary }]}>
@@ -334,13 +338,25 @@ export default function WorkoutSessionScreen() {
           </Text>
         </View>
 
-        <Pressable
-          onPress={() => setJumpModalVisible(true)}
-          style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
-          accessibilityLabel={t.sessionJumpTo}
-        >
-          <Ionicons name="list" size={20} color={colors.text} />
-        </Pressable>
+        <View style={styles.topRightActions}>
+          <Pressable
+            onPress={() => setInstructionsVisible(true)}
+            style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
+            accessibilityRole="button"
+            accessibilityLabel={t.timerViewInstructions}
+          >
+            <Ionicons name="information-circle-outline" size={22} color={colors.text} />
+          </Pressable>
+
+          <Pressable
+            onPress={() => setJumpModalVisible(true)}
+            style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
+            accessibilityRole="button"
+            accessibilityLabel={t.sessionJumpTo}
+          >
+            <Ionicons name="list" size={20} color={colors.text} />
+          </Pressable>
+        </View>
       </View>
 
       <ScrollView
@@ -971,6 +987,88 @@ export default function WorkoutSessionScreen() {
           </View>
         </View>
       </Modal>
+
+      {/* Modal/Sheet de Instruções do exercício atual sem sair da tela (igual ao cronômetro) */}
+      <Modal
+        visible={instructionsVisible}
+        transparent
+        animationType="slide"
+        statusBarTranslucent
+        onRequestClose={() => setInstructionsVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <Pressable
+            style={styles.modalBackdrop}
+            onPress={() => setInstructionsVisible(false)}
+          />
+          <View
+            style={[
+              styles.modalSheet,
+              {
+                backgroundColor: colors.surface,
+                borderTopLeftRadius: radius.xxl,
+                borderTopRightRadius: radius.xxl,
+                paddingHorizontal: spacing.xl,
+                paddingTop: spacing.xl,
+                paddingBottom: Math.max(insets.bottom + 16, 28),
+                maxHeight: '75%',
+              },
+            ]}
+          >
+            <View style={styles.modalHeaderRow}>
+              <Text style={[typography.title2, { color: colors.text }]}>
+                {t.instructions}
+              </Text>
+              <Pressable
+                onPress={() => setInstructionsVisible(false)}
+                style={[styles.topIconBtn, { backgroundColor: colors.surfaceElevated }]}
+                accessibilityRole="button"
+                accessibilityLabel={t.close}
+              >
+                <Ionicons name="close" size={20} color={colors.text} />
+              </Pressable>
+            </View>
+
+            <ScrollView showsVerticalScrollIndicator={true}>
+              {localizedExercise?.instructions && localizedExercise.instructions.length > 0 ? (
+                localizedExercise.instructions.map((step, idx) => (
+                  <View key={idx} style={styles.instructionStep}>
+                    <View
+                      style={[
+                        styles.stepBadge,
+                        { backgroundColor: colors.primaryMuted },
+                      ]}
+                    >
+                      <Text style={[typography.label, { color: colors.primary, fontSize: 12 }]}>
+                        {idx + 1}
+                      </Text>
+                    </View>
+                    <Text
+                      style={[
+                        typography.bodyMedium,
+                        { color: colors.text, flex: 1, lineHeight: 22 },
+                      ]}
+                    >
+                      {step}
+                    </Text>
+                  </View>
+                ))
+              ) : (
+                <Text style={[typography.bodyMedium, { color: colors.textSecondary }]}>
+                  {localizedExercise?.name}
+                </Text>
+              )}
+            </ScrollView>
+
+            <Button
+              title={t.close}
+              variant="secondary"
+              onPress={() => setInstructionsVisible(false)}
+              style={{ marginTop: spacing.md }}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -992,6 +1090,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255, 255, 255, 0.05)',
+  },
+  topLeftActions: {
+    minWidth: 84,
+    alignItems: 'flex-start',
+  },
+  topRightActions: {
+    minWidth: 84,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 8,
   },
   topIconBtn: {
     width: 38,
@@ -1220,5 +1329,19 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 1,
     marginBottom: 8,
+  },
+  instructionStep: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 12,
+  },
+  stepBadge: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    marginTop: 2,
   },
 });
