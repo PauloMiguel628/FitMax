@@ -96,7 +96,7 @@ export default function ExerciseDetailModal() {
     } catch {}
     router.push({
       pathname: '/exercise-timer/[id]',
-      params: { id: exercise.id },
+      params: { id: exercise.id, presentation: 'fullScreenModal' },
     });
   };
 

@@ -92,7 +92,17 @@ export default function RootLayout() {
             animation: 'slide_from_bottom',
           }}
         />
-        <Stack.Screen name="exercise-timer/[id]" />
+        <Stack.Screen
+          name="exercise-timer/[id]"
+          options={({ route }) => {
+            const params = route.params as
+              | { presentation?: 'card' | 'modal' | 'fullScreenModal' }
+              | undefined;
+            return {
+              presentation: params?.presentation ?? 'card',
+            };
+          }}
+        />
         <Stack.Screen name="workout/new" options={{ presentation: 'modal' }} />
         <Stack.Screen name="workout/[id]/edit" options={{ presentation: 'modal' }} />
         <Stack.Screen name="workout/[id]/session" />
