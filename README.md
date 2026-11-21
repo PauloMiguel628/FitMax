@@ -31,7 +31,7 @@
 
 O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em casa. Todo o catálogo, filtros, rotinas e mecânicas de treino foram rigorosamente construídos para que **qualquer pessoa possa treinar em qualquer lugar utilizando unicamente o peso do próprio corpo, o chão ou uma parede de apoio**.
 
-- 🚀 **100% Compatível com Expo Go (SDK 58)** tanto no Android quanto no iOS.
+- 🚀 **100% Compatível com Expo Go (SDK 58) & Build Nativo Android (APK)**: Testável instantaneamente no **Expo Go** (Android e iOS) e pronto para compilação de APK instalável na nuvem via **Expo EAS Build** (`eas.json`).
 - 📴 **Offline-First Completo**: Catálogo embutido de **219 exercícios** 100% livres e ergonômicos para casa, GIFs anatômicos em loop com cache, armazenamento local persistente via AsyncStorage e zero dependência obrigatória de APIs externas pagas.
 - 🎨 **Interface Moderna & Esportiva**: Design escuro/claro dinâmico, tipografia esportiva (*Outfit* e *Plus Jakarta Sans*), pílula animada com feedback háptico na navegação e componentes fluidos a 60 fps construídos com React Native Reanimated.
 
@@ -78,11 +78,12 @@ O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em ca
 
 ### 5. ⚡ Sessão de Treino Ativa (Live Session)
 - **Execução Série a Série**: Marcadores visuais interativos para registrar as séries concluídas.
+- **Instruções Rápidas do Exercício Atual**: Ícone de informação na barra superior para abrir o passo a passo completo do exercício em execução sem interromper o treino.
 - **Adição e Remoção de Séries em Tempo Real**: Adicione séries extras ou remova séries planejadas durante a execução sem sair da tela.
-- **Timer de Descanso entre Séries**: Contagem regressiva de descanso em segundo plano com botões de ajuste rápido (`+15s`, `-15s` e `Pular descanso`).
+- **Timer de Descanso entre Séries**: Contagem regressiva de descanso em segundo plano com botões de ajuste rápido (`+15s`, `-15s` e `Pular descanso`) e notificação temporária ao concluir.
 - **Menu "Pular para Exercício"**: Folha modal deslizante protegida com safe area para navegar diretamente a qualquer exercício do treino.
 - **Botão "FINALIZAR TREINO" com Proteção de Safe Area**: Totalmente desobstruído da barra de navegação virtual do sistema Android.
-- **Resumo do Treino Concluído**: Tela de celebração com duração total, volume de séries, exercícios feitos e atalho para o Histórico.
+- **Resumo do Treino Concluído**: Tela de celebração com duração total (em horas, minutos e segundos), volume de séries, exercícios feitos e atalho para o Histórico.
 
 ### 6. 👤 Perfil, IMC, Evolução de Peso e Aparência
 - **Foto de Perfil com Cortador 1:1 Nativo (`PhotoCropperModal`)**:
@@ -103,15 +104,15 @@ O **FitMax** é um aplicativo mobile focado no conceito de calistenia pura em ca
 | Camada | Tecnologia | Propósito / Benefício |
 |---|---|---|
 | **Core Framework** | `React Native 0.88.1` + `React 19.3.0` | Base nativa de última geração compatível com Expo SDK 58. |
-| **Plataforma & Build**| `Expo SDK ~58.0.22` | Ferramental completo para execução ágil no **Expo Go** e compilação na nuvem via EAS. |
-| **Navegação** | `expo-router ~58.0.29` | Navegação declarativa baseada em arquivos com abas customizadas e pilhas tipadas. |
+| **Plataforma & Build**| `Expo SDK ~58.0.26` + `EAS Build` (`expo-build-properties ~58.0.12`) | Ferramental completo para execução ágil no **Expo Go** e compilação de APK/AAB na nuvem via **EAS**. |
+| **Navegação** | `expo-router ~58.0.32` | Navegação declarativa baseada em arquivos com abas customizadas e pilhas tipadas. |
 | **Gerenciamento de Estado** | `zustand ^5.0.15` | Estado atômico, leve e reativo com middleware `persist` e reidratação garantida. |
 | **Armazenamento Local** | `@react-native-async-storage/async-storage 2.2.0` | Persistência offline-first sem perda de dados. |
 | **Animações Fluidas** | `react-native-reanimated 4.7.1` + `worklets 0.13.0` | Animações a 60 fps na thread de UI nativa sem sobrecarregar a bridge JS. |
 | **Gestos e Toques** | `react-native-gesture-handler ~3.3.0` | Reconhecimento nativo de toques, arrasto e gestos. |
 | **Mídia e Imagens** | `expo-image ~58.0.18` | Decodificação nativa de GIFs anatômicos com reciclagem de memória e cache. |
 | **Manipulação de Fotos** | `expo-image-manipulator ~58.0.16` + `expo-image-picker ~58.0.10` | Captura de imagens da galeria/câmera e corte 1:1 personalizado. |
-| **Áudio e Efeitos** | `expo-audio ~58.0.11` + `expo-haptics ~58.0.7` | Sons de timer esportivo e feedback tátil de alta precisão. |
+| **Áudio e Efeitos** | `expo-audio ~58.0.12` + `expo-haptics ~58.0.8` | Sons de timer esportivo e feedback tátil de alta precisão. |
 | **Gráficos Vetoriais** | `react-native-svg 15.16.0` | Medidor de IMC (gauge arc), anel de timer e gráfico de evolução de peso. |
 | **Controle de Tela** | `expo-keep-awake ~58.0.3` | Previne bloqueio da tela durante treinos e cronômetros ativos. |
 | **Tipografia & Estilos** | `@expo-google-fonts/outfit` + `plus-jakarta-sans` | Identidade visual premium para títulos esportivos e leitura limpa. |
@@ -136,6 +137,7 @@ FitMax/
 │   ├── design-brief.md                 # Especificação de paleta, tipografia e tema
 │   └── migracao-sdk-58.md              # Documentação da migração para Expo SDK 58
 ├── scripts/
+│   ├── patch-expo-manifest-icon.js   # Patch postinstall para iconUrl absoluto no Expo Go
 │   ├── reset-project.js                # Utilitário de reset da estrutura
 │   └── test-calculations.js            # Suíte de testes unitários dos cálculos
 ├── src/
@@ -222,8 +224,11 @@ FitMax/
 │       ├── exerciseLocalization.ts     # Localização integral de nomes, alvos e instruções
 │       ├── sound.ts                    # Disparador de sons esportivos com expo-audio
 │       └── time.ts                     # Utilitários de formatação de milissegundos e durações
-├── app.json                            # Configuração do Expo (ícones, splash e plugins)
-├── package.json                        # Dependências e scripts do projeto
+├── .env.example                        # Exemplo de variáveis de ambiente (API opcional)
+├── app.json                            # Configuração do Expo (pacote Android, permissões, plugins e EAS)
+├── eas.json                            # Configuração de perfis de build na nuvem (APK preview/produção)
+├── eslint.config.js                    # Configuração das regras do ESLint / React Compiler
+├── package.json                        # Dependências, overrides e scripts do projeto
 ├── tsconfig.json                       # Configuração estrita de TypeScript
 └── README.md                           # Documentação oficial do projeto
 ```
@@ -239,7 +244,7 @@ FitMax/
 - **`src/app/(tabs)/timer.tsx`**: Cronômetro de exercícios com suporte a modo livre e regressivo, seleção rápida por categorias, busca instantânea e atalho direto para os exercícios salvos nos favoritos.
 - **`src/app/(tabs)/favorites.tsx`**: Coleção de exercícios favoritos do usuário salvos no dispositivo, com suporte a busca rápida e acesso imediato aos detalhes do movimento.
 - **`src/app/(tabs)/profile.tsx`**: Painel do usuário contendo edição de nome, bio, nível e objetivo, recorte de foto de perfil, medidor de IMC com simulação, gráfico de pesagens com data/hora e alternância de tema claro/escuro.
-- **`src/app/workout/[id]/session.tsx`**: Tela da sessão de treino ativa. Oferece controle em tempo real de séries concluídas, acréscimo de séries extras, cronômetro de exercício, timer de descanso com contagem em background, menu de salto rápido de exercícios e finalização segura com proteção de safe area.
+- **`src/app/workout/[id]/session.tsx`**: Tela da sessão de treino ativa. Oferece controle em tempo real de séries concluídas, acréscimo de séries extras, cronômetro de exercício, timer de descanso com contagem em background, botão de informação com instruções do exercício atual, menu de salto rápido de exercícios e finalização segura com proteção de safe area.
 - **`src/app/workout/new.tsx` & `[id]/edit.tsx`**: Formulários de criação e edição de rotinas de treino com título centralizado, área tracejada para adicionar exercícios e botão de salvar treino posicionado na base.
 
 ### Componentes de UI e Gráficos (`src/components/`)
@@ -328,6 +333,22 @@ O FitMax funciona de forma **100% autônoma e offline** com os 219 exercícios c
    ```bash
    npx expo start -c
    ```
+
+---
+
+### 5. Build e Deploy de APK Instalável (Expo EAS Build)
+
+O projeto está configurado com **Expo Application Services (EAS)** através do arquivo [eas.json](eas.json) e pacote Android `com.paulo.fitmax` no [app.json](app.json), com perfis para desenvolvimento (`development`), APK instalável (`preview`) e loja (`production`):
+
+```bash
+# Autenticar na sua conta Expo (caso ainda não esteja logado)
+npx eas-cli@latest login
+
+# Gerar um APK instalável para Android na nuvem (perfil preview)
+npx eas-cli@latest build --platform android --profile preview
+```
+
+Ao final do build na nuvem, o EAS gera o link/QR Code direto para baixar e instalar o arquivo `.apk` no dispositivo Android.
 
 ---
 
